@@ -39,6 +39,10 @@ cat ~/.ssh/id_rsa.pub
 ssh接続確認
 ssh -T git@github.com
 
+
+
+git remote add origin 
+
 pyenvのインストール
 brew install pyenv
 
