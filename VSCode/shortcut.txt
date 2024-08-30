@@ -1,0 +1,143 @@
+ 
+ 
+◆GUI
+■コミット
+サイドバーのSource Control>Message
+Enterで改行も可能「☑」or Ctrl + Enterでコミット
+ 
+ 
+ 
+◆ショートカット
+ 
+■GUI系
+サイドバーの開閉
+Ctrl + B
+ 
+ターミナルの開閉
+Ctrl + J
+ 
+SEARCHへ画面遷移
+Ctrl + Shift + E
+ 
+SEARCHへ画面遷移
+Ctrl + Shift + F
+ 
+SSOURCE&CONTROLへ画面遷移
+Ctrl + Shift + G → G
+ 
+画面の分割
+2分割（describeコマンド作成時に便利）
+Ctrl + 2
+Ctrl + |
+ 
+3~8分割（下記の繰り返し）
+Ctrl + 2 →　Ctrl + 3
+ 
+タブを左に移動
+Ctrl + Pg Up
+ 
+タブを右に移動
+Ctrl + Pg Dn
+ 
+■フォルダ・ファイル操作
+ファイルの保存
+Ctrl + S
+ 
+名前を付けてファイルを保存
+Ctrl + Shift + S
+ 
+新しいタブを開く
+Ctrl + N
+ 
+現在のタブを閉じる
+Ctrl + W
+ 
+新しいウィンドウを開く
+Ctrl + Shift + N
+ 
+現在のウィンドウを閉じる
+Ctrl + Shift + W
+ 
+別ファイルに移動（ファイル名入力）
+Ctrl + P
+ 
+ファイルを開く
+Ctrl + O
+ 
+フォルダを開く
+Ctrl + K → Ctrl + O
+ 
+ 
+■ファイル内移動
+ファイルの先頭へ移動
+Ctrl + Home
+ 
+ファイルの最後へ移動
+Ctrl + End
+ 
+行を指定して移動
+Ctrl + G
+ 
+行頭へ移動
+Home
+ 
+行末へ移動
+End
+ 
+単語の先頭に移動
+Ctrl + ←
+ 
+単語の末尾に移動
+Ctrl + →
+ 
+ 
+■検索等
+検索
+Ctrl + F
+ 
+検索結果を一つ先に進める
+F3
+ 
+検索結果を一つ前に戻す
+Shift + F3
+ 
+検索を終了する
+Esc
+ 
+ 
+■編集
+カーソル行の下に一行インサート
+Ctrl + Enter
+ 
+カーソル行の上に一行インサート
+Ctrl + Shift + Enter
+ 
+カーソル行の削除
+Ctrl + Shift + K
+ 
+カーソル行を上に複製
+Alt + Shift + ↑
+ 
+カーソル行を下に複製
+Alt + Shift + ↓
+ 
+選択行の移動
+Alt + ↑↓
+ 
+任意の場所を複数選択（マルチカーソル　右下のselectionを確認）*不要な選択をしないように注意
+Alt + カーソル選択
+ 
+現在の行を選択
+Ctrl + L
+ 
+インデントレベルを下げる
+Ctrl + ]
+ 
+インデントレベルを上げる
+Ctrl + [
+ 
+選択行をコメントアウト
+Ctrl + /
+ 
+選択した箇所について作業ファイル内の同一単語を全選択（同一単語でも変更しないものがある場合は注意）
+Ctrl + Shift + L

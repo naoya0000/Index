@@ -1,0 +1,4 @@
+■フィルタリング
+ 
+from:matsumoto[送り元]
+subject:リストア[件名]

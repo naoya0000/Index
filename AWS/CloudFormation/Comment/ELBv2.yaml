@@ -1,0 +1,152 @@
+Properties
+LoadBalancer
+Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+Properties:
+  IpAddressType: String  # ロードバランサーのIPアドレスの種類。
+    # 例: "ipv4"
+
+  LoadBalancerAttributes: 
+    - LoadBalancerAttribute  # ロードバランサーの属性のリスト。
+      # 例: 
+      # - Key: "idle_timeout.timeout_seconds"
+      #   Value: "60"
+
+  Name: String  # ロードバランサーの名前。
+    # 例: "MyLoadBalancer"
+
+  Scheme: String  # ロードバランサーのスキーム。
+    # 例: "internet-facing"
+
+  SecurityGroups: 
+    - String  # ロードバランサーに関連付けるセキュリティグループのID。
+      # 例: 
+      # - "sg-0123456789abcdef0"
+
+  SubnetMappings: 
+    - SubnetMapping  # ロードバランサーのサブネットのマッピング。
+      # 例: 
+      # - AllocationId: "eipalloc-0123456789abcdef0"
+      #   SubnetId: "subnet-0123456789abcdef0"
+
+  Subnets: 
+    - String  # ロードバランサーに関連付けるサブネットのID。
+      # 例: 
+      # - "subnet-0123456789abcdef0"
+
+  Tags: 
+    - Tag  # ロードバランサーに関連付けるタグの設定。
+      # 例: 
+      # - Key: "Environment"
+      #   Value: "Production"
+
+  Type: String  # ロードバランサーの種類。
+    # 例: "application"
+Listener
+Type: AWS::ElasticLoadBalancingV2::Listener
+Properties:
+  AlpnPolicy: 
+    - String  # ロードバランサーリスナーのALPNポリシー。
+      # 例: 
+      # - "HTTP2"
+
+  Certificates: 
+    - Certificate  # ロードバランサーリスナーに使用するSSL/TLS証明書のリスト。
+      # 例: 
+      # - CertificateArn: "arn:aws:acm:us-east-1:123456789012:certificate/abcdef12-3456-7890-1234-abcdef123456"
+
+  DefaultActions: 
+    - Action  # ロードバランサーリスナーのデフォルトのアクション。
+      # 例: 
+      # - Type: "fixed-response"
+      #   FixedResponseConfig:
+      #     StatusCode: "200"
+      #     ContentType: "text/plain"
+      #     ContentValue: "OK"
+
+  LoadBalancerArn: String  # ロードバランサーに関連付けるARN。
+    # 例: "arn:aws:elasticloadbalancing:us-east-1:123456789012:loadbalancer/app/my-load-balancer/1234567890abcdef"
+
+  MutualAuthentication: 
+    MutualAuthentication  # 相互認証の構成。
+      # 例: 
+      #   ClientCertificateArn: "arn:aws:acm:us-east-1:123456789012:certificate/abcdef12-3456-7890-1234-abcdef123456"
+
+  Port: Integer  # ロードバランサーリスナーのポート番号。
+    # 例: 443
+
+  Protocol: String  # ロードバランサーリスナーのプロトコル。
+    # 例: "HTTPS"
+
+  SslPolicy: String  # ロードバランサーリスナーのSSLポリシー。
+    # 例: "ELBSecurityPolicy-2016-08"
+TargetGroup
+Type: AWS::ElasticLoadBalancingV2::TargetGroup
+Properties:
+  HealthCheckEnabled: Boolean  # ターゲットグループでのヘルスチェックの有効化または無効化。
+    # 例: true
+
+  HealthCheckIntervalSeconds: Integer  # ターゲットグループのヘルスチェック間隔（秒単位）。
+    # 例: 30
+
+  HealthCheckPath: String  # ターゲットグループのヘルスチェックで使用されるパス。
+    # 例: "/health"
+
+  HealthCheckPort: String  # ターゲットグループのヘルスチェックで使用されるポート。
+    # 例: "80"
+
+  HealthCheckProtocol: String  # ターゲットグループのヘルスチェックで使用されるプロトコル。
+    # 例: "HTTP"
+
+  HealthCheckTimeoutSeconds: Integer  # ターゲットグループのヘルスチェックのタイムアウト（秒単位）。
+    # 例: 5
+
+  HealthyThresholdCount: Integer  # ターゲットが正常と見なされるまでのヘルスチェックの成功回数。
+    # 例: 3
+
+  IpAddressType: String  # ターゲットグループのIPアドレスの種類。
+    # 例: "ipv4"
+
+  Matcher: 
+    Matcher  # ルールに適用される条件。
+      # 例: 
+      #   HttpCode: "200-299"
+
+  Name: String  # ターゲットグループの名前。
+    # 例: "MyTargetGroup"
+
+  Port: Integer  # ターゲットグループに登録されたターゲットが使用するポート。
+    # 例: 80
+
+  Protocol: String  # ターゲットグループが使用するプロトコル。
+    # 例: "HTTP"
+
+  ProtocolVersion: String  # ターゲットグループが使用するプロトコルのバージョン。
+    # 例: "HTTP1"
+
+  Tags: 
+    - Tag  # ターゲットグループに関連付けるタグの設定。
+      # 例: 
+      # - Key: "Environment"
+      #   Value: "Production"
+
+  TargetGroupAttributes: 
+    - TargetGroupAttribute  # ターゲットグループの属性のリスト。
+      # 例: 
+      # - Key: "stickiness.enabled"
+      #   Value: "true"
+
+  Targets: 
+    - TargetDescription  # ターゲットグループに登録されたターゲットのリスト。
+      # 例: 
+      # - Id: "i-0abcdef0123456789"
+      #   Port: 80
+
+  TargetType: String  # ターゲットの種類。
+    # 例: "instance"
+
+  UnhealthyThresholdCount: Integer  # ターゲットが異常と見なされるまでのヘルスチェックの失敗回数。
+    # 例: 3
+
+  VpcId: String  # ターゲットグループが関連付けられる仮想プライベートクラウド（VPC）のID。
+    # 例: "vpc-0123456789abcdef0"
+    

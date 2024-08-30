@@ -1,0 +1,295 @@
+
+■サーバ側のフィルタリング
+--filter (ses、ceなど)。
+--filters (ec2、rdsなど)。
+特定のコマンドにサーバー側のフィルタリングとフィルタリングルールがあるかどうかについては、CLIリファレンスのfileters項目を参照
+ 
+ 
+■クライアント側のフィルタリング
+ 
+構文（リストまたは配列は、[ における Volumes や Attachments などの角括弧の後に続く識別子）
+<listName>[ ]
+ 
+配列からのすべての出力をフィルタリング
+aws ec2 describe-volumes \
+    --query 'Volumes[*]'
+ 
+配列内の特定のボリュームをインデックス別に表示（例：配列の最初の項目）
+aws ec2 describe-volumes \
+    --query 'Volumes[0]'
+ 
+構文（ボリュームの特定範囲をインデックス別に表示:start は開始配列インデックス、stop はフィルターが処理を停止するインデックス、step はスキップ間隔（1でスキップなし））
+<arrayName>[<start>:<stop>:<step>]  array=配列
+・デフォルト値は省略可能
+Start - 0（リストの最初のインデックス）
+Stop - リストの最後のインデックス。 表示する数？
+Step - 1（ステップスキップなし）
+$ aws ec2 describe-volumes \
+    --query 'Volumes[0:2:1]'
+ 
+startとstepの省略
+$ aws ec2 describe-volumes \
+    --query 'Volumes[:2]'
+ 
+配列の逆の順序でフィルタリングするために負の数を使用可能
+$ aws ec2 describe-volumes \
+    --query 'Volumes[:-2]'
+ 
+構文（ネストされた値の Volumes[*] のフィルタリング結果をさらに絞り込む、ピリオドとフィルター条件を追加して部分式を使用）
+<expression>.<expression>
+ 
+すべてのボリュームのすべての Attachments 情報を表示
+$ aws ec2 describe-volumes \
+    --query 'Volumes[*].Attachments'
+ 
+ 
+ネストされた値までさらに絞り込む
+$ aws ec2 describe-volumes \
+    --query 'Volumes[*].Attachments[*].State'
+[
+  [
+    "attached"
+  ],
+  [
+    "attached"
+  ],
+  [
+    "attached"
+  ]
+]
+ 
+ 
+ 
+ 
+結果のフラット化
+$ aws ec2 describe-volumes \
+    --query 'Volumes[*].Attachments[].State'
+[
+  "attached",
+  "attached",
+  "attached"
+]
+ 
+ 
+結果のフラット化2
+$ aws ec2 describe-volumes \
+    --query 'Volumes[].Attachments[].State'
+[
+  "attached",
+  "attached",
+  "attached"
+]
+ 
+下記はフラット化されない
+$ aws ec2 describe-volumes \
+    --query 'Volumes[].Attachments[*].State'
+ 
+ 
+構文（特定の値をフィルタリング）
+? <expression> <comparator> <expression>]
+比較演算子<comparator>には、==、!=、<、<=、>、>= などがある
+※論理演算子は&& ||
+ 
+VolumeIds Volumes のすべての Attached の State をフィルタリング
+$ aws ec2 describe-volumes \
+    --query 'Volumes[*].Attachments[?State==`attached`].VolumeId'
+[
+  [
+    "vol-xxxxxx"
+  ],
+  [
+    "vol-xxxxxx"
+  ],
+  [
+    "vol-xxxxxx"
+  ]
+]
+ 
+上記コマンドをフラット化
+$ aws ec2 describe-volumes \
+    --query 'Volumes[*].Attachments[?State==`attached`].VolumeId[]'
+[
+  "vol-xxxxxx",
+  "vol-xxxxxx",
+  "vol-xxxxxx"
+]
+ 
+サイズが 20 未満のすべての VolumeIds の Volumes をフィルタリング
+$ aws ec2 describe-volumes \
+    --query 'Volumes[?Size < `20`].VolumeId'
+ 
+構文（パイピング式）
+<expression> | <expression>]
+ 
+前提条件
+下記二つのように配列の形式であることが必要
+$ aws ec2 describe-volumes \
+    --query 'Volumes[*].Attachments[].InstanceId'
+"i-xxx",
+  "i-xxx",
+  "i-xxx"
+ 
+$ aws rds describe-db-clusters \
+  --query "DBClusters[?DBClusterArn==\`arn:aws:rds:ap-northeast-1:xxxxxx:cluster:DBClusterIdentifier\`].\  
+           DBClusterMembers[].DBInstanceIdentifier"
+[
+    "DBInstanceIdentifier",
+    "DBInstanceIdentifier"
+]
+ 
+Volumes[*].Attachments[].InstanceId 式のフィルタリング結果を取得し、配列の最初の結果を出力
+  $ aws ec2 describe-volumes \
+    --query 'Volumes[*].Attachments[].InstanceId | [0]'
+ 
+ 
+構文（複数の識別子の値をフィルタリング）
+<listName>[].[<expression>, <expression>]
+ 
+VolumeId および VolumeType が Volumes リストでフィルタリングされている
+$ aws ec2 describe-volumes \
+    --query 'Volumes[].[VolumeId, VolumeType]'
+ 
+ネストされたデータをリストに追加するには、別の複数選択リストを追加する
+$ aws ec2 describe-volumes \
+    --query 'Volumes[].[VolumeId, VolumeType, Attachments[].[InstanceId, State]]'
+[
+  [
+    "vol-xxx",
+    "standard",
+    [
+      [
+        "i-xxx",
+        "attached"
+      ]
+    ]
+  ],
+  [
+    "vol-xxx",
+    "standard",
+    [
+      [
+        "i-xxx",
+        "attached"
+      ]
+    ]
+  ],
+  [
+    "vol-xxx",
+    "standard",
+    [
+      [
+        "i-xxx",
+        "attached"
+      ]
+    ]
+  ]
+]
+ 
+可読性を向上させるにはフラット化が有効
+$ aws ec2 describe-volumes \
+    --query 'Volumes[].[VolumeId, VolumeType, Attachments[].[InstanceId, State][]][]'
+[
+  "vol-xxx",
+  "standard",
+  [
+    "i-xxx",
+    "attached"
+  ],
+  "vol-xxx",
+  "standard",
+  [
+    "i-xxx",
+    "attached"
+  ],
+  "vol-xxx",
+  "standard",
+  [
+    "i-xxx",
+    "attached"
+  ]
+]
+ 
+ 
+構文（識別子の値にラベルを追加）
+<listName>[].{<label>: <expression>, <label>: <expression>}
+$ aws ec2 describe-volumes \
+    --query 'Volumes[].{VolumeType: VolumeType}'
+[
+  {
+    "VolumeType": "standard",
+  },
+  {
+    "VolumeType": "standard",
+  },
+  {
+    "VolumeType": "standard",
+  }
+]
+ 
+$ aws ec2 describe-volumes \
+    --query 'Volumes[].{VolumeId: VolumeId, VolumeType: VolumeType, InstanceId: Attachments[0].InstanceId, State: Attachments[0].State}'
+[
+  {
+    "VolumeId": "vol-xxx",
+    "VolumeType": "standard",
+    "InstanceId": "i-xxx",
+    "State": "attached"
+  },
+  {
+    "VolumeId": "vol-xxx",
+    "VolumeType": "standard",
+    "InstanceId": "i-xxx",
+    "State": "attached"
+  },
+  {
+    "VolumeId": "vol-xxx",
+    "VolumeType": "standard",
+    "InstanceId": "i-xxx",
+    "State": "attached"
+  }
+]
+ 
+構文（昇順並び替え）
+sort_by(<listName>, <sort expression>)[].<expression>
+ 
+出力を VolumeId で昇順ソート
+$ aws ec2 describe-volumes \
+    --query 'sort_by(Volumes, &VolumeId)[].{VolumeId: VolumeId, VolumeType: VolumeType, InstanceId: Attachments[0].InstanceId, State: Attachments[0].State}'
+[
+  {
+    "VolumeId": "vol-xxx",
+    "VolumeType": "standard",
+    "InstanceId": "i-xxx",
+    "State": "attached"
+  },
+  {
+    "VolumeId": "vol-xxx",
+    "VolumeType": "standard",
+    "InstanceId": "i-xxx",
+    "State": "attached"
+  },
+  {
+    "VolumeId": "vol-xxx",
+    "VolumeType": "standard",
+    "InstanceId": "i-xxx",
+    "State": "attached"
+  }
+]
+ 
+作成した最新の 5 つの Amazon マシンイメージ (AMI) を最新のものから古いものの順に並べ替え
+$ aws ec2 describe-images \
+    --owners self \
+    --query 'reverse(sort_by(Images,&CreationDate))[:5].{id:ImageId,date:CreationDate}'
+ 
+ 
+サーバー側とクライアント側のフィルタリングを組み合わせる
+$ aws ec2 describe-volumes \
+    --filters "Name=availability-zone,Values=us-west-2a" "Name=status,Values=attached" \
+    --query 'Volumes[?Size > `50`].{Id:VolumeId,Size:Size,Type:VolumeType}'
+ 
+ 
+length を使用してリスト内の数をカウントすることで、1,000 IOPS を超える利用可能なボリュームの数を表示
+$ aws ec2 describe-volumes \
+    --filters "Name=status,Values=available" \
+    --query 'length(Volumes[?Iops > `1000`])'
+3

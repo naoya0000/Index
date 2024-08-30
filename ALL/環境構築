@@ -1,0 +1,68 @@
+コマンドラインデベロッパーツールのインストール
+xcode-select --install
+
+Gitバージョン確認
+git -v
+
+Homebrewのインストール
+https://brew.sh
+上記で最新のコマンドを確認
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+
+パスを通す
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/matsumotonaoya/.zprofile
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+
+Homebrewのバージョン確認
+brew -v
+
+Homebrewの最新化
+brew update
+
+
+Gitアカウントの設定
+git config --list
+git config --global user.name "naoya0000"
+git config --global user.email "naowork12@gmail.com"
+
+
+sshキーを作成し、githubに公開鍵を登録する
+ssh-keygen -t rsa
+ls ~/.ssh
+id_rsa.pub
+cat ~/.ssh/id_rsa.pub
+
+
+ssh接続確認
+ssh -T git@github.com
+
+pyenvのインストール
+brew install pyenv
+
+pyenvのバージョン確認
+pyenv -v
+
+
+pyenvの初期設定
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+
+source ~/.zshrc
+
+
+pythonのインストール
+pyenv install --list
+
+pyenv install 3.12.5
+
+インストール済みのpythonバージョンを指定
+pyenv versions
+
+使用するPythonのバージョンを指定
+pyenv global 3.12.5
+
+

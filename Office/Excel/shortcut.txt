@@ -1,0 +1,92 @@
+
+◾️ショートカット
+
+セル編集
+F2
+ 
+直前の操作をなかったことにする
+Esc
+ 
+セル内削除
+Delete
+ 
+ブックを閉じる
+Ctrl + W
+ 
+シートの移動
+Ctrl + (Fn) + PgDn/PgUp
+ 
+シートの追加
+Shift + F11
+ 
+一番端のセルに移動
+Ctrl + 矢印
+ 
+矢印方向にワープ移動
+Shift + 矢印
+ 
+列を選択
+Ctrl + Space
+ 
+行を選択(半角時)
+Shift + Space
+ 
+フィルターの開始・終了
+Ctrl + Shift + L
+ 
+現在時刻を入力
+Ctrl + :
+ 
+今日の日付を入力
+Ctrl + ;
+ 
+テーブル化
+Ctrl + T
+ 
+罰線等
+Ctrl + 1
+ 
+列幅の自動調整
+Alt + H + O + I
+ 
+行幅の自動調整
+Alt + H + O + A
+ 
+塗りつぶし除去
+Alt + H + H + N
+ 
+太字
+Alt + H + 1
+ 
+白字に変える
+Alt + H + FC + ←
+ 
+Meirio UIに変換
+Alt + H + FF + ↓ + M
+ 
+セルの結合
+Alt + H + M + M
+ 
+セル結合の解除
+Alt + H + M + U
+ 
+折り返して全体を表示/解除
+Alt + H + W
+ 
+セル内文字の左(Left)寄せ
+Alt + H + AL
+ 
+セル内文字の右(Right)寄せ
+Alt + H + AR
+ 
+セル内文字の中央(Center)寄せ
+Alt + H + AC
+ 
+セル内文字の上(Top)寄せ
+Alt + H + AT
+ 
+セル内文字の中央(Middle?)寄せ
+Alt + H + AM
+ 
+セル内文字の下(Bottom)寄せ
+Alt + H + AB

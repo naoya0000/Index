@@ -1,0 +1,45 @@
+■ARN
+ARN形式：arn:aws:s3:::bucketname
+ 
+ 
+■IP
+S3はプライベートIPアドレスを持たないパブリックなリソース
+S3のエンドポイント
+https://docs.aws.amazon.com/ja_jp/general/latest/gr/s3.html
+ 
+ 
+■ストレージクラス
+https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/storage-class-intro.html
+・S3 Standard：
+デフォルトのストレージクラス。
+オブジェクトのアップロード時にストレージクラスを指定しない場合、Amazon S3 Standard ストレージクラスが割り当てられる。
+ 
+ 
+■ライフサイクル
+*CFN
+Cron: cron(0 19 ? * * *) 分・時・日・月・曜日・年 ＜日と曜日を指定しない場合、?*で区別する必要有＞
+ 
+■S3の削除
+オブジェクトが残っているS3バケットは削除することができないため、先にオブジェクト削除をする必要がある
+バケットポリシーによりオブジェクト削除できない場合は、バケットポリシーを先に削除する必要有
+[削除を続行]→上[強制じゃないほう]でリソースを選択せずに削除
+Resource handler returned message: "The bucket you tried to delete is not empty (Service: S3, Status Code: 409, Request ID: 1WKB357PS8SKFR2D, Extended Request ID: U0zBZ6UNsnlqOYbtfFQ0uqJCMujznuGgY/5+SURwCHr6UcWVHfcLkttMyP1N07ny71IFlhjgUSs=)" (RequestToken: c144de13-705c-69e4-3ec6-c7555e87acb5, HandlerErrorCode: GeneralServiceException)
+ 
+ 
+■バケットポリシー
+*Effect
+Allow:定義されたアクション、プリンシパルのみが許可される
+Deny:許可されないアクションとプリンシパルのみを列挙する
+ 
+ 
+■リージョン
+S3を作成したリージョンにより、CLIコマンドで --regionのオプションの指定先が変わる
+
+
+■S3エンドポイントへの接続用のプロトコル
+HTTP80 HTTPS443
+s3.ap-northeast-1.amazonaws.com
+52.219系のCIDR
+ 
+s3.ap-northeast-3.amazonaws.com
+52.95系のCIDR

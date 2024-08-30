@@ -1,0 +1,67 @@
+Properties
+FileSystem
+Type: AWS::EFS::FileSystem
+Properties:
+  AvailabilityZoneName: String  # Amazon EFS ファイルシステムを作成するアベイラビリティーゾーンの名前。
+    # 例: "us-east-1a"
+
+  BackupPolicy: 
+    BackupPolicy  # Amazon EFS ファイルシステムのバックアップポリシー。
+      # 例: 
+      #   Status: "ENABLED"
+      #   TransitionToIA: "AFTER_30_DAYS"
+
+  BypassPolicyLockoutSafetyCheck: Boolean  # Amazon EFS ファイルシステムのポリシーロックアウト安全性検査をスキップするかどうか。
+    # 例: true
+
+  Encrypted: Boolean  # Amazon EFS ファイルシステムが暗号化されているかどうか。
+    # 例: true
+
+  FileSystemPolicy: Json  # Amazon EFS ファイルシステムのポリシードキュメント。
+    # 例: 
+    #   {
+    #     "Version": "2012-10-17",
+    #     "Statement": [
+    #       {
+    #         "Effect": "Allow",
+    #         "Action": "elasticfilesystem:ClientMount",
+    #         "Resource": "*",
+    #         "Principal": "*"
+    #       }
+    #     ]
+    #   }
+
+  FileSystemProtection: 
+    FileSystemProtection  # Amazon EFS ファイルシステムのファイルシステム保護構成。
+      # 例: 
+      #   PolicyStatus: "ENABLED"
+
+  FileSystemTags: 
+    - ElasticFileSystemTag  # Amazon EFS ファイルシステムに関連付けるタグのリスト。
+      # 例: 
+      # - Key: "Environment"
+      #   Value: "Production"
+
+  KmsKeyId: String  # Amazon EFS ファイルシステムで使用する AWS Key Management Service（AWS KMS）キーの ID。
+    # 例: "arn:aws:kms:us-east-1:123456789012:key/abcd1234-a123-456a-a12b-a123b4cd5ef6"
+
+  LifecyclePolicies: 
+    - LifecyclePolicy  # Amazon EFS ファイルシステムのライフサイクルポリシーのリスト。
+      # 例: 
+      # - TransitionToIA: "AFTER_7_DAYS"
+
+  PerformanceMode: String  # Amazon EFS ファイルシステムのパフォーマンスモード。
+    # 例: "generalPurpose"
+
+  ProvisionedThroughputInMibps: Number  # Amazon EFS ファイルシステムのスループットモードでのプロビジョニングされたスループット（MiB/s）。
+    # 例: 5
+
+  ReplicationConfiguration: 
+    ReplicationConfiguration  # Amazon EFS ファイルシステムのレプリケーション構成。
+      # 例: 
+      #   SourceRegion: "us-east-1"
+      #   DestinationRegion: "us-west-2"
+
+  ThroughputMode: String  # Amazon EFS ファイルシステムのスループットモード。
+    # 例: "bursting"
+    

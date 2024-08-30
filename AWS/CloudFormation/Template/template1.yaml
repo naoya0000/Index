@@ -1,0 +1,143 @@
+# **************************************************************************
+# EC2
+# ALB
+# NLB
+# RDS
+# EFS
+# **************************************************************************
+
+
+# **************************************************************************
+# Common Parameter Section
+# **************************************************************************
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+  environment:
+    Description: Name for Environment
+    Default: xxx
+    Type: string
+    AllowedValues:
+      - dev
+      - prod
+
+  systemname:
+    Description: Name for System
+    Default: xxx
+    Type: string
+
+  VPCID:
+    Description: VPCID (vpcname)
+    Default: vpc-xxxxxxx
+    Type: AWS::EC2::VPC::Id
+
+  AvailabilityZoneA:
+    Description: AvailabilityZone AZ-a
+    Default: ap-northeast-1a
+    Type: AWS::EC2::AvailabilityZone::Name
+
+  AvailabilityZoneC:
+    Description: AvailabilityZone AZ-c
+    Default: ap-northeast-1c
+    Type: AWS::EC2::AvailabilityZone::Name
+
+  AvailabilityZoneD:
+    Description: AvailabilityZone AZ-d
+    Default: ap-northeast-1d
+    Type: AWS::EC2::AvailabilityZone::Name
+
+# **************************************************************************
+# Route53 Parameter Section
+# **************************************************************************
+  
+  HostZoneName01:
+    Description: HostZone Name of DNS
+    Default: xxx.xxx.xxx.xxx
+    Type: string
+
+  HostZoneName02:
+    Description: HostZone Name of DNS
+    Default: xxx.xxx.xxx.xxx
+    Type: string
+
+  TTLA:
+    Description: A Record TTL of Route 53
+    Default: '300'
+    Type: string
+
+  TTLCName:
+    Description: CNAME Record TTL of Route 53
+    Default: '300'
+    Type: string
+
+# **************************************************************************
+# EC2 Parameter Section
+# **************************************************************************
+
+  EC2SubnetId01:
+    Description: Subnet for EC2 on AZ-a (subnetname)
+    Default: subnet-xxxx
+    Type: AWS::EC2::Subnet::Id
+
+  PrivateIpAddress01:
+    Description: PrivateIpAddress for EC2 on AZ-a
+    Default: 10.xx.xx.xx
+    Type: string
+    AllowedValues: "(¥¥d{1,3})¥¥.(¥¥d{1,3})¥¥.(¥¥d{1,3})"
+
+  AMIID01:
+    Description: ID of existing AMI (AMIName)
+    Default: ami-xxxx
+    Type: string
+
+  IAMRoleName:
+    Description: Name of existing Private IAM RoleName
+    Default: xxx
+    Type: string
+
+  InstanceType01:
+    Description: InstanceType for EC2
+    Default: x5.large
+    Type: string
+
+  DiskSize:
+    Description: DiskSize for Root Volume
+    Default: 100
+    Type: string
+
+# **************************************************************************
+# ALB Parameter Section
+# **************************************************************************
+
+  ALBSubnetId01:
+    Description: Subnet for EC2 on AZ-a (subnetname)
+    Default: subnet-xxxx
+    Type: AWS::EC2::Subnet::Id
+
+  ALBSubnetId02:
+    Description: Subnet for EC2 on AZ-c (subnetname)
+    Default: subnet-xxxx
+    Type: AWS::EC2::Subnet::Id
+
+# **************************************************************************
+# NLB Parameter Section
+# **************************************************************************
+
+  NLBSubnetId01:
+    Description: Subnet for EC2 on AZ-a (subnetname)
+    Default: subnet-xxxx
+    Type: AWS::EC2::Subnet::Id
+
+  NLBSubnetId02:
+    Description: Subnet for EC2 on AZ-c (subnetname)
+    Default: subnet-xxxx
+    Type: AWS::EC2::Subnet::Id
+
+# **************************************************************************
+# RDS Parameter Section
+# **************************************************************************
+
+  DBSubnetGroup:
+    Description: DBSubnetGroup (subnetgroupname)
+    Default: subnet-xxxx
+    Type: AWS::EC2::Subnet::Id

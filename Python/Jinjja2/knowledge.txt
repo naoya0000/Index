@@ -1,0 +1,106 @@
+
+■改行や空白のトリム
+{%- if xxxx != None -%}
+前のハイフン：{%- xxxx %}の前の空白や改行を削除する
+後ろのハイフン：{% xxxx -%}の後の空白や改行を削除する
+ 
+ 
+■ドット
+[.]はオブジェクト(Pythonの)の属性やキーにアクセスするための演算子
+item.name の場合、
+itemがオブジェクトを表す
+*オブジェクト：Pythonにおけるデータや関数をカプセル化したエンティティ
+nameがオブジェクトの属性→キーの順でアクセスする
+属性：オブジェクトに関連付けられたデータ(変数)やメソッド(関数)のこと
+キー：辞書型のデータ構造において、特定の値を取得するための識別子。キーは一意であり、値に対応する
+ 
+ 
+■変数の置換
+{{…}}は変数や式を埋め込むためのデリミタである
+{{}}内に挿入された式は実行され、結果がテンプレートに挿入される
+ 
+{{変数名}}と表記した箇所の変数を置換できる
+ 
+ 
+■for文
+ 
+{% for item in EC2 %}
+            ←←
+ 
+{% for item in EC2 %}
+    {%- if item.UserData.Type == 'RHEL' %}
+    # ------------------------------
+    # UserData EC2# for RHEL
+    # ------------------------------
+        UserData:
+        Fn::Base64: |
+            #!/bin/bash
+ 
+    {%- elif item.UserData.Type == 'Windows' %}
+    # ------------------------------
+    # UserData EC2# for Windows
+    # ------------------------------
+        UserData:
+        Fn::Base64: |
+            <powershell>
+            xxx
+            </powershell>
+ 
+    {%- elif item.UserData.Type == 'DrWindows' and PilotLight == true %}
+    # ------------------------------
+    # UserData EC2# for Windows DR
+    # ------------------------------
+        UserData:
+        Fn::Base64: |
+            <powershell>
+            　xxx
+            </powershell>
+    {%- endif %}
+{% endfor %}
+ 
+ 
+■if文
+ 
+elif
+else ifの略
+ 
+ 
+■set
+set dbsubnet = []
+※setでデータをリスト化する
+set dbsubnet = dbsubnet.append(drcluster.DBSubnet)
+※appendはリストや配列に新しい要素を追加する
+ 
+ 
+■フィルター
+ 
+｜（パイプ）
+Jinja2テンプレートエンジンでは｜を使ってフィルターを適用する
+※左側の結果に右側の処理を適用する
+ 
+target.Name | capitalize
+capitalizeは文字列の最初の文字を大文字に変換するフィルター
+ 
+item.HostName | lower
+lowerは文字列を小文字に変換するフィルター
+ 
+item.HostName | upper
+upperは文字列を小文字に変換するフィルター
+ 
+dbclusterparamgroup|unique
+uniqueは重複する要素を取り除くフィルター
+ 
+item.SecurityGroups|selectattr("type", "eq", "id")
+selectattrはJinja2テンプレートエンジンで使用されるフィルターの一つ
+※eqは等号
+なのでitem.SecurityGroupsのうちtype＝idのものをフィルタリングして抽出
+ 
+{{ '%03d' | format(loop.index) }}
+%03dはフォーマット指定子
+％：フォーマット指定子の開始
+0：0で桁を埋める（指定がない部分）
+3：表示する桁数
+d：整数（decimal）
+format()  ()に指定したフォーマットを適用
+loop.indexはループ内で現在のイテレーションが何回目かを表す変数または属性
+※イテレーション：プログラム内で繰り返し処理を行うこと（for文と組み合わせて使う）

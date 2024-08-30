@@ -1,0 +1,303 @@
+Properties
+Instance
+Type: AWS::EC2::Instance
+Properties:
+  AdditionalInfo: String  # インスタンスに関連する追加情報。
+    # 例: "Additional information about the instance."
+
+  Affinity: String  # インスタンスが指定したホストに配置されるように指定。
+    # 例: "host"
+
+  AvailabilityZone: String  # インスタンスを起動するアベイラビリティゾーン。
+    # 例: "us-east-1a"
+
+  BlockDeviceMappings: 
+    - BlockDeviceMapping  # インスタンスに関連付けるブロックデバイスの設定。
+      # 例: 
+      # - DeviceName: "/dev/sda1"
+      #   Ebs:
+      #     VolumeSize: 8
+      #     VolumeType: "gp2"
+
+  CpuOptions: CpuOptions  # インスタンスのCPUオプション。
+    # 例: 
+    #   CoreCount: 2
+    #   ThreadsPerCore: 2
+
+  CreditSpecification: CreditSpecification  # インスタンスのCPUクレジットの仕様。
+    # 例: 
+    #   CpuCredits: "standard"
+
+  DisableApiTermination: Boolean  # インスタンスのAPI終了を無効にするかどうか。
+    # 例: true
+
+  EbsOptimized: Boolean  # インスタンスがEBS最適化されているかどうか。
+    # 例: true
+
+  ElasticGpuSpecifications: 
+    - ElasticGpuSpecification  # インスタンスに関連付ける弾性GPUの設定。
+      # 例: 
+      # - Type: "cg1.4xlarge"
+
+  ElasticInferenceAccelerators: 
+    - ElasticInferenceAccelerator  # インスタンスに関連付ける弾性推論アクセラレータの設定。
+      # 例: 
+      # - Type: "eia1.medium"
+
+  EnclaveOptions: EnclaveOptions  # インスタンスのenclaveオプション。
+    # 例: 
+    #   Enabled: true
+
+  HibernationOptions: HibernationOptions  # インスタンスの休止オプション。
+    # 例: 
+    #   Configured: true
+
+  HostId: String  # インスタンスをホストに割り当てます。
+    # 例: "i-0123456789abcdef0"
+
+  HostResourceGroupArn: String  # インスタンスを起動するためのリソースグループのARN。
+    # 例: "arn:aws:resource-groups:us-west-2:123456789012:group/My-Group"
+
+  IamInstanceProfile: String  # インスタンスに関連付けるIAMロールの名前またはARN。
+    # 例: "arn:aws:iam::123456789012:instance-profile/my-instance-profile"
+
+  ImageId: String  # インスタンスに使用するAmazon Machine Image（AMI）のID。
+    # 例: "ami-0123456789abcdef0"
+
+  InstanceInitiatedShutdownBehavior: String  # インスタンスの終了動作。
+    # 例: "terminate"
+
+  InstanceType: String  # インスタンスのタイプ。
+    # 例: "t2.micro"
+
+  Ipv6AddressCount: Integer  # インスタンスに関連付けるIPv6アドレスの数。
+    # 例: 1
+
+  Ipv6Addresses: 
+    - InstanceIpv6Address  # インスタンスに関連付けるIPv6アドレス。
+      # 例: 
+      # - Ipv6Address: "2001:db8:1234:1a00::abcd/64"
+
+  KernelId: String  # インスタンスに関連付けるカーネルのID。
+    # 例: "aki-12345678"
+
+  KeyName: String  # インスタンスに関連付けるキーペアの名前。
+    # 例: "my-key-pair"
+
+  LaunchTemplate: LaunchTemplateSpecification  # インスタンスの起動に使用するテンプレートの指定。
+    # 例: 
+    #   LaunchTemplateName: "MyTemplate"
+    #   Version: "1"
+
+  LicenseSpecifications: 
+    - LicenseSpecification  # インスタンスに関連付けるライセンスの指定。
+      # 例: 
+      # - LicenseConfigurationArn: "arn:aws:license-manager:us-east-1:012345678901:license-configuration/lc-0123456789abcdef0"
+
+  Monitoring: Boolean  # インスタンスのモニタリングを有効または無効にする。
+    # 例: true
+
+  NetworkInterfaces: 
+    - NetworkInterface  # インスタンスに関連付けるネットワークインターフェースの設定。
+      # 例: 
+      # - AssociatePublicIpAddress: true
+      #   DeviceIndex: 0
+
+  PlacementGroupName: String  # インスタンスを配置するプレースメントグループの名前。
+    # 例: "MyPlacementGroup"
+
+  PrivateDnsNameOptions: PrivateDnsNameOptions  # インスタンスのプライベートDNS名のオプション。
+    # 例: 
+    #   EnableDnsSupport: true
+    #   EnableDnsHostnames: false
+
+  PrivateIpAddress: String  # インスタンスに割り当てるプライベートIP。
+    # 例: "10.0.1.25"
+
+  PropagateTagsToVolumeOnCreation: Boolean  # インスタンスで作成されたボリュームにタグを伝播させるかどうか。
+    # 例: true
+
+  RamdiskId: String  # インスタンスに関連付けるRAMディスクのID。
+    # 例: "ari-12345678"
+
+  SecurityGroupIds: 
+    - String  # インスタンスに関連付けるセキュリティグループのID。
+      # 例: "sg-0123456789abcdef0"
+
+  SecurityGroups: 
+    - String  # インスタンスに関連付けるセキュリティグループの名前。
+      # 例: "MySecurityGroup"
+
+  SourceDestCheck: Boolean  # インスタンスでトラフィックの送信元/宛先チェックを有効または無効にする。
+    # 例: true
+
+  SsmAssociations: 
+    - SsmAssociation  # インスタンスに関連付けるシステムマネージャのAssociationの設定。
+      # 例: 
+      # - AssociationName: "MyAssociation"
+      #   DocumentName: "MyDocument"
+
+  SubnetId: String  # インスタンスを起動するサブネットのID。
+    # 例: "subnet-0123456789abcdef0"
+
+  Tags: 
+    - Tag  # インスタンスに関連付けるタグの設定。
+      # 例: 
+      # - Key: "Name"
+      #   Value: "MyInstanceName"
+
+  Tenancy: String  # インスタンスを実行するホストのテナンシーを指定。
+    # 例: "dedicated"
+
+  UserData: String  # インスタンスの起動時に実行されるユーザーデータ。
+    # 例: "IyEvYmluL2Jhc2g="
+
+  Volumes: 
+    - Volume  # インスタンスに関連付けるEBSボリュームの設定。
+      # 例: 
+      # - Device: "/dev/sdh"
+      #   VolumeId: "vol-049df61146c4d7901"
+Volume
+Type: AWS::EC2::Volume
+Properties:
+  AutoEnableIO: Boolean  # ボリュームのIOの自動有効化を指定。
+    # 例: true
+
+  AvailabilityZone: String  # ボリュームを作成するアベイラビリティゾーンを指定。
+    # 例: "us-east-1a"
+
+  Encrypted: Boolean  # ボリュームを暗号化するかどうかを指定。
+    # 例: true
+
+  Iops: Integer  # ボリュームのプロビジョニングされたIOPS数を指定。
+    # 例: 100
+
+  KmsKeyId: String  # ボリュームを暗号化するために使用するAWS Key Management Service（KMS）キーのIDを指定。
+    # 例: "arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef"
+
+  MultiAttachEnabled: Boolean  # ボリュームのマルチアタッチを有効または無効にするかどうかを指定。
+    # 例: true
+
+  OutpostArn: String  # ボリュームを作成するためのOutpostのAmazon Resource Name（ARN）を指定。
+    # 例: "arn:aws:outposts:us-east-1:012345678910:outpost/op-01234567890123456"
+
+  Size: Integer  # ボリュームのサイズ（ギガバイト）を指定。
+    # 例: 100
+
+  SnapshotId: String  # ボリュームを作成するために使用するAmazon EBSスナップショットのIDを指定。
+    # 例: "snap-0123456789abcdef0"
+
+  Tags: 
+    - Tag  # ボリュームに関連付けるタグの設定。
+      # 例: 
+      # - Key: "Name"
+      #   Value: "MyVolumeName"
+
+  Throughput: Integer  # ボリュームのスループット（MiB/s）を指定。
+    # 例: 100
+
+  VolumeType: String  # ボリュームの種類を指定。
+    # 例: "gp2"
+VolumeAttachment
+Type: AWS::EC2::VolumeAttachment
+Properties:
+  Device: String  # ボリュームをアタッチするデバイス名。
+    # 例: "/dev/sdf"
+
+  InstanceId: String  # ボリュームをアタッチするインスタンスのID。
+    # 例: "i-0123456789abcdef0"
+
+  VolumeId: String  # アタッチするボリュームのID。
+    # 例: "vol-049df61146c4d7901"
+SecurityGroup
+Type: AWS::EC2::SecurityGroup
+Properties:
+  GroupDescription: String  # セキュリティグループの説明。
+    # 例: "My security group description."
+
+  GroupName: String  # セキュリティグループの名前。
+    # 例: "MySecurityGroup"
+
+  SecurityGroupEgress: 
+    - Egress  # セキュリティグループからのトラフィックのアウトバウンド許可ルール。
+      # 例: 
+      # - CidrIp: "0.0.0.0/0"
+      #   Description: "Allow all outbound traffic."
+      #   IpProtocol: "-1"
+
+  SecurityGroupIngress: 
+    - Ingress  # セキュリティグループへのトラフィックのインバウンド許可ルール。
+      # 例: 
+      # - CidrIp: "0.0.0.0/0"
+      #   Description: "Allow all inbound traffic."
+      #   IpProtocol: "-1"
+
+  Tags: 
+    - Tag  # セキュリティグループに関連付けるタグの設定。
+      # 例: 
+      # - Key: "Name"
+      #   Value: "MySecurityGroupName"
+
+  VpcId: String  # セキュリティグループを関連付ける仮想プライベートクラウド（VPC）のID。
+    # 例: "vpc-0123456789abcdef0"
+SecurityGroupEgress
+Type: AWS::EC2::SecurityGroupEgress
+Properties:
+  CidrIp: String  # トラフィックの送信先のIPv4 CIDR形式のIPアドレス範囲。
+    # 例: "192.168.1.1/24"
+
+  CidrIpv6: String  # トラフィックの送信先のIPv6 CIDR形式のIPアドレス範囲。
+    # 例: "2001:0db8:85a3:0000:0000:8a2e:0370:7334/64"
+
+  Description: String  # アウトバウンドルールの説明。
+    # 例: "Allow outbound traffic."
+
+  DestinationPrefixListId: String  # トラフィックの送信先のプレフィックスリストのID。
+    # 例: "pl-0123456789abcdef0"
+
+  DestinationSecurityGroupId: String  # トラフィックの送信先のセキュリティグループのID。
+    # 例: "sg-0123456789abcdef0"
+
+  FromPort: Integer  # トラフィックの開始ポート。
+    # 例: 80
+
+  GroupId: String  # セキュリティグループのID。
+    # 例: "sg-0123456789abcdef0"
+
+  IpProtocol: String  # トラフィックに使用されるプロトコル。
+    # 例: "tcp"
+
+  ToPort: Integer  # トラフィックの終了ポート。
+    # 例: 80
+SecurityGroupIngress
+Type: AWS::EC2::SecurityGroupIngress
+Properties:
+  CidrIp: String  # トラフィックの送信元のIPv4 CIDR形式のIPアドレス範囲。
+    # 例: "192.168.1.1/24"
+
+  CidrIpv6: String  # トラフィックの送信元のIPv6 CIDR形式のIPアドレス範囲。
+    # 例: "2001:0db8:85a3:0000:0000:8a2e:0370:7334/64"
+  
+  Description: String  # インバウンドルールの説明。
+    # 例: "Allow inbound traffic."
+
+  FromPort: Integer  # トラフィックの開始ポート。
+    # 例: 80
+
+  GroupId: String  # セキュリティグループのID。
+    # 例: "sg-0123456789abcdef0"
+
+  GroupName: String  # セキュリティグループの名前。
+    # 例: "MySecurityGroup"
+
+  IpProtocol: String  # トラフィックに使用されるプロトコル。
+    # 例: "tcp"
+
+  SourcePrefixListId: String  # 送信元のプレフィックスリストのID。
+    # 例: "pl-0123456789abcdef0"
+
+  SourceSecurityGroupId: String  # 送信元のセキュリティグループのID。
+    # 例: "sg-0123456789abcdef0"
+
+  ToPort: Integer  # トラフィックの終了ポート。
+    # 例: 80

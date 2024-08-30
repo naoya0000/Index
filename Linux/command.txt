@@ -1,0 +1,779 @@
+ 
+■記号
+*``:コマンド中のバッククォ−トで囲まれた部分はその部分をコマンドとして実行し、その結果を元のコマンドの一部として利用できる
+cp -ip httpd.conf httpd.conf_`date +%Y%m%d`
+rm -i httpd.conf_`date +%Y%m%d`
+ 
+*&&:コマンドの論理積を実行する
+前のコマンドが成功した場合に限り、次のコマンドを実行する
+command1 && command2
+ 
+ 
+ 
+ 
+■パイプ[|]
+*便利なパイプ
+一つ目の要素を出力
+xxxx | awk '{print $1}'
+ 
+ 
+■history
+コマンド履歴表示
+history
+ 
+ 
+■man
+コマンドのマニュアル表示
+man xxx
+ 
+*移動
+Space：次のページに進む
+b：前のページに戻る
+Enter：次の行に進む
+p：前の行に戻る
+ 
+*表記法
+太字：そのままタイプするテキスト
+斜体・下線・<>：適切な引数で置き換えるべきテキスト
+[-abc]：[]の中は省略可能
+-a|-b：or どちらか一方
+argument ...：...は繰り返しを意味する　#args argument:引数
+[expression]：[]の中全体の繰り返し
+ 
+*読み方
+NAME:マニュアルページの概要や内容
+SYNOPSIS：コマンドや機能の使用方法を示す短い形式
+コマンドの書式やオプション、引数などが示される
+DESCRIPTION：コマンドや機能の詳細な説明
+　GENERAL OPTIONS：共通オプション
+LEGACY ISSUES：マニュアルページが過去のバージョンや互換性の問題に関連する内容を含んでいる場合に記載される
+FILES：コマンドや機能に関連するファイルやディレクトリの一覧が記載される
+SEE ALSO：他の関連するマニュアルページやコマンド、リファレンスなどへの参照が記載される
+AUTHORS：マニュアルページの作成者やメンテナンス担当者の情報が記載される
+ 
+ 
+■su
+*run a command with substitute user and group ID
+*su [options] [-] [user [argument...]]
+特定のユーザーに切り替える
+su ユーザー名
+ルートユーザーに切り替える
+*PW入力必須
+su -
+切り替えたユーザーの環境変数を引き継ぐ
+su -l ユーザー名
+ 
+ 
+■sudo
+*execute a command as another user
+コマンドをルート権限で実行
+sudo コマンド
+特定のユーザーの権限でコマンドを実行
+sudo -u ユーザー名 コマンドのマニュアル表示
+ 
+ 
+■id
+*print real and effective user and group IDs
+*id [OPTION]... [USER]
+ユーザーのIDや所属グループを表示するためのコマンド
+*uid(User ID):ユーザーID（ユーザーを一意に識別）
+*gid(Group ID):グループID（グループを一意に識別）
+*groups:ユーザーが追加で所属しているグループのリストを表示
+現在のユーザーのID情報を表示
+id
+特定のユーザーのID情報を取得
+id username
+ 
+ 
+■whoami
+*print effective userid
+*whoami [OPTION]...
+*現在ログインしているユーザー名を表示するコマンド
+ 
+ 
+■who
+*show who is logged on
+*who [OPTION]... [ FILE | ARG1 ARG2 ]
+*現在システムにログインしているユーザーの一覧を表示するコマンド
+*ユーザー名・端末名・ログイン日時
+ 
+ 
+■uname
+*print system information
+*uname [OPTION]...
+*option
+-r:現在のカーネルのリリースバージョンを確認
+-m:現在のLinuxサーバのアーキテクチャを調べる方法
+ 
+ 
+■cksum
+*checksum and count the bytes in a file
+*cksum [FILE]...
+*cksum [OPTION]
+*ファイルのCRC（Cyclic Redundancy Sum）サムを計算するためのコマンド（CRCサム バイト数 ファイル名の順で出力）
+*CRCサムは、ファイルの内容を一意に識別するための短い数値
+*-o:CRCサムを10進数で表示する
+cksum file.txt
+cksum -o file.txt
+ 
+ 
+■md5sum
+*compute and check MD5 message digest
+*md5sum [OPTION]... [FILE]...
+*MD5アルゴリズムを使用して、ファイルの内容から固定長のハッシュ値を生成する
+*データの一意性を確認可能
+ 
+ 
+■awk
+*pattern scanning and processing language
+*awk [ options ] -f program-file [ -- ] file ...
+*awk [ options ] [ -- ] program-text file ...
+*テキストファイルの加工・抽出等の処理を得意とする言語
+*
+awk
+echo | awk 'コマンド'
+awk
+ 
+ 
+■sed
+*stream editor for filtering and transforming text
+*sed [OPTION]... {script-only-if-no-other-script} [input-file]...
+*ファイル内のテキストを読み込み、特定のパターンに一致する行を検索し、置換や削除などの操作をするコマンド
+sed [オプション] コマンド 入力ファイル名
+*コマンド
+s/置換前文字列/置換後文字列/ /path/file
+s,置換前文字列,置換後文字列, /path/file #,,のような置換は削除を表す
+s/置換前文字列/置換後文字列/g
+sed 's,xxx.*$,,g' /path/file
+ 
+ 
+■pwd: print working directory
+*print name of current/working directory
+*pwd [OPTION]...
+カレントディレクトリの表示
+pwd
+ 
+ 
+■cd: change directory
+*[.や./]カレントディレクトリ　[..]親ディレクトリ
+ルートディレクトリに移動する
+cd /
+ホームディレクリに移動する
+cd
+cd ~
+直前のディレクトリに移動
+cd -
+絶対パス
+cd /home/path/cc
+相対パス
+cd bb/cc
+cd ../
+cd /home/cloudshell-user/bb
+ 
+ 
+■ls: list
+*list directory contents
+*ls [OPTION]... [FILE]...
+ディレクトリやファイルの一覧表示
+*option
+-l(long format):ファイルやディレクトリのパーミッション・リンク数・所有者・所有グループ・ファイルサイズ・最終更新日時を含めて表示
+-a:隠しファイル含めてすべて表示(all)
+-h:人間が読みやすい形式(KB,MB,GB等)(human-readable)
+-t:ファイルの更新日時で新しい順にソート(time)
+-r:ソート順を逆にする(reverse)
+ファイルの更新日時で古い順にソート
+ls -ltr
+-R:サブディレクトリ内のファイルやディレクトリも再帰的に表示(recursive)
+-color:ファイルやディレクトリを色分けして表示
+ 
+ 
+■stat
+stat [OPTION]... FILE...
+display file or file system status
+*指定したファイルやディレクトリの詳細な情報を表示する
+ 
+ 
+■rm: remove
+*remove files or directories
+*rm [OPTION]... [FILE]...
+*option
+-i:ファイル確認(削除ログを残)したうえでファイル削除
+-f:確認無しで削除
+-d:空のディレクトリを削除
+-r:ディレクトリとその中身を削除
+-v:削除時に詳細表示
+ファイルを削除
+rm aa.txt
+複数ファイルを削除
+rm aa.txt bb.txt cc.txt
+一致するものを削除（正規表現ではなく、ワイルドカード）
+rm *.txt
+date指定で同形式のファイルやディレクトリ削除可能
+rm -ir aa_`date +%Y%m%d`
+ 
+ 
+■mkdir: make directory
+*make directories
+*mkdir [OPTION]... DIRECTORY...
+*option
+-m:権限を指定してディレクトリ作成
+-p:親ディレクトリ含めてディレクトリを作成・親ディレクトリが存在しなければそれも作成する(既に在る場合は作成されない)
+単一のディレクトリ作成
+mkdir aa
+複数ディレクトリの作成
+mkdir aa bb cc
+ディレクトリ作成後、そのディレクトリに移動
+mkdir aa && cd aa
+ 
+ 
+■touch
+*change file timestamps
+*touch [OPTION]... FILE...
+*option
+-t:タイムスタンプを指定して作成
+-r,--reference=FILE:特定のファイルのタイムスタンプ(後ろ bb.txt)を別のファイル(前 aa.txt)と同じにする
+touch -r aa.txt bb.txt
+新規ファイル作成
+既存ファイルやディレクトリのタイムスタンプを更新
+touch aa.txt
+複数の新規ファイル作成
+複数ファイルのタイムスタンプ更新
+touch aa.txt bb.txt
+ 
+ 
+ 
+■mv: move
+*move (rename) files
+*mv [OPTION]... [-T] SOURCE DEST
+*mv [OPTION]... SOURCE... DIRECTORY
+*mv [OPTION]... -t DIRECTORY SOURCE...
+*option
+-i:移動先に同名のファイルやディレクトリがある場合の上書き確認
+ファイル・ディレクトリの移動
+mv aa.txt ./bb
+ファイル・ディレクトリ名前変更
+mv old.txt new.txt
+mv old new
+ファイルやディレクトリの移動と名前変更
+mv old aa/bb/new
+ 
+ 
+ 
+■cat: concatenate
+単一ファイルの内容表示（標準出力:デフォルトの出力先）
+cat aa.txt
+複数ファイルの連結表示
+cat aa.txt bb.txt
+ファイルの結合
+cat aa.txt bb.txt > cc.txt
+ 
+■tail
+ファイル末尾10行を表示
+tail aa.txt
+ファイル末尾N行を表示
+tail -n N aa.txt
+ファイル末尾を表示し続ける（新しい行が追加されると、自動的に表示が更新される）
+tail -f aa.txt
+ 
+ 
+■less
+テキストファイルをページ単位で表示するためのコマンド
+moreコマンドの拡張版
+less aa.txt
+ 
+ 
+■vi
+vi aa.txt
+※コマンドモードの保存と終了
+:w 保存
+:q 終了
+:q! 保存しないで終了(基本はこっちを使った方がいい)
+:wq 保存して終了
+:x 保存して終了
+ 
+:set fileencoding
+:set fileencoding=eucJP
+ 
+※移動と削除(ノーマルモード)
+h カーソルを左に一文字移動
+l カーソルを右に一文字移動
+j カーソルを下に一行移動
+k カーソルを上に一行移動
+w カーソルを次の単語の先頭に移動
+b カーソルを前の単語の先頭に移動
+e カーソル位置の単語の末尾に移動
+- カーソルを前の行の先頭に移動
++ カーソルを次の行の先頭に移動
+0 行の先頭にジャンプ
+$ 行の末尾にジャンプ
+gg ファイルの先頭にジャンプ
+G ファイルの最後にジャンプ
+:行番号 特定の行にジャンプ
+ 
+※モードの切替（挿入モードは通常のキーボード操作が可能）
+Esc ノーマルモード（コマンドモード）への切替
+i カーソル位置から挿入モードへ切替
+a カーソル位置の次の文字から挿入モードへ切替
+I 行の先頭から挿入モードへの切替
+A 行の末尾から挿入モードへの切替
+o カーソルの次の行に新しい行を挿入して挿入モードへ切替
+O カーソルの前の行に新しい行を挿入して挿入モードへ切替
+ 
+※編集(ノーマルモード)
+x カーソル位置の文字を削除
+dd カーソルがある行を削除
+u 変更を元に戻す（undo）
+ 
+※検索
+/ 検索開始（入力後、Enterで検索を実行）
+n 次の検索結果に移動
+N 前の検索結果に移動
+ 
+ 
+■find
+*ファイルやディレクトリを検索するためのコマンド
+*-name:ファイル名で検索
+*-type:ファイルタイプで検索
+*-size:ファイルサイズで検索
+*-mtime:最終更新日時で検索
+*-atime:最終アクセス日時で検索
+*-ctime:作成日時で検索
+*-perm:パーミッションで検索
+*-exec:検索結果に対してコマンドを実行
+*-print:検索結果を表示
+現在のディレクトリにあるすべてのファイルを表示
+find .
+現在のディレクトリからtest.txtを探す
+find . -name test.txt
+検索結果に対してlsコマンドを実行
+find . -exec ls -l {} \;
+find [オプション] 検索パス [条件式] -exec コマンド {} \;
+*{}:検索結果のファイルパスを代入するプレースホルダ
+*\;:コマンドの終端を示す記号
+ 
+ 
+■grep
+*egrepがない環境やシンプルな正規表現ですむ場合にはgrepを使用することが適している（慣習？）
+*option
+-w:正規表現を用いて検索対象の文字列と完全一致する行のみを表示する
+ファイル内をテキスト検索
+grep "hello" aa.txt = grep -e "hello" aa.txt
+grep "hello" aa.txt | grep "world" = grep -e "hello" -e "world" aa.txt
+大文字と小文字の区別なく検索
+grep -i hello aa.txt
+指定したパターンに一致しない行を表示する
+grep -v
+grep
+テキストファイルからaa,bbの二つのパターンを同時に検索する（aa,bb,aa&bbの3パターン）
+grep -e aa -e bb
+ 
+◆正規表現: 文字列のパターンを記述するための形式言語
+*リテラル文字: 単純に文字そのものを表す　ex. a b c
+ 
+*メタ文字: 特別な意味を持つ文字
+「.」:任意の一文字
+「*」:直前のパターンが0回以上繰り返されることを表す ex. ab*cはac abc abbc などに一致(ワイルドカードとは違う)
+「+」:直前のパターンが1回以上繰り返されることを表す ex. ab+cはabc abbc abbbc などに一致
+「?」:直前のパターンが0回または1回出現されることを表す ex.ab?cはac abcのみに一致
+「^」:行の先頭にマッチ ex. ^hello 文字列がhelloで始まりかどうかの検証（helloが行の先頭で始まる場合にのみマッチ）
+「$」:行の末尾にマッチ ex. world$ 文字列がworldで終わるかどうかの検証（worldが行の末尾にある場合にのみマッチ）
+「{n}」:直前のパターンがちょうどn回繰り返されることを表す
+「{n,}」:直前のパターンが少なくともn回以上繰り返されることを表す
+「{n,m}」:直前のパターンがn回以上m回以下繰り返されることを表す
+ 
+*文字クラス
+[abc]:a,b,cのいずれか一文字に一致
+[a-z]:アルファベットのいずれか一文字に一致
+[0-9]:数字のいずれか一文字に一致
+ 
+*論理演算子
+「a|b」:左右のパターンのどちらかに一致することを表す a or b
+「(abc)」:グループ化 ex.(abc)+ならabcが一回以上繰り返されることに一致
+ 
+*エスケープシーケンス
+特殊文字をそのまま使用する場合に「/」を使用する
+/. でピリオドに一致する
+ 
+ 
+■egrep
+*grepコマンドの拡張版（grepはファイル中から正規表現に一致する行を検索するのに対して、egrepは拡張正規表現を使用できる）
+大文字と小文字を区別せずに検索( -i )
+egrep -i "err|war|cri" /var/log/messages
+ 
+◆拡張正規表現(egrepのみで使用可能)
+「|」:または
+「+」:1回以上の繰り返し
+「?」:0回または一回の繰り返し
+「{n,m}」:n回からm回の繰り返し
+「()」:グループ化
+ 
+ 
+■cp: copy
+*第一引数：コピーしたいファイル　第二引数：コピー先のパスと新規作成するファイルの名前
+*-i:既存ファイルを上書きする場合確認を求める
+*-p:コピー元のファイルやディレクトリ情報を保持してコピーする
+cp aa.txt aa_2024mmdd.txt
+cp -ip aa.txt aa_`date +%Y%m%d`.txt
+cp aa.txt /home/cloudshell-user/
+cp aa.txt /home/cloudshell-user/ aa_2024mmdd.txt
+ 
+ 
+■diff
+diff aa.txt bb.txt
+diff -u aa.txt bb.txt
+diff -y aa.txt bb.txt (横に並べて比較（aaが左、bbが右）|変更 >変更後にのみ存在する行 <変更前存在しない行)
+diff -y --suppress-common-lines aa.txt bb.txt 差分のみ表示
+ 
+ 
+■vimdiff
+ 
+ 
+■chmod: change mode
+*フォルダ・ファイルのパーミッション変更（r4 w2 x1）
+すべてのユーザーに実行権限付与
+chmod +x test.txt
+パーミッションの指定
+chmod 744 test.txt
+ 
+ 
+■tar:tape archive
+ファイルやディレクトリをアーカイブ化（圧縮）及び展開するためのコマンド
+*-c:アーカイブを作成することを指定（圧縮するときに付ける）
+*-v:詳細な情報を表示
+*-z:gzip形式で圧縮
+*-f:アーカイブファイルの名前を指定
+*-r:再帰的にディレクトリをアーカイブ
+*-x:アーカイブを展開
+ファイルをアーカイブ
+tar -cvzf [アーカイブ後の名前(aa.tar.gz等)] [圧縮したいファイル名]
+フォルダをアーカイブ
+tar -cvzf [アーカイブ後の名前] [圧縮したいフォルダ名]
+アーカイブを展開
+tar -xvf [展開したいアーカイブ]
+ 
+ 
+■gzip
+ファイルの圧縮
+gzip aa.txt
+ 
+ 
+■gunzip
+ファイルの解凍
+gunzip aa.gz
+ 
+ 
+ネームサーバに問い合わせを行い、応答結果を表示
+応答をほとんどそのまま表示
+dig
+応答を加工して表示（windowのcmdから実施する場合はこちらのコマンドを使用）
+nslookup servicedomain
+ 
+ 
+■lsblk
+ブロックデバイスの詳細情報を表示する
+*list block devices
+*lsblk [options] [device...]
+*option
+-a:全てのデバイスを表示
+-b:ブロックサイズを表示する
+-p, --paths:Print：パーティション情報を表示
+-f:UUIDやMOUNTPOINTを表示
+*EBSボリューム名を含めて表示
+lsblk -(s)o +SERIAL
+ 
+ 
+■df: disk free
+ディスクの使用状況を表示
+df
+人間に読みやすい形式
+df -h
+ファイルシステムの種類も表示
+df -T
+ 
+ 
+■free
+システムのメモリ使用状況を確認する
+*Display amount of free and used memory in the system
+*free [options]
+*option
+-h:人間が読みやすいように出力
+ 
+ 
+■growpart
+特定のパーティションを最大まで拡張する
+sudo growpart /dev/nvme0n1 2
+ 
+ 
+■parted
+*パーティションの作成や削除を行うコマンド
+*print パーティション情報を表示
+parted [パーティション操作をするデバイス名]
+ 
+ 
+■mkswap
+mkswap /dev/nvme1n1p1
+ 
+ 
+■swapon
+*enabledevices and files for paging and swapping
+*swapon [options] [specialfile...]
+swap領域を有効化する
+swapon /dev/nvme1n1p1
+現在のスワップ領域の状態表示
+swapon -s
+ 
+ 
+■swapoff
+*disable devices and files for paging and swapping
+*swapoff [-va] [specialfile...]
+ 
+ 
+■uname
+*カーネルやシステムの情報を表示するために使用
+システムのノード名を表示する
+uname -n
+カーネルバージョンの表示
+uname -r
+ 
+ 
+■localectl
+*systemdを利用してlocale（言語設定）を管理するコマンド
+現在のロケール設定を表示する
+localectl
+System Locale:システム全体のデフォルトの言語設定
+*en_UF.UTF-8
+en:English
+US:アメリカ合衆国を表す地域コード
+UTF-8:Unicode Transformation Format-8-bit(Linuxでは標準の文字コード)
+VC Keymap    :仮想コンソール(Virtual Console)のキーボードレイアウト設定
+X11 Layout   :X Window Systemのキーボードレイアウト設定
+ 
+ 
+■ip
+ネットワークインターフェイスの情報表示
+ip a   (ip addres showの省略形)
+システムのルーティングテーブルを表示するためのコマンド
+ip route
+ 
+ 
+■systemctl
+systemctl [OPTIONS...] COMMAND [UNIT...]
+*systemdを操作するためのコマンドラインツール
+*systemd:システム(Linuxシステム全体)及びサービスの管理システム
+*サービス:
+systemdサービス管理システムで管理されるプログラムまたはデーモン　（HTTPサーバー(Apache)・データベースサーバー(PostgreSQL)・ログインマネージャーなど）
+システム上で実行されるバックグラウンドプロセス
+・COMMAND
+*start サービスの起動
+*stop　サービスの停止
+*restart サービスの再起動
+*status サービスの状態確認
+*enable サービスの有効化（起動時に自動的に起動するように設定）
+*disable サービスの無効化（起動時に自動的に起動しないように設定）
+*reload　サービスのリロード
+*poweron 電源をオンにする
+*poweroff 電源をオフにする
+ 
+systemdが認識しているすべてのサービスユニットファイルの一覧を表示する
+systemctl list-unit-files
+*static:サービスが静的に有効になっており、手動で開始または停止することができるが、起動時には自動的には開始されない
+*enabled:サービス開始時に自動的に開始されるように設定されている
+*disabled:サービスが無効になっており、起動時には自動的には開始されない（手動で開始する必要がある）
+ユニットファイルのタイプを指定するオプション（-t）　-t service サービスユニットファイルの指定
+systemctl list-unit-files -t service
+パイプを使って前のコマンドの出力をフィルタリングする
+systemctl list-unit-files -t service | grep  <サービス名>
+ 
+ 
+■rpm
+*RPM形式のパッケージを管理するためのコマンド
+*パッケージ:ソフトウェアやデータなどを関連するアイテムをすべてまとめたもの(プログラム実行に必要なすべてのファイルや設定、ドキュメントを含む)
+*RPMパッケージ:RHELで使用されるパッケージ形式
+*-i:指定したRPMパッケージをインストールする
+*-e:指定したRPMパッケージをアンインストールす
+*-qa:インストールされているすべてのパッケージを一覧表示する
+*-U:パッケージの更新を指定
+*-v:詳細情報を表示
+*-h:進捗状況を表示
+*-l|--list:パッケージ内ファイルを一覧表示
+パッケージのインスト—ル状態を確認する
+rpm -q [パッケージ名]
+システムにインストールされているすべてのRPMパッケージの名前一覧を表示する（qa:query all）、ファイルがあるわけでない
+rpm -qa | egrep -i "^kernel|^python3"
+パッチ適用
+rpm -Uvh xxx1.rpm xxx2.rpm httpd-*
+パッケージ内のファイルを一覧表示
+rpm -qpl xxx.rpm
+ 
+ 
+■yum
+*RPMパッケージを管理するためのコマンド
+*rpm:個々のRPMパッケージファイルをダウンロードしてインストール・管理
+*yum:リポジトリと呼ばれるパッケージ情報の集積場所からパッケージをインストール・管理
+・yumコマンドで使用可能なリポジトリの一覧を表示する
+yum repolist
+ 
+ 
+■yumdownloader
+・redirecting to DNF download Plugin
+・Download binary or source packages.
+dnf download [options] <pkg-spec>...
+ 
+ 
+■dnf
+DNF Command Reference
+dnf [options] <command> [<args>...]
+*RPMパッケージを管理するためのコマンド,yumの後継
+*ローカルにパッケージをダウンロードする必要はなく、インターネット上のリポジトリから直接パッケージをダウンロードしてインストールすることが可能
+dnf [options] <command> [<args>...]
+ 
+現在利用可能なリポジトリを一覧表示
+dnf repolist --all
+現在有効になっているリポジトリを一覧表示
+dnf repolist
+現在無効になっているリポジトリを一覧表示
+dnf repolist --disabled
+ 
+■リポジトリ(公式のリポジトリ)のインストール可能なパッケージを一覧表示
+全てのパッケージを表示
+dnf list = dnf list --all
+「*」を使用可能
+dnf list [パッケージ名]
+ 
+ 
+■ps
+report a snapshot of the current processes.
+ps [options]
+*プロセスのステータスを表示するコマンド
+*-e|--everyone:システムのすべてのユーザーのプロセスを表示する
+*-f|--full:詳細な情報を表示する
+現在のユーザーのプロセスを表示する
+ps
+すべてのプロセスを詳細に表示（chronydという文字列を含む行だけを表示）
+ps -ef | grep chronyd
+左から
+UID:ユーザーID
+PID:プロセスID
+PPID:親プロセスID
+C:CPU使用率(%CPU)
+STIME:プロセスが開始された時刻
+TTY:端末(ターミナル)名
+TIME:プロセスがCPUを使用している時間
+CMD:プロセスのコマンドライン
+ 
+ 
+■cut
+*ファイルの各行から、バイト、文字、フィールドをカットして標準出力に書き出すコマンド
+ファイルの各行から最初の100バイト（1-100）をカット
+cut -b1-100
+ 
+ 
+■wc
+*ファイル中の行数、単語数、バイト数をカウントするコマンド
+*-l：行数をカウント
+wc -l
+ 
+ 
+■chkconfig
+*システム起動時に自動起動するサービスの設定を管理するためのコマンドラインツール
+サービスの起動状態の確認
+chkconfig --list
+chkconfig --list | grep  <サービス名>
+ 
+ 
+■telnet
+*ネットワーク経由で他のコンピュータにログインするためのコマンドラインツール
+*telnetはパスワードを平文（暗号化されていないデータ）で送信するため、sshの方が安全な接続である
+・telnetサーバーへの接続（ユーザー名・PW求められたら入力）
+telnet ホスト名 [ポート番号]　※[ポート番号]は省略可能
+telnet example.com 23
+・telnetサーバーから切断する
+exit
+ 
+ 
+■ssh
+*ネットワーク経由で他のコンピュータに安全にログインするためのコマンドラインツール
+*パスワード認証だけでなく公開鍵認証も使用可能
+・sshサーバーへの接続（ユーザー名・PW求められたら入力）
+ssh ユーザー名@ホスト名 [ポート番号]　※[ポート番号]は省略可能
+ssh [メールアドレス] 22
+・sshサーバーから切断する
+exit
+ 
+ 
+■ftp
+*ファイル転送プロトコル（FTP）を使用してローカルホスト⇔リモートホスト or リモートホスト⇔リモートホスト間でファイルを転送するためのコマンドラインツール
+FTPサーバーへの接続
+ftp ホスト名 [ユーザー名] [パスワード]　※[ユーザー名] [パスワード]は省略可能
+ftp example.com
+ファイル転送
+put localfile.txt
+get remote.txt
+FTPサーバーから切断する
+bye
+ 
+ 
+■chronyc
+*chronyデーモン（NTPサーバとクライアントの機能をもつ）を管理するためのコマンドラインツール
+・時刻情報の表示
+chronyc sources
+・-v　詳細情報を表示
+chronyc sources -v
+ 
+ 
+■ss
+*ネットワーク接続に関する情報を表示するコマンドラインツール
+*-t：TCP接続のみを表示
+*-a：すべての接続を表示
+*-n：ポート番号を数字で表示
+・ネットワーク接続状態を表示
+ss
+ss -tan
+ss -tan | grep 22
+ 
+■crontab
+*-l 現在のユーザーのcron設定を表示
+*-u 指定したユーザーのcron設定を表示
+*-e cron設定を編集
+現在のユーザーのcron設定を表示する
+crontab -i
+ 
+ 
+■httpd
+*Apache HTTPサーバーのプロセスを実行するためのコマンド（サーバーの起動・停止・設定）
+*-v:Apache HTTPサーバーのバージョン表示
+ 
+ 
+■ping
+*ネットワーク上の別のネットワークデバイスに対してICMPエコーリクエストを送信し、そのデバイスが応答するかどうかをテストするコマンド
+send ICMP ECHO_REQUEST to network hosts
+ping [-aAbBdDfhLnOqrRUvV46] [-c count] [-F flowlabel] [-i interval]
+            [-I interface] [-l preload] [-m mark] [-M pmtudisc_option]
+            [-N nodeinfo_option] [-w deadline] [-W timeout] [-p pattern] [-Q tos]
+            [-s packetsize] [-S sndbuf] [-t ttl] [-T timestamp option] [hop...]
+            destination
+ 
+ 
+■traceroute
+*ネットワーク上のパケットが目的地に到達するまでに通過する経路を特定するためのコマンド
+print the route packets trace to network host
+traceroute [-46dFITUnreAV] [-f first_ttl] [-g gate,...]
+               [-i device] [-m max_ttl] [-p port] [-s src_addr]
+               [-q nqueries] [-N squeries] [-t tos]
+               [-l flow_label] [-w waittimes] [-z sendwait] [-UL] [-D]
+               [-P proto] [--sport=port] [-M method] [-O mod_options]
+               [--mtu] [--back]
+               host [packet_len]
+ 
+ 
+ 
+■hostnamectl
+*ホスト名を設定および管理するためのコマンド
+hostnamectl
+hostnamectl set-hostname [新しいホスト名]
+hostnamectl --static set-hostname [新しいホスト名]
+ 
+ 
+■udevadm
+このコマンドでCLI以外でもEBSボリュームIDを確認可能
+sudo udevadm info -n /dev/nvme0n1

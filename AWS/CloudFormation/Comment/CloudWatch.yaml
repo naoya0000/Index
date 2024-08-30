@@ -1,0 +1,128 @@
+Properties(AWS::CloudWatch)
+LogGroup
+Type: AWS::CloudWatch::Alarm
+Properties:
+  ActionsEnabled: Boolean  # アラームのアクションが有効か無効かを示すフラグ。
+    # 例: true
+
+  AlarmActions: 
+    - String  # アラームが発生したときに実行するアクションのリスト。
+      # 例: 
+      # - arn:aws:sns:us-east-1:123456789012:MySNSTopic
+
+  AlarmDescription: String  # アラームの説明。
+    # 例: "CPU utilization exceeds threshold."
+
+  AlarmName: String  # アラームの名前。
+    # 例: "HighCpuUtilizationAlarm"
+
+  ComparisonOperator: String  # アラームのしきい値とメトリックデータとの比較演算子。
+    # 例: "GreaterThanOrEqualToThreshold"
+
+  DatapointsToAlarm: Integer  # アラームがトリガーされる前に必要なデータポイントの数。
+    # 例: 3
+
+  Dimensions: 
+    - Dimension  # メトリックの次元のリスト。
+      # 例: 
+      # - Name: "InstanceId"
+      #   Value: "i-0123456789abcdef0"
+
+  EvaluateLowSampleCountPercentile: String  # アラームのしきい値が計算される際に使用されるパーセンタイル。
+    # 例: "p10"
+
+  EvaluationPeriods: Integer  # アラームがトリガーされる前に必要なデータポイントの数。
+    # 例: 2
+
+  ExtendedStatistic: String  # 拡張統計を使用してアラームをトリガーする場合の拡張統計。
+    # 例: "p90"
+
+  InsufficientDataActions: 
+    - String  # メトリックデータが不足しているときに実行するアクションのリスト。
+      # 例: 
+      # - arn:aws:sns:us-east-1:123456789012:MySNSTopic
+
+  MetricName: String  # アラームに関連付けるメトリックの名前。
+    # 例: "CPUUtilization"
+
+  Metrics: 
+    - MetricDataQuery  # アラームに追加するクエリで使用されるメトリクスデータクエリのリスト。
+      # 例: 
+      # - Id: "m1"
+      #   Expression: "AVG(MetricName)"
+      #   Label: "MyMetric"
+
+  Namespace: String  # アラームに関連付けるメトリクスの名前空間。
+    # 例: "AWS/EC2"
+
+  OKActions: 
+    - String  # アラームが OK 状態に戻ったときに実行するアクションのリスト。
+      # 例: 
+      # - arn:aws:sns:us-east-1:123456789012:MySNSTopic
+
+  Period: Integer  # メトリックデータを取得する間隔（秒単位）。
+    # 例: 60
+
+  Statistic: String  # メトリックデータを処理するときに使用する統計関数。
+    # 例: "Average"
+
+  Threshold: Number  # アラームをトリガーするしきい値。
+    # 例: 80
+
+  ThresholdMetricId: String  # メトリックデータを統計する際に使用される ID。
+    # 例: "m1"
+
+  TreatMissingData: String  # 不足しているデータを処理する方法。
+    # 例: "missing"
+
+  Unit: String  # メトリックデータの単位。
+    # 例: "Percent"
+Properties(AWS::Logs)
+LogGroup
+Type: AWS::Logs::LogGroup
+Properties:
+  DataProtectionPolicy: Json  # Amazon CloudWatch ロググループのデータ保護ポリシー。
+    # 例: 
+    #   policyName: "SampleDataProtectionPolicy"
+    #   policyUpdate: 
+    #     defaultEncryption: 
+    #       encryptionMode: "DISABLED"
+
+  KmsKeyId: String  # Amazon CloudWatch ロググループで使用する AWS Key Management Service（AWS KMS）キーの ID。
+    # 例: "arn:aws:kms:us-east-1:123456789012:key/abcd1234-a123-456a-a12b-a123b4cd5ef6"
+
+  LogGroupClass: String  # Amazon CloudWatch ロググループのクラス。
+    # 例: "Standard"
+
+  LogGroupName: String  # Amazon CloudWatch ロググループの名前。
+    # 例: "MyLogGroup"
+
+  RetentionInDays: Integer  # Amazon CloudWatch ロググループのログの保持期間（日単位）。
+    # 例: 30
+
+  Tags: 
+    - Tag  # Amazon CloudWatch ロググループに関連付けるタグの設定。
+      # 例: 
+      # - Key: "Environment"
+      #   Value: "Production"
+SubscriptionFilter
+Type: AWS::Logs::SubscriptionFilter
+Properties:
+  DestinationArn: String  # ログのフィルタリングされたデータを送信する先の Amazon Kinesis Data Firehose、AWS Lambda、または Amazon Simple Notification Service（Amazon SNS）の ARN。
+    # 例: "arn:aws:kinesis:us-east-1:123456789012:stream/my-firehose-stream"
+
+  Distribution: String  # ログの配信モード。
+    # 例: "Random"
+
+  FilterName: String  # Amazon CloudWatch ロググループに適用されるサブスクリプションフィルタの名前。
+    # 例: "MySubscriptionFilter"
+
+  FilterPattern: String  # ログイベントをサブスクリプションに送信する条件。
+    # 例: "[timestamp, error, message]"
+
+  LogGroupName: String  # サブスクリプションフィルタを適用する Amazon CloudWatch ロググループの名前。
+    # 例: "MyLogGroup"
+
+  RoleArn: String  # Amazon CloudWatch ログイベントを処理するための AWS Identity and Access Management（IAM）ロールの ARN。
+    # 例: "arn:aws:iam::123456789012:role/MyRole"
+  

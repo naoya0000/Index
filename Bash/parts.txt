@@ -1,0 +1,50 @@
+■パーツ
+ 
+ 
+■繰り返し
+for (( i=0; i<10; i++ )); do #初期値; ループ条件; ループ時の処理
+    xxxx
+done
+ 
+for i in aaa bbb ccc; do #順番に代入
+    xxxx
+done
+ 
+for i in `ls`; do #コマンド結果代入
+    xxxx
+done
+ 
+for i in {0..9}; do #順番に代入
+    xxxx
+done
+ 
+for i in `seq 1 9`; do #seq 開始値 ステップ 終了値　-w 幅をそろえるために0で埋める -s 区切り文字の指定
+    xxxx
+done
+ 
+# 引数確認
+if [ $# -ne 1 ]; then
+    echo "ERROR: 引数≠1"
+    exit 1
+fi
+*$# 引数の数を表す
+*exit 1 終了ステータス1を表す（一般的に終了ステータスは0が成功を表す）
+ 
+ 
+# 現在の日付
+DATE=$(TZ=Asia/Tokyo date "+%Y%m%d_%H%M%S")
+ 
+ 
+# スクリプト実行ディレクトリの確認
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+*dirname 指定されたファイルパスからディレクトリ名のみを取り出す（/path/a.txt → /path）
+*readlink -f 指定されたシンボリックリンクの実際のパスを取得する
+*$0 スクリプト自体の名前を示す（ex. /path/script.sh）
+ 
+ 
+# 同形式のファイルのリストを取得
+FILES=$(find "$SCRIPT_DIR" -type f -name "*.json")
+*find
+*-type f 通常のファイルを検索対象とする（d ディレクトリ l シンボリックリンク）
+*-name "*test" 名前が""内と一致するものを検索する

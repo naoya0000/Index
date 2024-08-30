@@ -1,0 +1,110 @@
+■記述メモ
+ 
+■改行コード
+LF
+ 
+■シバン（スクリプトファイルがどのプログラムやインタープリターを使用して実行されるべきかを指定するための特殊な行）
+#!/パス/TO/インタープリター
+#!/bin/bash
+ 
+■スクリプトに実行権限を与える
+chmod 744 script.sh
+chmod 700 script.sh
+chmod +x script.sh
+ 
+■実行
+./script.sh
+bash script.sh
+bash /path/to/script.sh
+ 
+■変数の宣言と代入
+message="Hello, World!"
+#変数名の前に$を付けて参照
+$message
+ 
+■コメント
+#　This is a comment
+ 
+■ファイル出力
+>前後のスペースの数がいくつでも構わない
+>   上書き保存
+>>  追記
+ 
+■コマンド実行
+# コマンドそのままの記述で実行可能
+ls
+ 
+■複数コマンド実行（一行）
+;は、bashスクリプトやコマンドラインで複数のコマンドを一行に並べて記述する際に使用されるセミコロン
+echo "Hello"; echo "World"
+ 
+■条件分岐（if文）
+# if 条件分岐開始
+# then 条件が真の場合に実行するコードを指定
+# fi 条件分岐終了
+# 演算子 = -eq != -ne -lt(less than) -gt(greater than) -le(less than or equal) -ge(greater than or equal)
+if [ 条件式 ]; then #[](ブランケット)、[[]](ダブルブランケット)がBashにおける条件演算子
+    #条件式が真の場合に実行されるコード
+fi
+ 
+# if文は最初に一致した条件のブロックだけを実行し、他の条件には評価されない。つまり、下の文ではa>=18とだけ表示される
+a=20
+if [ $a -ge 18 ]; then
+    echo "a>=18"
+elif [ $a -ge 15 ]; then
+    echo "a>=15"
+else   
+    echo "a<15"
+fi
+ 
+■ループ（for文）
+for i {1..5}; do #{3..15}は3から15までの範囲を表すリスト
+    echo "Number: $i" #1から5までの数値を順番に変数iに代入して実行する
+done
+ 
+■関数定義と呼び出しの例
+1,
+greet() { #() 関数定義を示す括弧 #{}内 関数の本体　関数が呼び出されたときに実行されるコマンドが記述される
+    echo "Hello, $1!" # $1 関数に渡された最初の引数を表す
+}
+ 
+greet "Alice"
+ 
+1,
+greet() {
+    echo "Hello, $1 $2!" # $2 $3と続くことでそれぞれの引数にアクセス可能
+}
+ 
+greet "Alice" "John"
+ 
+2,
+add() {
+    local result=$(( $1 + $2 )) #local 関数内でのみ有効なローカル変数を定義できる #((...)) 算術式（+ - * / 等）を評価するための構文
+    echo $result #echo $result 計算結果を標準出力に出力し、それを関数の戻り値とする
+}
+ 
+sum=$(add 10 20)
+echo "Sum: $sum"
+ 
+3,
+count() {
+    local count=0
+    for i in "$@"; do #"$@" すべての引数を表す
+        ((count++)) #count変数をインクリメントしている（インクリメント：数値を1増やす操作）、++はインクリメント演算子　++count前置インクリメント インクリメントされた状態でcountに再代入、count++後置インクリメントecho後にインクリメント
+    done
+    echo $count
+}
+ 
+num=$(count 1 2 3)
+echo "Count: $num"
+ 
+4,
+# return 関数が成功した場合に特定の値を返し、失敗した場合には別の値を返す場合にも利用される
+add() {
+    local result=$(( $1 + $2 ))
+    return $result
+}
+ 
+add 5 3 #引数１=5, 引数２=3
+sum=$? #$?は直前のコマンドの終了ステータス(戻り値)を表す　returnを使わない場合は、コマンド成功で終了ステータス0、失敗した場合は0以外の値が返る
+echo "Sum is #sum" # 出力： Sum is 8

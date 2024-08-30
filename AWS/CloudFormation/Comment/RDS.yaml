@@ -1,0 +1,465 @@
+Properties
+DBCluster
+Type: AWS::RDS::DBCluster
+Properties:
+  AllocatedStorage: Integer  # データベースクラスタに割り当てられたストレージ容量。
+    # 例: 100
+
+  AssociatedRoles: 
+    - DBClusterRole  # データベースクラスタに関連付けられたロール。
+      # 例: "arn:aws:iam::123456789012:role/MyDBClusterRole"
+
+  AutoMinorVersionUpgrade: Boolean  # 自動でマイナーバージョンのアップグレードを実行するかどうか。
+    # 例: true
+
+  AvailabilityZones: 
+    - String  # データベースクラスタが展開される可用性ゾーンのリスト。
+      # 例: 
+      # - "us-east-1a"
+      # - "us-east-1b"
+
+  BacktrackWindow: Integer  # バックトラックが有効な時間ウィンドウ（分単位）。
+    # 例: 60
+
+  BackupRetentionPeriod: Integer  # バックアップを保持する日数。
+    # 例: 7
+
+  CopyTagsToSnapshot: Boolean  # タグをスナップショットにコピーするかどうか。
+    # 例: false
+
+  DatabaseName: String  # データベースの名前。
+    # 例: "MyDatabase"
+
+  DBClusterIdentifier: String  # データベースクラスタの一意の識別子。
+    # 例: "my-db-cluster"
+
+  DBClusterInstanceClass: String  # データベースクラスタのインスタンスクラス。
+    # 例: "db.r5.large"
+
+  DBClusterParameterGroupName: String  # データベースクラスタのパラメータグループの名前。
+    # 例: "default.mysql8.0"
+
+  DBInstanceParameterGroupName: String  # データベースインスタンスのパラメータグループの名前。
+    # 例: "default.mysql8.0"
+
+  DBSubnetGroupName: String  # データベースクラスタが関連付けられるサブネットグループの名前。
+    # 例: "my-db-subnet-group"
+
+  DBSystemId: String  # データベースシステムの一意の識別子。
+    # 例: "sample-db-system-id"
+
+  DeletionProtection: Boolean  # 削除保護が有効かどうか。
+    # 例: true
+
+  Domain: String  # データベースのドメイン。
+    # 例: "mydomain.com"
+
+  DomainIAMRoleName: String  # ドメインのIAMロールの名前。
+    # 例: "MyDomainRole"
+
+  EnableCloudwatchLogsExports: 
+    - String  # CloudWatchログのエクスポートを有効にするログの種類。
+      # 例: 
+      # - "error"
+      # - "general"
+
+  EnableGlobalWriteForwarding: Boolean  # グローバル書き込み転送を有効にするかどうか。
+    # 例: true
+
+  EnableHttpEndpoint: Boolean  # HTTPエンドポイントを有効にするかどうか。
+    # 例: true
+
+  EnableIAMDatabaseAuthentication: Boolean  # IAMデータベース認証を有効にするかどうか。
+    # 例: true
+
+  Engine: String  # データベースエンジンの種類。
+    # 例: "aurora"
+
+  EngineMode: String  # データベースエンジンのモード。
+    # 例: "provisioned"
+
+  EngineVersion: String  # データベースエンジンのバージョン。
+    # 例: "5.7.mysql_aurora.2.07.2"
+
+  GlobalClusterIdentifier: String  # グローバルクラスタの一意の識別子。
+    # 例: "my-global-cluster"
+
+  Iops: Integer  # 入力/出力操作数の数。
+    # 例: 1000
+
+  KmsKeyId: String  # データベースのKMSキーのID。
+    # 例: "arn:aws:kms:us-east-1:123456789012:key/abcd1234-a123-456a-a12b-a123b4cd56ef"
+
+  ManageMasterUserPassword: Boolean  # マスターユーザーパスワードを管理するかどうか。
+    # 例: true
+
+  MasterUsername: String  # マスターユーザーのユーザー名。
+    # 例: "admin"
+
+  MasterUserPassword: String  # マスターユーザーのパスワード。
+    # 例: "MySecretPassword"
+
+  MasterUserSecret: 
+    MasterUserSecret  # マスターユーザーのシークレット。
+      # 例: "arn:aws:secretsmanager:us-east-1:123456789012:secret:MyMasterSecretName-AbCdEf"
+
+  MonitoringInterval: Integer  # モニタリングの間隔。
+    # 例: 5
+
+  MonitoringRoleArn: String  # モニタリングロールのARN。
+    # 例: "arn:aws:iam::123456789012:role/MyMonitoringRole"
+
+  NetworkType: String  # ネットワークタイプ。
+    # 例: "vpc"
+
+  PerformanceInsightsEnabled: Boolean  # パフォーマンスインサイトが有効かどうか。
+    # 例: true
+
+  PerformanceInsightsKmsKeyId: String  # パフォーマンスインサイトのKMSキーのID。
+    # 例: "arn:aws:kms:us-east-1:123456789012:key/abcd1234-a123-456a-a12b-a123b4cd56ef"
+
+  PerformanceInsightsRetentionPeriod: Integer  # パフォーマンスインサイトのデータの保持期間。
+    # 例: 14
+
+  Port: Integer  # データベースのポート番号。
+    # 例: 3306
+
+  PreferredBackupWindow: String  # 優先されるバックアップウィンドウ。
+    # 例: "00:00-01:00"
+
+  PreferredMaintenanceWindow: String  # 優先されるメンテナンスウィンドウ。
+    # 例: "sun:04:00-sun:04:30"
+
+  PubliclyAccessible: Boolean  # データベースにパブリックアクセスがあるかどうか。
+    # 例: false
+
+  ReadEndpoint: 
+    ReadEndpoint  # 読み取りエンドポイント。
+      # 例: "my-db-cluster-ro-endpoint.example.com"
+
+  ReplicationSourceIdentifier: String  # レプリケーション元のデータベースクラスタの識別子。
+    # 例: "source-db-cluster"
+
+  RestoreToTime: String  # データベースの特定の時点に復元する時間。
+    # 例: "2023-01-01T12:00:00Z"
+
+  RestoreType: String  # 復元のタイプ。
+    # 例: "full-copy"
+
+  ScalingConfiguration: 
+    ScalingConfiguration  # スケーリングの設定。
+      # 例: 
+      #   AutoPause: true
+      #   MaxCapacity: 4
+      #   MinCapacity: 2
+      #   SecondsUntilAutoPause: 300
+
+  ServerlessV2ScalingConfiguration: 
+    ServerlessV2ScalingConfiguration  # サーバーレスV2のスケーリングの設定。
+      # 例: 
+      #   AutoPause: true
+      #   MaxCapacity: 4
+      #   MinCapacity: 2
+      #   SecondsUntilAutoPause: 300
+
+  SnapshotIdentifier: String  # スナップショットの識別子。
+    # 例: "my-snapshot"
+
+  SourceDBClusterIdentifier: String  # クローン元のデータベースクラスタの識別子。
+    # 例: "source-db-cluster"
+
+  SourceRegion: String  # クローン元データベースのAWSリージョン。
+    # 例: "us-west-2"
+
+  StorageEncrypted: Boolean  # ストレージが暗号化されているかどうか。
+    # 例: true
+
+  StorageType: String  # ストレージの種類。
+    # 例: "gp2"
+
+  Tags: 
+    - Tag  # リソースに関連付けるタグの設定。
+      # 例: 
+      # - Key: "Name"
+      #   Value: "MyDBClusterName"
+
+  UseLatestRestorableTime: Boolean  # 最新の復元可能な時間を使用するかどうか。
+    # 例: false
+
+  VpcSecurityGroupIds: 
+    - String  # データベースに関連付ける仮想プライベートクラウド（VPC）セキュリティグループのID。
+      # 例: 
+      # - "sg-0123456789abcdef0"
+GlobalCluster
+Type: AWS::RDS::GlobalCluster
+Properties:
+  DeletionProtection: Boolean  # 削除保護が有効かどうか。
+    # 例: true
+
+  Engine: String  # データベースエンジンの種類。
+    # 例: "aurora"
+
+  EngineVersion: String  # データベースエンジンのバージョン。
+    # 例: "5.7.mysql_aurora.2.07.2"
+
+  GlobalClusterIdentifier: String  # グローバルクラスタの一意の識別子。
+    # 例: "my-global-cluster"
+
+  SourceDBClusterIdentifier: String  # グローバルクラスタのソースデータベースクラスタの識別子。
+    # 例: "source-db-cluster"
+
+  StorageEncrypted: Boolean  # ストレージが暗号化されているかどうか。
+    # 例: true
+DBInstance
+Type: AWS::RDS::DBInstance
+Properties:
+  AllocatedStorage: String  # データベースの割り当てられたストレージ容量。
+    # 例: "100"
+
+  AllowMajorVersionUpgrade: Boolean  # メジャーバージョンのアップグレードを許可するかどうか。
+    # 例: true
+
+  AssociatedRoles: 
+    - DBInstanceRole  # データベースインスタンスに関連付けられたロール。
+      # 例: "arn:aws:iam::123456789012:role/MyDBInstanceRole"
+
+  AutomaticBackupReplicationRegion: String  # 自動バックアップの複製先リージョン。
+    # 例: "us-west-2"
+
+  AutoMinorVersionUpgrade: Boolean  # 自動でマイナーバージョンのアップグレードを実行するかどうか。
+    # 例: true
+
+  AvailabilityZone: String  # データベースインスタンスの利用可能なゾーン。
+    # 例: "us-east-1a"
+
+  BackupRetentionPeriod: Integer  # バックアップを保持する日数。
+    # 例: 7
+
+  CACertificateIdentifier: String  # CA証明書の識別子。
+    # 例: "rds-ca-2019"
+
+  CertificateDetails: 
+    CertificateDetails  # 証明書の詳細情報。
+      # 例: 
+      #   CertificateARN: "arn:aws:acm:us-east-1:123456789012:certificate/abcd1234-a123-456a-a12b-a123b4cd56ef"
+      #   CertificateIdentifier: "my-ssl-certificate"
+      #   CertificateType: "SSL"
+
+  CertificateRotationRestart: Boolean  # 証明書のローテート後にデータベースを再起動するかどうか。
+    # 例: true
+
+  CharacterSetName: String  # データベースのキャラクターセットの名前。
+    # 例: "utf8"
+
+  CopyTagsToSnapshot: Boolean  # タグをスナップショットにコピーするかどうか。
+    # 例: true
+
+  CustomIAMInstanceProfile: String  # カスタムIAMロールのインスタンスプロファイル。
+    # 例: "arn:aws:iam::123456789012:instance-profile/MyCustomInstanceProfile"
+
+  DBClusterIdentifier: String  # データベースクラスタの識別子。
+    # 例: "my-db-cluster"
+
+  DBClusterSnapshotIdentifier: String  # データベースクラスタスナップショットの識別子。
+    # 例: "my-db-cluster-snapshot"
+
+  DBInstanceClass: String  # データベースインスタンスのクラス。
+    # 例: "db.t2.micro"
+
+  DBInstanceIdentifier: String  # データベースインスタンスの識別子。
+    # 例: "my-db-instance"
+
+  DBName: String  # データベースの名前。
+    # 例: "MyDatabase"
+
+  DBParameterGroupName: String  # データベースパラメータグループの名前。
+    # 例: "default.mysql8.0"
+
+  DBSecurityGroups: 
+    - String  # データベースインスタンスに関連付けられたセキュリティグループの名前。
+      # 例: 
+      # - "my-db-security-group"
+
+  DBSnapshotIdentifier: String  # データベーススナップショットの識別子。
+    # 例: "my-db-snapshot"
+
+  DBSubnetGroupName: String  # データベースインスタンスが関連付けられるサブネットグループの名前。
+    # 例: "my-db-subnet-group"
+
+  DBSystemId: String  # データベースシステムの一意の識別子。
+    # 例: "sample-db-system-id"
+
+  DedicatedLogVolume: Boolean  # 専用のログボリュームを使用するかどうか。
+    # 例: true
+
+  DeleteAutomatedBackups: Boolean  # 自動バックアップを削除するかどうか。
+    # 例: false
+
+  DeletionProtection: Boolean  # 削除保護が有効かどうか。
+    # 例: true
+
+  Domain: String  # データベースのドメイン。
+    # 例: "mydomain.com"
+
+  DomainAuthSecretArn: String  # ドメイン認証のシークレットARN。
+    # 例: "arn:aws:secretsmanager:us-east-1:123456789012:secret:MyDomainAuthSecretName-AbCdEf"
+
+  DomainDnsIps: 
+    - String  # ドメインのDNS IPアドレス。
+      # 例: 
+      # - "192.0.2.1"
+      # - "192.0.2.2"
+
+  DomainFqdn: String  # ドメインのFQDN。
+    # 例: "mydb.example.com"
+
+  DomainIAMRoleName: String  # ドメインのIAMロールの名前。
+    # 例: "MyDomainRole"
+
+  DomainOu: String  # ドメインの組織単位。
+    # 例: "ou=myorg,dc=mydomain,dc=com"
+
+  EnableCloudwatchLogsExports: 
+    - String  # CloudWatchログのエクスポートを有効にするログの種類。
+      # 例: 
+      # - "error"
+      # - "general"
+
+  EnableIAMDatabaseAuthentication: Boolean  # IAMデータベース認証を有効にするかどうか。
+    # 例: true
+
+  EnablePerformanceInsights: Boolean  # パフォーマンスインサイトを有効にするかどうか。
+    # 例: true
+
+  Endpoint: 
+    Endpoint  # データベースエンドポイントの情報。
+      # 例: 
+      #   Address: "mydbinstance.abcdefghijkl.us-west-2.rds.amazonaws.com"
+      #   HostedZoneId: "Z1S2S3S4S5S6S7S8"
+
+  Engine: String  # データベースエンジンの種類。
+    # 例: "mysql"
+
+  EngineVersion: String  # データベースエンジンのバージョン。
+    # 例: "5.7"
+
+  Iops: Integer  # 入力/出力操作数の数。
+    # 例: 1000
+
+  KmsKeyId: String  # データベースのKMSキーのID。
+    # 例: "arn:aws:kms:us-east-1:123456789012:key/abcd1234-a123-456a-a12b-a123b4cd56ef"
+
+  LicenseModel: String  # ライセンスモデル。
+    # 例: "license-included"
+
+  ManageMasterUserPassword: Boolean  # マスターユーザーパスワードを管理するかどうか。
+    # 例: true
+
+  MasterUsername: String  # マスターユーザーのユーザー名。
+    # 例: "admin"
+
+  MasterUserPassword: String  # マスターユーザーのパスワード。
+    # 例: "MySecretPassword"
+
+  MasterUserSecret: 
+    MasterUserSecret  # マスターユーザーのシークレット。
+      # 例: "arn:aws:secretsmanager:us-east-1:123456789012:secret:MyMasterSecretName-AbCdEf"
+
+  MaxAllocatedStorage: Integer  # 最大の割り当てられたストレージ容量。
+    # 例: 200
+
+  MonitoringInterval: Integer  # モニタリングの間隔。
+    # 例: 5
+
+  MonitoringRoleArn: String  # モニタリングロールのARN。
+    # 例: "arn:aws:iam::123456789012:role/MyMonitoringRole"
+
+  MultiAZ: Boolean  # マルチAZ展開が有効かどうか。
+    # 例: true
+
+  NcharCharacterSetName: String  # NCHARキャラクターセットの名前。
+    # 例: "utf8"
+
+  NetworkType: String  # ネットワークタイプ。
+    # 例: "vpc"
+
+  OptionGroupName: String  # オプショングループの名前。
+    # 例: "my-option-group"
+
+  PerformanceInsightsKMSKeyId: String  # パフォーマンスインサイトのKMSキーのID。
+    # 例: "arn:aws:kms:us-east-1:123456789012:key/abcd1234-a123-456a-a12b-a123b4cd56ef"
+
+  PerformanceInsightsRetentionPeriod: Integer  # パフォーマンスインサイトのデータの保持期間。
+    # 例: 14
+
+  Port: String  # データベースのポート番号。
+    # 例: "3306"
+
+  PreferredBackupWindow: String  # 優先されるバックアップウィンドウ。
+    # 例: "00:00-01:00"
+
+  PreferredMaintenanceWindow: String  # 優先されるメンテナンスウィンドウ。
+    # 例: "sun:04:00-sun:04:30"
+
+  ProcessorFeatures: 
+    - ProcessorFeature  # プロセッサフィーチャの設定。
+      # 例: 
+      #   Name: "sse4.2"
+      #   Value: "enabled"
+
+  PromotionTier: Integer  # プロモーションティア。
+    # 例: 1
+
+  PubliclyAccessible: Boolean  # データベースにパブリックアクセスがあるかどうか。
+    # 例: false
+
+  ReplicaMode: String  # レプリカのモード。
+    # 例: "provisioned"
+
+  RestoreTime: String  # データベースの特定の時点に復元する時間。
+    # 例: "2023-01-01T12:00:00Z"
+
+  SourceDBClusterIdentifier: String  # クローン元のデータベースクラスタの識別子。
+    # 例: "source-db-cluster"
+
+  SourceDBInstanceAutomatedBackupsArn: String  # クローン元のデータベースインスタンスの自動バックアップARN。
+    # 例: "arn:aws:rds:us-east-1:123456789012:dbautomatedbackup:rds-instance-2019-06-05-14-00"
+
+  SourceDBInstanceIdentifier: String  # クローン元のデータベースインスタンスの識別子。
+    # 例: "source-db-instance"
+
+  SourceDbiResourceId: String  # クローン元データベースインスタンスのリソースID。
+    # 例: "db-instance-resource-id"
+
+  SourceRegion: String  # クローン元データベースのAWSリージョン。
+    # 例: "us-west-2"
+
+  StorageEncrypted: Boolean  # ストレージが暗号化されているかどうか。
+    # 例: true
+
+  StorageThroughput: Integer  # ストレージのスループット。
+    # 例: 1000
+
+  StorageType: String  # ストレージの種類。
+    # 例: "gp2"
+
+  Tags: 
+    - Tag  # リソースに関連付けるタグの設定。
+      # 例: 
+      # - Key: "Name"
+      #   Value: "MyDBInstanceName"
+
+  Timezone: String  # データベースのタイムゾーン。
+    # 例: "UTC"
+
+  UseDefaultProcessorFeatures: Boolean  # デフォルトのプロセッサフィーチャーを使用するかどうか。
+    # 例: true
+
+  UseLatestRestorableTime: Boolean  # 最新の復元可能な時間を使用するかどうか。
+    # 例: false
+
+  VPCSecurityGroups: 
+    - String  # データベースインスタンスに関連付ける仮想プライベートクラウド（VPC）セキュリティグループのID。
+      # 例: 
+      # - "sg-0123456789abcdef0"
+      
