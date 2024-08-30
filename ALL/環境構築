@@ -39,10 +39,18 @@ cat ~/.ssh/id_rsa.pub
 ssh接続確認
 ssh -T git@github.com
 
+
+ローカルのフォルダをgitリポジトリとして初期化する
+git init
+
 ssh接続に変更
 git remote -v
 git remote set-url origin git@github.com:naoya0000/Index.git
-git push origin master
+
+git add.
+git commit -m "0"
+git push -u origin main
+
 
 pyenvのインストール
 brew install pyenv
