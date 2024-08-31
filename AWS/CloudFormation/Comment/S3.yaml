@@ -1,170 +1,171 @@
-Properties
-Bucket
-Type: AWS::S3::Bucket
-Properties:
-  AccelerateConfiguration: 
-    AccelerateConfiguration  # Amazon S3 バケットの加速構成。
+
+Bucket:
+  Type: AWS::S3::Bucket
+  Properties:
+    AccelerateConfiguration: 
+      AccelerateConfiguration  # Amazon S3 バケットの加速構成。
+        # 例: 
+        #   AccelerationStatus: "Enabled"
+
+    AccessControl: String  # Amazon S3 バケットへのアクセス制御リスト（ACL）。
+      # 例: "Private"
+
+    AnalyticsConfigurations: 
+      - AnalyticsConfiguration  # Amazon S3 バケットのアクセス解析設定のリスト。
+        # 例: 
+        # - Id: "analytics-id"
+        #   Prefix: "analytics/"
+        #   StorageClassAnalysis:
+        #     DataExport:
+        #       Destination:
+        #         S3BucketDestination:
+        #           BucketAccountId: "123456789012"
+        #           BucketArn: "arn:aws:s3:::analytics-bucket"
+        #           Format: "CSV"
+        #           Prefix: "exported-data/"
+        #       OutputSchemaVersion: "V_1"
+
+    BucketEncryption: 
+      BucketEncryption  # Amazon S3 バケットの暗号化設定。
+        # 例: 
+        #   ServerSideEncryptionConfiguration:
+        #     - ServerSideEncryptionByDefault:
+        #         SSEAlgorithm: "aws:kms"
+        #         KMSMasterKeyID: "arn:aws:kms:us-east-1:123456789012:key/abcd1234-a123-456a-a12b-a123b4cd5ef6"
+
+    BucketName: String  # Amazon S3 バケットの名前。
+      # 例: "my-s3-bucket"
+
+    CorsConfiguration: 
+      CorsConfiguration  # Amazon S3 バケットの CORS（Cross-Origin Resource Sharing）設定。
+        # 例: 
+        #   CorsRules:
+        #     - AllowedHeaders:
+        #         - "*"
+        #       AllowedMethods:
+        #         - "GET"
+        #       AllowedOrigins:
+        #         - "https://example.com"
+
+    IntelligentTieringConfigurations: 
+      - IntelligentTieringConfiguration  # Amazon S3 バケットのインテリジェントティアリング設定のリスト。
+        # 例: 
+        # - Id: "intelligent-tiering-id"
+        #   Prefix: "intelligent-tiering/"
+        #   Status: "Enabled"
+
+    InventoryConfigurations: 
+      - InventoryConfiguration  # Amazon S3 バケットのインベントリ設定のリスト。
+        # 例: 
+        # - Destination:
+        #     S3BucketDestination:
+        #       BucketAccountId: "123456789012"
+        #       BucketArn: "arn:aws:s3:::inventory-bucket"
+        #   Id: "inventory-id"
+        #   IncludedObjectVersions: "All"
+        #   OptionalFields:
+        #     - "Size"
+        #   ScheduleFrequency: "Daily"
+        #   Enabled: true
+
+    LifecycleConfiguration: 
+      LifecycleConfiguration  # Amazon S3 バケットのライフサイクル設定。
+        # 例: 
+        #   Rules:
+        #     - Id: "rule-id"
+        #       Status: "Enabled"
+        #       Transitions:
+        #         - StorageClass: "GLACIER"
+        #           TransitionInDays: 30
+
+    LoggingConfiguration: 
+      LoggingConfiguration  # Amazon S3 バケットのアクセスログ設定。
+        # 例: 
+        #   DestinationBucketName: "logs-bucket"
+        #   LogFilePrefix: "logs/"
+
+    MetricsConfigurations: 
+      - MetricsConfiguration  # Amazon S3 バケットのメトリクス設定のリスト。
+        # 例: 
+        # - Id: "metrics-id"
+        #   Prefix: "metrics/"
+        #   TagFilters:
+        #     - Key: "Environment"
+        #       Value: "Production"
+
+    NotificationConfiguration: 
+      NotificationConfiguration  # Amazon S3 バケットの通知設定。
+        # 例: 
+        #   LambdaConfigurations:
+        #     - Event: "s3:ObjectCreated:Put"
+        #       Function: "arn:aws:lambda:us-east-1:123456789012:function:MyLambdaFunction"
+
+    ObjectLockConfiguration: 
+      ObjectLockConfiguration  # Amazon S3 バケットのオブジェクトロック設定。
+        # 例: 
+        #   ObjectLockEnabled: "Enabled"
+
+    ObjectLockEnabled: Boolean  # Amazon S3 バケットでオブジェクトロックを有効または無効にする。
+      # 例: true
+
+    OwnershipControls: 
+      OwnershipControls  # Amazon S3 バケットの所有権コントロール設定。
+        # 例: 
+        #   Rules:
+        #     - ObjectOwnership: "BucketOwnerPreferred"
+
+    PublicAccessBlockConfiguration: 
+      PublicAccessBlockConfiguration  # Amazon S3 バケットのパブリックアクセスの設定。
+        # 例: 
+        #   BlockPublicAcls: true
+        #   BlockPublicPolicy: true
+
+    ReplicationConfiguration: 
+      ReplicationConfiguration  # Amazon S3 バケットのレプリケーション設定。
+        # 例: 
+        #   Role: "arn:aws:iam::123456789012:role/replication-role"
+        #   Rules:
+        #     - Destination:
+        #         AccessControlTranslation:
+        #           Owner: "Destination"
+        #         Account: "123456789012"
+        #         Bucket: "arn:aws:s3:::replication-bucket"
+        #     - Prefix: "replication-prefix"
+        #       Status: "Enabled"
+
+    Tags: 
+      - Tag  # Amazon S3 バケットに関連付けるタグの設定。
+        # 例: 
+        # - Key: "Environment"
+        #   Value: "Production"
+
+    VersioningConfiguration: 
+      VersioningConfiguration  # Amazon S3 バケットのバージョニング設定。
+        # 例: 
+        #   Status: "Enabled"
+
+    WebsiteConfiguration: 
+      WebsiteConfiguration  # Amazon S3 バケットのウェブサイト設定。
+        # 例: 
+        #   ErrorDocument: "error.html"
+        #   IndexDocument: "index.html"
+
+BucketPolicy:
+  Type: AWS::S3::BucketPolicy
+  Properties:
+    Bucket: String  # バケットポリシーを関連付ける Amazon S3 バケットの名前。
+      # 例: "my-s3-bucket"
+
+    PolicyDocument: Json  # バケットポリシーの JSON 形式のドキュメント。
       # 例: 
-      #   AccelerationStatus: "Enabled"
-
-  AccessControl: String  # Amazon S3 バケットへのアクセス制御リスト（ACL）。
-    # 例: "Private"
-
-  AnalyticsConfigurations: 
-    - AnalyticsConfiguration  # Amazon S3 バケットのアクセス解析設定のリスト。
-      # 例: 
-      # - Id: "analytics-id"
-      #   Prefix: "analytics/"
-      #   StorageClassAnalysis:
-      #     DataExport:
-      #       Destination:
-      #         S3BucketDestination:
-      #           BucketAccountId: "123456789012"
-      #           BucketArn: "arn:aws:s3:::analytics-bucket"
-      #           Format: "CSV"
-      #           Prefix: "exported-data/"
-      #       OutputSchemaVersion: "V_1"
-
-  BucketEncryption: 
-    BucketEncryption  # Amazon S3 バケットの暗号化設定。
-      # 例: 
-      #   ServerSideEncryptionConfiguration:
-      #     - ServerSideEncryptionByDefault:
-      #         SSEAlgorithm: "aws:kms"
-      #         KMSMasterKeyID: "arn:aws:kms:us-east-1:123456789012:key/abcd1234-a123-456a-a12b-a123b4cd5ef6"
-
-  BucketName: String  # Amazon S3 バケットの名前。
-    # 例: "my-s3-bucket"
-
-  CorsConfiguration: 
-    CorsConfiguration  # Amazon S3 バケットの CORS（Cross-Origin Resource Sharing）設定。
-      # 例: 
-      #   CorsRules:
-      #     - AllowedHeaders:
-      #         - "*"
-      #       AllowedMethods:
-      #         - "GET"
-      #       AllowedOrigins:
-      #         - "https://example.com"
-
-  IntelligentTieringConfigurations: 
-    - IntelligentTieringConfiguration  # Amazon S3 バケットのインテリジェントティアリング設定のリスト。
-      # 例: 
-      # - Id: "intelligent-tiering-id"
-      #   Prefix: "intelligent-tiering/"
-      #   Status: "Enabled"
-
-  InventoryConfigurations: 
-    - InventoryConfiguration  # Amazon S3 バケットのインベントリ設定のリスト。
-      # 例: 
-      # - Destination:
-      #     S3BucketDestination:
-      #       BucketAccountId: "123456789012"
-      #       BucketArn: "arn:aws:s3:::inventory-bucket"
-      #   Id: "inventory-id"
-      #   IncludedObjectVersions: "All"
-      #   OptionalFields:
-      #     - "Size"
-      #   ScheduleFrequency: "Daily"
-      #   Enabled: true
-
-  LifecycleConfiguration: 
-    LifecycleConfiguration  # Amazon S3 バケットのライフサイクル設定。
-      # 例: 
-      #   Rules:
-      #     - Id: "rule-id"
-      #       Status: "Enabled"
-      #       Transitions:
-      #         - StorageClass: "GLACIER"
-      #           TransitionInDays: 30
-
-  LoggingConfiguration: 
-    LoggingConfiguration  # Amazon S3 バケットのアクセスログ設定。
-      # 例: 
-      #   DestinationBucketName: "logs-bucket"
-      #   LogFilePrefix: "logs/"
-
-  MetricsConfigurations: 
-    - MetricsConfiguration  # Amazon S3 バケットのメトリクス設定のリスト。
-      # 例: 
-      # - Id: "metrics-id"
-      #   Prefix: "metrics/"
-      #   TagFilters:
-      #     - Key: "Environment"
-      #       Value: "Production"
-
-  NotificationConfiguration: 
-    NotificationConfiguration  # Amazon S3 バケットの通知設定。
-      # 例: 
-      #   LambdaConfigurations:
-      #     - Event: "s3:ObjectCreated:Put"
-      #       Function: "arn:aws:lambda:us-east-1:123456789012:function:MyLambdaFunction"
-
-  ObjectLockConfiguration: 
-    ObjectLockConfiguration  # Amazon S3 バケットのオブジェクトロック設定。
-      # 例: 
-      #   ObjectLockEnabled: "Enabled"
-
-  ObjectLockEnabled: Boolean  # Amazon S3 バケットでオブジェクトロックを有効または無効にする。
-    # 例: true
-
-  OwnershipControls: 
-    OwnershipControls  # Amazon S3 バケットの所有権コントロール設定。
-      # 例: 
-      #   Rules:
-      #     - ObjectOwnership: "BucketOwnerPreferred"
-
-  PublicAccessBlockConfiguration: 
-    PublicAccessBlockConfiguration  # Amazon S3 バケットのパブリックアクセスの設定。
-      # 例: 
-      #   BlockPublicAcls: true
-      #   BlockPublicPolicy: true
-
-  ReplicationConfiguration: 
-    ReplicationConfiguration  # Amazon S3 バケットのレプリケーション設定。
-      # 例: 
-      #   Role: "arn:aws:iam::123456789012:role/replication-role"
-      #   Rules:
-      #     - Destination:
-      #         AccessControlTranslation:
-      #           Owner: "Destination"
-      #         Account: "123456789012"
-      #         Bucket: "arn:aws:s3:::replication-bucket"
-      #     - Prefix: "replication-prefix"
-      #       Status: "Enabled"
-
-  Tags: 
-    - Tag  # Amazon S3 バケットに関連付けるタグの設定。
-      # 例: 
-      # - Key: "Environment"
-      #   Value: "Production"
-
-  VersioningConfiguration: 
-    VersioningConfiguration  # Amazon S3 バケットのバージョニング設定。
-      # 例: 
-      #   Status: "Enabled"
-
-  WebsiteConfiguration: 
-    WebsiteConfiguration  # Amazon S3 バケットのウェブサイト設定。
-      # 例: 
-      #   ErrorDocument: "error.html"
-      #   IndexDocument: "index.html"
-BucketPolicy
-Type: AWS::S3::BucketPolicy
-Properties:
-  Bucket: String  # バケットポリシーを関連付ける Amazon S3 バケットの名前。
-    # 例: "my-s3-bucket"
-
-  PolicyDocument: Json  # バケットポリシーの JSON 形式のドキュメント。
-    # 例: 
-    #   {
-    #     "Version": "2012-10-17",
-    #     "Statement": [
-    #       {
-    #         "Effect": "Allow",
-    #         "Action": "s3:GetObject",
-    #         "Resource": "arn:aws:s3:::my-s3-bucket/*",
-    #         "Principal": "*"
-    #       }
-    #     ]
-    #   }
+      #   {
+      #     "Version": "2012-10-17",
+      #     "Statement": [
+      #       {
+      #         "Effect": "Allow",
+      #         "Action": "s3:GetObject",
+      #         "Resource": "arn:aws:s3:::my-s3-bucket/*",
+      #         "Principal": "*"
+      #       }
+      #     ]
+      #   }

@@ -1,70 +1,70 @@
-Properties
-DeliveryStream
-Type: AWS::KinesisFirehose::DeliveryStream
-Properties:
-  AmazonOpenSearchServerlessDestinationConfiguration: 
-    AmazonOpenSearchServerlessDestinationConfiguration  # Amazon OpenSearch サーバーレス宛先の構成。
-      # 例: 
-      #   ...
-      
-  AmazonopensearchserviceDestinationConfiguration: 
-    AmazonopensearchserviceDestinationConfiguration  # Amazon OpenSearch サービス宛先の構成。
-      # 例: 
-      #   ...
 
-  DeliveryStreamEncryptionConfigurationInput: 
-    DeliveryStreamEncryptionConfigurationInput  # データの暗号化構成。
-      # 例: 
-      #   ...
+DeliveryStream:
+  Type: AWS::KinesisFirehose::DeliveryStream
+  Properties:
+    AmazonOpenSearchServerlessDestinationConfiguration: 
+      AmazonOpenSearchServerlessDestinationConfiguration  # Amazon OpenSearch サーバーレス宛先の構成。
+        # 例: 
+        #   ...
+        
+    AmazonopensearchserviceDestinationConfiguration: 
+      AmazonopensearchserviceDestinationConfiguration  # Amazon OpenSearch サービス宛先の構成。
+        # 例: 
+        #   ...
 
-  DeliveryStreamName: String  # Amazon Kinesis Data Firehose デリバリーストリームの名前。
-    # 例: "MyDeliveryStream"
+    DeliveryStreamEncryptionConfigurationInput: 
+      DeliveryStreamEncryptionConfigurationInput  # データの暗号化構成。
+        # 例: 
+        #   ...
 
-  DeliveryStreamType: String  # デリバリーストリームのタイプ。
-    # 例: "DirectPut"
+    DeliveryStreamName: String  # Amazon Kinesis Data Firehose デリバリーストリームの名前。
+      # 例: "MyDeliveryStream"
 
-  ElasticsearchDestinationConfiguration: 
-    ElasticsearchDestinationConfiguration  # Amazon Elasticsearch Service 宛先の構成。
-      # 例: 
-      #   ...
+    DeliveryStreamType: String  # デリバリーストリームのタイプ。
+      # 例: "DirectPut"
 
-  ExtendedS3DestinationConfiguration: 
-    ExtendedS3DestinationConfiguration  # 拡張 S3 宛先の構成。
-      # 例: 
-      #   ...
+    ElasticsearchDestinationConfiguration: 
+      ElasticsearchDestinationConfiguration  # Amazon Elasticsearch Service 宛先の構成。
+        # 例: 
+        #   ...
 
-  HttpEndpointDestinationConfiguration: 
-    HttpEndpointDestinationConfiguration  # HTTP エンドポイント宛先の構成。
-      # 例: 
-      #   ...
+    ExtendedS3DestinationConfiguration: 
+      ExtendedS3DestinationConfiguration  # 拡張 S3 宛先の構成。
+        # 例: 
+        #   ...
 
-  KinesisStreamSourceConfiguration: 
-    KinesisStreamSourceConfiguration  # Amazon Kinesis ストリームからのデータソースの構成。
-      # 例: 
-      #   ...
+    HttpEndpointDestinationConfiguration: 
+      HttpEndpointDestinationConfiguration  # HTTP エンドポイント宛先の構成。
+        # 例: 
+        #   ...
 
-  MSKSourceConfiguration: 
-    MSKSourceConfiguration  # Amazon MSK からのデータソースの構成。
-      # 例: 
-      #   ...
+    KinesisStreamSourceConfiguration: 
+      KinesisStreamSourceConfiguration  # Amazon Kinesis ストリームからのデータソースの構成。
+        # 例: 
+        #   ...
 
-  RedshiftDestinationConfiguration: 
-    RedshiftDestinationConfiguration  # Amazon Redshift 宛先の構成。
-      # 例: 
-      #   ...
+    MSKSourceConfiguration: 
+      MSKSourceConfiguration  # Amazon MSK からのデータソースの構成。
+        # 例: 
+        #   ...
 
-  S3DestinationConfiguration: 
-    S3DestinationConfiguration  # Amazon S3 宛先の構成。
-      # 例: 
-      #   ...
+    RedshiftDestinationConfiguration: 
+      RedshiftDestinationConfiguration  # Amazon Redshift 宛先の構成。
+        # 例: 
+        #   ...
 
-  SplunkDestinationConfiguration: 
-    SplunkDestinationConfiguration  # Splunk 宛先の構成。
-      # 例: 
-      #   ...
+    S3DestinationConfiguration: 
+      S3DestinationConfiguration  # Amazon S3 宛先の構成。
+        # 例: 
+        #   ...
 
-  Tags: 
-    - Tag  # デリバリーストリームに関連付けるタグの設定。
-      # 例: 
-      # - Key: "Environment"
-      #   Value: "Production"
+    SplunkDestinationConfiguration: 
+      SplunkDestinationConfiguration  # Splunk 宛先の構成。
+        # 例: 
+        #   ...
+
+    Tags: 
+      - Tag  # デリバリーストリームに関連付けるタグの設定。
+        # 例: 
+        # - Key: "Environment"
+        #   Value: "Production"
