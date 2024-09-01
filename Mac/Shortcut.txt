@@ -1,0 +1,14 @@
+
+ウィンドウの最大化と解除
+command + control + f
+
+ウィンドウの最小化
+command + m
+
+最前面のウィンドウを非表示にする
+command + H
+
+最前面以外のウィンドウを非表示にする
+command + option + H
+
+

@@ -1,0 +1,37 @@
+
+■macの場合
+aws-cdkのインストール
+brew install aws-cdk
+
+cdkのバージョン確認
+cdk --version
+
+node.jsのバージョン確認
+node -v
+
+nodenvのインストール
+anyenv install nodenv
+
+exec $SHELL -l
+
+nodenvのバージョン確認
+nodenv -v
+
+nodenv install -l
+
+
+■Typescript
+npm install -g typescript
+
+cdk確認
+cdk init app --language typescript
+
+
+
+cdk bootstrap aws://xxxxxxxxx/ap-northeast-1
+
+
+npm install @aws-cdk/aws-s3 
+
+
+cdk deploy

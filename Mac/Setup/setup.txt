@@ -22,6 +22,14 @@ brew -v
 Homebrewの最新化
 brew update
 
+anyenvのインストール
+brew install anyenv
+
+echo 'eval "$(anyenv init -)"' >> ~/.zshrc
+open ~/.zshrc
+source ~/.zshrc
+anyenv install --init
+anyenv -v
 
 Gitアカウントの設定
 git config --list
@@ -77,5 +85,30 @@ pyenv versions
 
 使用するPythonのバージョンを指定
 pyenv global 3.12.5
+
+
+
+
+■aws cli
+バージョン確認
+aws --version
+
+インストール
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+
+which aws
+aws --version
+
+初期設定
+aws configure
+
+アクセスキー：AKIA2RJI3EX3NH2NNDFO
+アクセスキー：AKIA2RJI3EX3NH2NNDFO
+アクセスキー：AKIA2RJI3EX3NH2NNDFO
+シークレットキー：YnbEOkmTTO+jhSQ9/bHz6tWhLAtctcHUMe/ll4nu
+シークレットキー：YnbEOkmTTO+jhSQ9/bHz6tWhLAtctcHUMe/ll4nu
+シークレットキー：YnbEOkmTTO+jhSQ9/bHz6tWhLAtctcHUMe/ll4nu
+
 
 
