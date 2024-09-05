@@ -13,56 +13,20 @@ Resources:
   #**************************************************************************
   # Lightsail Section
   #**************************************************************************
-  MyLightsailInstance:
-    Type: "AWS::Lightsail::Instance"
+  WordPressServer: 
+    Type: AWS::Lightsail::Instance
     Properties:
-      BlueprintId: "os_amlinux_2019_03_01"  # Amazon Linux 2
-      BundleId: "nano_2_0"  # 512MBメモリ、1vCPU、20GB SSD
-      InstanceName: "MyWebAppInstance"
-      KeyPairName: "MyKeyPair"
-      UserData: |
-        #!/bin/bash
-        xxxx
-      Networking:
-        Ports:
-          - FromPort: 443
-            ToPort: 443
-            Protocol: tcp
-          - FromPort: 80
-            ToPort: 80
-            Protocol: tcp
+      BlueprintId: wordpress
+      BundleId: nano_2_0
+      InstanceName: WordPressServer
 
-  #**************************************************************************
-  # S3 Section
-  #**************************************************************************
-  MyS3Bucket:
-    Type: "AWS::S3::Bucket"
-    Properties:
-      BucketName: "example-static-content"
-      VersioningConfiguration:
-        Status: "Enabled"
-      LifecycleConfiguration:
-        Rules:
-          - Id: "MoveToIA"
-            Status: "Enabled"
-            Transitions:
-              - TransitionInDays: 30
-                StorageClass: "STANDARD_IA"
+  WordPressIp:
+    Type: AWS::Lightsail::StaticIp
+    Properties: 
+      AttachedTo: WordPressServer
+      StaticIpName: WordPressIp
 
-  #**************************************************************************
-  # Aurora Serverless Section
-  #**************************************************************************
-  MyAuroraCluster:
-    Type: "AWS::RDS::DBCluster"
-    Properties:
-      Engine: "aurora-mysql"
-      EngineMode: "serverless"
-      ScalingConfiguration:
-        AutoPause: true
-        MinCapacity: 1
-        MaxCapacity: 2
-      DatabaseName: "MyDatabase"
-      MasterUsername: "admin"
-      MasterUserPassword: "DBPassword"
-      BackupRetentionPeriod: 7
-      EnableIAMDatabaseAuthentication: true
+Outputs:
+  WordPressIp:
+    Description: WordPressIp
+    Value: !GetAtt WordPressIp.IpAddress
