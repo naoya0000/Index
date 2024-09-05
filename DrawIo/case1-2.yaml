@@ -1,10 +1,8 @@
 #**************************************************************************
 # Author: Matsumoto
-# Date: 2024/xx/xx
+# Date: 2024/09/06
 #
-# Lightsail: MyLightsailInstance
-# S3: MyS3Bucket
-# Aurora Serverless: MyAuroraCluster
+# Lightsail:   WordPressServer
 #**************************************************************************
 AWSTemplateFormatVersion: 2010-09-09
 
