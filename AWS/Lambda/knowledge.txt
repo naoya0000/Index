@@ -1,0 +1,174 @@
+
+■Lambda関数
+特定のイベントが発生したときにそのイベントに基づいた処理を行う
+
+
+■Pythonライブラリ
+特定の機能やタスクを簡単に実行するために、事前に作成されたコードの集合
+再利用可能な関数、クラス、モジュールなどを含む
+https://docs.python.org/ja/3/library/index.html
+
+
+■Pythonライブラリのインポート方法
+インポート：外部のライブラリやモジュールを自分のプログラムに読み込み、利用できるようにするプロセス
+
+・基本
+import ライブラリ名
+
+・別名(エイリアス)をつけてインポート
+※ライブラリの名前が長い場合等に、コード内でそのライブラリを短い名前で使用できる
+import ライブラリ名 as 別名
+
+・ライブラリの特定の部分のみをインポート
+from ライブラリ名 import 関数名/クラス名
+
+・特定部分をエイリアス付きでインポート
+from ライブラリ名 import 関数名/クラス名 as 別名
+
+・サードパーティライブラリのインポート
+事前にpipコマンドでインストールする必要がある
+pip install ライブラリ名
+import ライブラリ名
+
+
+◆よく使うライブラリ
+
+■import boto3
+用途：
+AWSサービスを操作するためのPython SDK
+
+メソッド
+boto3.client()
+特定のAWSサービスのクライアントオブジェクトを作成するためのメソッド
+そのサービスに対する操作が可能になる
+
+抽象：
+service_client = boto3.client('service_name')
+
+具体：
+s3 = boto3.client('s3')
+
+各SDKの書き方
+Boto3 documentation
+https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
+
+
+■import json
+JSONデータをPythonオブジェクトに変換したり、その逆を行うために使用
+
+メソッド：
+json.dump()
+Pythonのデータ型をJSON形式に変換し、そのデータをファイルに書き込む
+
+json.dumps()
+Pythonのデータ型をJSON形式の文字列に変換する
+
+json.load()
+JSON形式のファイルを読み込み、Pythonのデータ型に変換する
+
+json.loads()
+JSON形式の文字列をPythonのデータ型に変換する
+
+
+■import pkg_resources
+AWS Lambda環境でインストールされているPythonパッケージをリスト化し、標準出力に表示する
+
+
+■import requests
+外部APIにHTTPリクエストを送信できる
+データを取得する際に便利
+
+
+import os
+用途：環境変数の管理
+
+
+import logging
+用途：
+Lambda関数の実行中にログを記録する
+CloudWatchに送られるログを簡単に管理できる
+
+
+■組み込み関数
+標準で使える関数
+https://docs.python.org/ja/3/library/functions.html
+
+
+■よく使う組み込み関数
+
+print()
+構文：
+print(*objects, sep=' ', end='\n', file=sys.stdout, flush=False)
+引数：
+*objects: 出力したいオブジェクトを1つ以上渡す。複数のオブジェクトを渡した場合は、それらが連結されて表示される
+sep: 複数のオブジェクトが渡された場合の区切り文字（デフォルトはスペース ' '）
+end: 出力の最後に追加される文字列（デフォルトは改行 '\n'）
+file: 出力先（デフォルトは標準出力、通常はコンソール）
+flush: 出力をすぐにフラッシュするかどうか（デフォルトは False）※バッファリングしないということ
+
+
+
+■def lambda_handler(event, context):
+
+def
+Pythonで関数を定義するためのキーワード
+defの後に関数名と引数リストを書き、その後にコロン（:）で関数の本体を開始する
+
+lambda_handler
+関数の名前
+通常、Lambda関数の設定では、<ファイル名>.<関数名> の形式で指定する
+ファイル名：function.py
+関数名：lambda_handler
+→　設定は function.lambda_handler 
+
+(event, context)
+関数が受け取る2つの引数
+event:
+Lambda関数に渡されるイベントデータを含む引数
+関数がトリガーされた原因やそのデータを表す
+
+context:
+Lambda関数の実行に関する情報を含む引数
+関数のメタデータや実行環境に関する情報を取得できる
+
+
+■installed_packages = [d.project_name for d in pkg_resources.working_set]
+a = b
+変数宣言
+
+[ と ]
+リスト内包表記の記号、リストを生成
+
+for d in pkg_resources.working_set
+dはループ変数
+pkg_resources.working_set に含まれる各パッケージオブジェクトを d に代入
+
+d.project_name
+pkg_resources.working_set の project_name 属性をリストに追加
+
+
+
+■return { 'statusCode': 200, 'body': 'Hello from Lambda!' }
+Lambda関数の実行結果をHTTPレスポンスとして返す
+
+return
+関数から値を返すためのキーワード
+
+"{}"
+Pythonで辞書（dictionary）型のデータを開始・終了するための記号
+辞書はキーと値のペアを格納するデータ構造
+
+キー
+'statusCode'
+HTTPレスポンスのステータスコードを示す
+200：リクエストが正常に処理され、成功したことを示す
+404：リクエストされたリソースがサーバー上に存在しないことを示す
+500：サーバーがリクエストを処理する過程でエラーが発生したことを示す
+
+'body'
+HTTPレスポンスの内容（通常は文字列やデータ）を指定する
+
+
+
+
+
