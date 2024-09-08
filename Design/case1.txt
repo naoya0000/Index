@@ -40,7 +40,7 @@
 
 3.セキュリティ：
 運営者のみが投稿できるように基本的な認証機能を実装
-HTTPS通信
+HTTPS対応
 
 4.運用保守：
 運用コストを最小限に抑える
@@ -51,7 +51,7 @@ HTTPS通信
 ■基本設計(どう実現するのか)
 
 ①インフラ構成(できればスケーラブルにする)
-Amazon Lightsail（WordPress）
+Lightsail（WordPress）
 管理・運用環境を構築
 コスト試算：
 月額固定の最低料金
@@ -96,7 +96,7 @@ SSL証明書の管理、HTTPS
 
 
 ②インフラ構成
-Amazon Lightsail（WordPress）
+Lightsail（WordPress）
 管理・運用環境を構築
 コスト試算：
 月額固定の最低料金
@@ -125,7 +125,7 @@ https://lightsail.nao-domain.click/wp-admin/
 ②機能要件の実現
 
 コンテンツ管理：
-運営者のみが投稿・編集できるWordPressサイトの使用
+運営者のみが投稿・編集できるWordPressサイトを使用
 
 閲覧機能：
 誰でもコンテンツを閲覧できる
@@ -142,6 +142,7 @@ Lightsailインスタンスが稼働し続ける限り担保される
 ※スケーリングには手動での停止・再起動が必要になる
 
 2.性能・拡張性：
+nano_2_0
 512MB RAM
 1vCPU
 20GB SSD
