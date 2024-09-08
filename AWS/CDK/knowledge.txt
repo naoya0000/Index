@@ -1,0 +1,114 @@
+
+■CDK
+プログラミング言語を使ってクラウドリソースを定義し、
+AWS CloudFormationテンプレートを生成・デプロイするためのライブラリ
+
+■CDKのディレクトリ構造
+
+cdk-project/
+├── bin/
+│   └── cdk-project.ts
+├── lib/
+│   └── cdk-project-stack.ts
+├── node_modules/
+├── test/
+│   └── cdk-project.test.ts
+├── cdk.json
+├── jest.config.js
+├── package.json
+├── tsconfig.json
+└── README.md
+
+
+■bin/
+CDKアプリケーションのエントリーポイントが含まれるディレクトリ
+
+CDKアプリケーション：
+CDKを使ってインフラストラクチャをコードとして記述するアプリケーション
+エントリーポイント：
+アプリケーションを実行するために呼び出される主要なファイル
+
+
+■bin/cdk-project.ts
+CDKアプリケーションのインスタンスを作成し、スタックをデプロイするように構成する
+複数のスタックを持つプロジェクトでは、すべてのスタックをここで定義してデプロイする
+
+
+■lib/
+各種AWSリソースを定義するCDKスタックファイル
+このファイル内でリソースが定義され、bin/ ディレクトリのファイルでデプロイされる
+
+
+■node_modules/
+プロジェクトで使用するNode.jsの依存パッケージがインストールされるディレクトリ
+npm installコマンドを実行すると、このディレクトリに必要なモジュールがダウンロードされる
+
+
+■test/
+CDKスタックの単体テストを含むディレクトリ
+CDKではassertionsライブラリを使って、スタック内でリソースが正しく定義されているかをテストできる
+
+
+■cdk.json
+CDKプロジェクトの設定ファイル
+CDKアプリケーションのエントリーポイントなどが指定される
+CDK CLIがこのファイルを読み込む
+app: エントリーポイントを指定
+
+
+■jest.config.js
+jestテストフレームワークの設定ファイル
+CDKはjestを使用してテストを実行する
+テストの設定や対象ファイルを定義する
+
+
+■package.json
+Node.jsプロジェクトの依存関係を管理するためのファイル
+CDKプロジェクトで使用されるライブラリやツール（CDK関連のパッケージなど）がここで定義される
+
+
+■tsconfig.json
+TypeScriptプロジェクトの設定ファイル
+
+
+■テスト
+下記はAWS環境ではなく、コードに対してテストを行う
+
+アサーションテスト：
+リソースが特定のプロパティを持つかテストする
+
+resourceCountIs()
+特定のサービスのリソース数量をカウントする
+
+resourcePropertiesCountIs()
+特定のサービスにおける、指定のプロパティを持つリソースをカウントする
+
+hasResourceProperties()
+特定のサービスにおける、指定のプロパティを持つリソースが存在するか確認する
+
+
+スナップショットテスト：
+以前保存したテンプレートとの差分を比較する
+
+
+■CDKコマンド
+
+■テスト実行
+npx jest
+全体テスト実行
+jest.config.jsで対象を指定
+
+ 6:44PM PJ_cdk % npx jest
+ PASS  test/lightsail.test.ts
+  LightsailStack
+    ✓ Lightsail instance properties (3 ms)
+    ✓ Static IP address
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        3.283 s, estimated 4 s
+
+
+■デプロイ
+cdk deploy LightsailStack

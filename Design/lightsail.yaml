@@ -1,0 +1,61 @@
+Type: AWS::Lightsail::Instance
+Properties:
+  AddOns: 
+    - AddOn  # インスタンスに追加されるアドオンのリスト。
+      # 例: 
+      # - AddOnType: "AutoSnapshot"
+      #   AutoSnapshotAddOnRequest:
+      #     SnapshotTimeOfDay: "03:00"
+
+  AvailabilityZone: String  # インスタンスが作成されるアベイラビリティゾーン。
+    # 例: "us-east-1a"
+
+  BlueprintId: String  # インスタンスにインストールされるソフトウェアのテンプレートID。
+    # 例: "wordpress"
+
+  BundleId: String  # インスタンスのハードウェア仕様を指定するバンドルID。
+    # 例: "micro_2_0"
+
+  Hardware: 
+    Hardware  # インスタンスのハードウェア設定。
+      # 例: 
+      #   CpuCount: 1
+      #   RamSizeInGb: 1.0
+
+  InstanceName: String  # 作成するインスタンスの名前。
+    # 例: "MyInstance"
+
+  KeyPairName: String  # インスタンスにアクセスするためのSSHキーの名前。
+    # 例: "MyKeyPair"
+
+  Location: 
+    Location  # インスタンスの地理的ロケーション情報。
+      # 例: 
+      #   AvailabilityZone: "us-east-1a"
+      #   RegionName: "us-east-1"
+
+  Networking: 
+    Networking  # インスタンスのネットワーキング設定。
+      # 例: 
+      #   Ports:
+      #     - FromPort: 80
+      #       ToPort: 80
+      #       Protocol: "tcp"
+
+  State: 
+    State  # インスタンスの現在の状態。
+      # 例: 
+      #   Name: "running"
+      #   Code: 16
+
+  Tags: 
+    - Tag  # インスタンスに関連付けるタグの設定。
+      # 例: 
+      # - Key: "Environment"
+      #   Value: "Production"
+
+  UserData: String  # インスタンス起動時に実行されるユーザーデータスクリプト。
+    # 例: |
+    #   #!/bin/bash
+    #   echo "Hello, World!" > /var/www/html/index.html
+

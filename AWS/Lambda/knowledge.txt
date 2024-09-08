@@ -70,10 +70,6 @@ json.loads()
 JSON形式の文字列をPythonのデータ型に変換する
 
 
-■import pkg_resources
-AWS Lambda環境でインストールされているPythonパッケージをリスト化し、標準出力に表示する
-
-
 ■import requests
 外部APIにHTTPリクエストを送信できる
 データを取得する際に便利

@@ -1,0 +1,13 @@
+
+デジタル庁ガバメントクラウド資料
+https://www.digital.go.jp/policies/gov_cloud
+
+
+自治体のためのAWS
+https://aws.amazon.com/jp/government-education/worldwide/japan/LG-Industry-Site/
+
+
+AWS 地方自治体のためのガバメントクラウド情報サイト
+https://aws.amazon.com/jp/government-education/worldwide/japan/LG-Industry-Site/govcloud-lg/
+
+

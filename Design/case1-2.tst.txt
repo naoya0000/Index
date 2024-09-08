@@ -1,0 +1,10 @@
+ 6:44PM PJ_cdk % npx jest
+ PASS  test/lightsail.test.ts
+  LightsailStack
+    ✓ Lightsail instance properties (3 ms)
+    ✓ Static IP address
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        3.283 s, estimated 4 s

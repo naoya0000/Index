@@ -31,8 +31,8 @@ def lambda_handler(event, context):
             'statusCode': 200,
             'body': 'Success'
         }
-    except s3_client.exceptions.ClientError as e:
+    except Exception as e:
         return {
             'statusCode': 500,
-            'body': f'Error occurred: {str(e)}'
+            'body': f'Error: {str(e)}'
         }

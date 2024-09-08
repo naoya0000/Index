@@ -1,0 +1,7 @@
+Type: AWS::Lightsail::StaticIp
+Properties:
+  AttachedTo: String  # この静的IPがアタッチされるインスタンスの名前。
+    # 例: "MyInstance"
+
+  StaticIpName: String  # 静的IPアドレスに付ける名前。
+    # 例: "MyStaticIp"
