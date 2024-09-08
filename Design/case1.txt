@@ -50,16 +50,22 @@ HTTPS対応
 
 ■基本設計(どう実現するのか)
 
+コスト計算(AWS Pricing Calculator)
+https://calculator.aws/#/addService
+
+
 ①インフラ構成(できればスケーラブルにする)
 Lightsail（WordPress）
 管理・運用環境を構築
 コスト試算：
-月額固定の最低料金
 3.5USD/M
+月額固定の最低料金
 
 Aurora Serverless（MySQL）
+基本的に不要だが、将来的な動的コンテンツの拡大とユーザー数の増大を考え一応検討
 データベースの可用性とスケーラビリティを確保
 コスト試算：
+10USD未満
 従量課金
 月間10ユーザー程度のアクセスのため10USD未満を想定
 ※ユーザー増加の場合、想定外のコストが発生する可能性あり
@@ -76,13 +82,14 @@ S3 + CloudFront
 ※HTTPSの使用にはCloudFrontが必須
 S3で静的コンテンツをホスティングし、CloudFront を利用してコンテンツ配信のパフォーマンスを向上
 コスト試算：
+1USD/M
 ストレージ費用・データ転送費用を含めて月額2USD以内を想定
 
 Route 53
 ドメイン管理
 コスト試算：
-.click を登録
 3USD
+.click を登録
 
 Certificate Manager
 SSL証明書の管理、HTTPS
@@ -98,16 +105,17 @@ SSL証明書の管理、HTTPS
 ②インフラ構成
 Lightsail（WordPress）
 管理・運用環境を構築
+WordPressの内部データベースを使用
 コスト試算：
-月額固定の最低料金
 3.5USD/M
+月額固定の最低料金
 
 Route 53
 Route53でドメイン登録・Aレコード作成
 lightsail.nao-domain.click
 コスト試算：
-.click を登録
 3USD
+.click を登録
 
 Let's Encrypt
 Let’s Encryptを使用し、無料SSL証明書を発行
