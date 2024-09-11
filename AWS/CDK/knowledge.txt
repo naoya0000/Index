@@ -29,14 +29,92 @@ CDKを使ってインフラストラクチャをコードとして記述する�
 アプリケーションを実行するために呼び出される主要なファイル
 
 
-■bin/cdk-project.ts
+■bin/xxxx.ts
 CDKアプリケーションのインスタンスを作成し、スタックをデプロイするように構成する
 複数のスタックを持つプロジェクトでは、すべてのスタックをここで定義してデプロイする
+
+import 'source-map-support/register';
+*import：他のファイルやライブラリからコードを使うために、ファイルやモジュールを読み込む命令
+*'xxx'：' 'で囲まれた文字列は、モジュールやファイル名を表す  
+*モジュール：再利用可能なコードのまとまり
+
+import * as cdk from 'aws-cdk-lib';
+＊*：ワイルドカードとして「すべてを選択」という意味を持つ。モジュールのすべての関数やクラスを一度にインポートする
+＊as：インポートしたものを任意の名前で使用可能にする。この場合は cdk という名前でモジュールの中身にアクセスする
+
+import { LightsailStack } from '../lib/lightsail-stack';
+＊中括弧 {}：特定の部分だけをインポートする際に使用
+＊{ LightsailStack }：LightsailStackはクラス
+
+const app = new cdk.App();
+*const：変数の定義方法の1つで、「定数」を表す、再代入不可
+*=：代入演算子で、右側の値を左側の変数に代入する
+*new：クラスの新しいインスタンス（実体）を作成するために使う。この場合、cdk.App クラスの新しいオブジェクトが作られている
+*インスタンス：クラス(設計図)をもとに作られた具体的なオブジェクト
+この場合、cdk.App クラスをもとにした1つのアプリケーションオブジェクトが作られている
+*cdk.App()：AWS CDKの Appクラスを指す。
+Appクラスは、AWSリソースを定義してデプロイするための最上位のコンテナ(複数のリソースやスタック(リソースの集まり)のすべてをまとめる最上位のもの)の役割を持つ
+リソースを記述した複数のスタックをこの Appの中に定義し、最終的にAWSにデプロイする
+
+new LightsailStack(app, 'LightsailStack');
+*new LightsailStack：LightsailStack クラスの新しいインスタンス（オブジェクト）を作成している
+*クラス：オブジェクトを生成する設計図
+*(app, 'LightsailStack')：LightsailStack クラスのインスタンスを作る際に、app と 'LightsailStack' という2つの引数を渡している
 
 
 ■lib/
 各種AWSリソースを定義するCDKスタックファイル
 このファイル内でリソースが定義され、bin/ ディレクトリのファイルでデプロイされる
+
+
+■lib/xxxx.ts
+
+import * as cdk from 'aws-cdk-lib';
+*aws-cdk-lib: AWS CDKのコアライブラリで、AWSリソースの定義やデプロイに使う主要なクラスや機能が含まれている
+
+import { Construct } from 'constructs';
+*Construct: CDKの基本的な構造を表すクラス
+全てのリソースやスタックは Construct をベースにしており、リソースの論理的なグループや階層を表現する
+
+import * as lightsail from 'aws-cdk-lib/aws-lightsail';
+*aws-cdk-lib/aws-lightsail: AWS Lightsailに関連するリソースを扱うモジュール
+
+export class LightsailStack extends cdk.Stack {
+*export: このクラスを他のファイルでも使えるようにエクスポートする
+*class LightsailStack: LightsailStack という新しいクラスを定義している
+このクラスがスタックである
+*extends cdk.Stack: このクラスは cdk.Stack クラスを継承している
+*Stack: AWSにデプロイするリソースのまとまりを表すクラス
+
+constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+*constructor: クラスのインスタンスを作るときに呼ばれる特別な関数
+この中でスタックのリソースを定義する
+*scope: Construct: スタックがどこに配置されるかを示すもの
+*id: string: スタックの一意のID
+*props?: cdk.StackProps: スタックに渡す追加のプロパティ
+
+super(scope, id, props);
+*super: 親クラス（ここでは cdk.Stack）のコンストラクタを呼び出す
+これにより、この LightsailStack クラスが cdk.Stack として正しく動作するようになる
+
+
+const wordpressInstance = new lightsail.CfnInstance(this, 'WordPressServer', {
+*const wordpressInstance: wordpressInstance という定数を定義
+*new lightsail.CfnInstance: lightsail.CfnInstance クラスの新しいインスタンスを作成
+Lightsailインスタンスを作るためのクラス
+https://docs.aws.amazon.com/cdk/api/v2/docs/aws-construct-library.html
+*this: 現在のクラス (LightsailStack) のインスタンスを指す
+*'WordPressServer': スタック内の論理ID
+
+new cdk.CfnOutput(this, 'WordPressIpAddress', {
+*cdk.CfnOutput: CDKでリソースの情報を出力するためのクラス
+スタックの出力を定義する
+
+value: wordpressIp.attrIpAddress,
+*value: 出力する値
+
+description: 'WordPress instance'
+*description: 出力に関する説明
 
 
 ■node_modules/
@@ -48,6 +126,37 @@ npm installコマンドを実行すると、このディレクトリに必要な
 CDKスタックの単体テストを含むディレクトリ
 CDKではassertionsライブラリを使って、スタック内でリソースが正しく定義されているかをテストできる
 
+
+■test/xxxx.ts
+
+import { Template } from 'aws-cdk-lib/assertions';
+*Template: CDKスタックの出力テンプレートをテストするために使用
+CloudFormation テンプレートを検証する機能を持つ
+*aws-cdk-lib/assertions: CDKアプリケーションのユニットテストに使用されるモジュール
+
+describe('LightsailStack', () => { ... });
+*describe: Jestテストフレームワークの関数
+テストケースをグループ化するために使用
+*() => { ... }: テストケースの中身を定義するアロー関数
+
+beforeAll(() => { ... });
+*beforeAll: 各テストが実行される前に一度だけ実行されるセットアップ処理を定義
+この中で、スタックやテンプレートの生成を行う
+
+template = Template.fromStack(stack);
+*Template.fromStack(stack): スタック (stack) からCloudFormationテンプレートを生成し、その内容をTemplateクラスのインスタンスとしてtemplate変数に保存
+
+test('Lightsail instance properties', () => { ... });
+*test: Jest のテスト関数で、1つのテストケースを定義
+*'Lightsail instance properties': テストの名前
+
+template.hasResourceProperties('AWS::Lightsail::Instance', { ... });
+*template.hasResourceProperties: CloudFormationテンプレートに特定のリソースが存在し、そのリソースが指定されたプロパティを持っているかどうかを確認するためのメソッド
+*'AWS::Lightsail::Instance': テスト対象となるリソースタイプ
+
+template.hasResource('AWS::Lightsail::StaticIp', {});
+*template.hasResource: CloudFormationテンプレートに特定のリソースが存在するかどうかを確認するメソッド
+*{}: プロパティのチェックが必要ない場合は空のオブジェクト {} を渡す
 
 ■cdk.json
 CDKプロジェクトの設定ファイル
@@ -112,3 +221,5 @@ Time:        3.283 s, estimated 4 s
 
 ■デプロイ
 cdk deploy LightsailStack
+
+
