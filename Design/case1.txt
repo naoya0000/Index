@@ -11,7 +11,7 @@
 収益性がないため、コストを最小化する
 
 比較検討：
-① AWSのサービスを優先的に使用するプラン
+① 将来的な機能拡張やユーザー増加に備えるプラン
 ② コスト最小化プラン
 
 
@@ -52,12 +52,16 @@ HTTPS対応を必須とする
 https://calculator.aws/#/addService
 
 
-①AWSサービスを優先的に使用するプラン
+①将来的な機能拡張やユーザー増加に備えるプラン
 
 ■インフラ構成
 
 Lightsail（WordPress）：3.5USD/月（固定料金）
 ・WordPressを利用し、運用環境を構築
+
+移行案：EC2
+Lightsailインスタンスからスナップショットを作成し、EC2にエクスポート
+https://dev.classmethod.jp/articles/reinvent2018-upgrade-lightsail-to-ec2/
 
 Aurora Serverless（MySQL）：従量課金
 ・初期段階では不要だが、将来的な拡張とスケーラビリティを考慮して使用を検討
@@ -65,6 +69,7 @@ Aurora Serverless（MySQL）：従量課金
 代替案：Lightsailのデータベースオプション：15USD/月（固定料金）
 
 S3 + CloudFront：従量課金
+・将来的に大容量の静的ファイル(動画や音声ファイル等)を配信する場合に検討
 ・S3で静的コンテンツをホスティング、CloudFrontでコンテンツ配信とHTTPS対応
 
 Route53：3USD/年
