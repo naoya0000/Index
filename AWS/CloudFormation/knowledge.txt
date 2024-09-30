@@ -71,3 +71,13 @@ https://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/resources-s
 (☑削除ポリシーを使用する)
 3.該当リソースの記述をアンコメントしドリフト箇所を実機に合わせて変更してからスタック更新
 4.[DeletionPolicy: Retain]の記述を削除するかアンコメントしてスタック更新(DeletionPolicy除去)
+
+
+◼️リソース除外
+1.除外したいリソースとそのリソースを参照(Ref等)しているリソースにDeletionPolicy: Retainを付与してスタック更新
+2.該当リソース(1.)をコメントアウトしてスタック更新
+
+
+◼️リソースインポート
+1.該当リソースに設定値を合わせてDeletionPolicy: Retainを付与したスタックテンプレートファイルをスタックアクションよりインポート
+2.DeletionPolicyを削除してスタック更新(掃除)
