@@ -2,7 +2,7 @@
 キーボード変換（日本語↔英語）
 ・Windows
 変なマーク
-
+aa
 ・Mac
 英語入力
 Ctrl + Space
