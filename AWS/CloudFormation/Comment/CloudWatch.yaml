@@ -5,9 +5,9 @@ Alarm:
     ActionsEnabled: Boolean  # アラームのアクションが有効か無効かを示すフラグ。
       # 例: true
 
-    AlarmActions: 
+    AlarmActions:
       - String  # アラームが発生したときに実行するアクションのリスト。
-        # 例: 
+        # 例:
         # - arn:aws:sns:us-east-1:123456789012:MySNSTopic
 
     AlarmDescription: String  # アラームの説明。
@@ -22,9 +22,9 @@ Alarm:
     DatapointsToAlarm: Integer  # アラームがトリガーされる前に必要なデータポイントの数。
       # 例: 3
 
-    Dimensions: 
+    Dimensions:
       - Dimension  # メトリックの次元のリスト。
-        # 例: 
+        # 例:
         # - Name: "InstanceId"
         #   Value: "i-0123456789abcdef0"
 
@@ -37,17 +37,17 @@ Alarm:
     ExtendedStatistic: String  # 拡張統計を使用してアラームをトリガーする場合の拡張統計。
       # 例: "p90"
 
-    InsufficientDataActions: 
+    InsufficientDataActions:
       - String  # メトリックデータが不足しているときに実行するアクションのリスト。
-        # 例: 
+        # 例:
         # - arn:aws:sns:us-east-1:123456789012:MySNSTopic
 
     MetricName: String  # アラームに関連付けるメトリックの名前。
       # 例: "CPUUtilization"
 
-    Metrics: 
+    Metrics:
       - MetricDataQuery  # アラームに追加するクエリで使用されるメトリクスデータクエリのリスト。
-        # 例: 
+        # 例:
         # - Id: "m1"
         #   Expression: "AVG(MetricName)"
         #   Label: "MyMetric"
@@ -55,9 +55,9 @@ Alarm:
     Namespace: String  # アラームに関連付けるメトリクスの名前空間。
       # 例: "AWS/EC2"
 
-    OKActions: 
+    OKActions:
       - String  # アラームが OK 状態に戻ったときに実行するアクションのリスト。
-        # 例: 
+        # 例:
         # - arn:aws:sns:us-east-1:123456789012:MySNSTopic
 
     Period: Integer  # メトリックデータを取得する間隔（秒単位）。
@@ -82,10 +82,10 @@ LogGroup:
   Type: AWS::Logs::LogGroup
   Properties:
     DataProtectionPolicy: Json  # Amazon CloudWatch ロググループのデータ保護ポリシー。
-      # 例: 
+      # 例:
       #   policyName: "SampleDataProtectionPolicy"
-      #   policyUpdate: 
-      #     defaultEncryption: 
+      #   policyUpdate:
+      #     defaultEncryption:
       #       encryptionMode: "DISABLED"
 
     KmsKeyId: String  # Amazon CloudWatch ロググループで使用する AWS Key Management Service（AWS KMS）キーの ID。
@@ -100,9 +100,9 @@ LogGroup:
     RetentionInDays: Integer  # Amazon CloudWatch ロググループのログの保持期間（日単位）。
       # 例: 30
 
-    Tags: 
+    Tags:
       - Tag  # Amazon CloudWatch ロググループに関連付けるタグの設定。
-        # 例: 
+        # 例:
         # - Key: "Environment"
         #   Value: "Production"
 
@@ -126,4 +126,3 @@ SubscriptionFilter:
 
     RoleArn: String  # Amazon CloudWatch ログイベントを処理するための AWS Identity and Access Management（IAM）ロールの ARN。
       # 例: "arn:aws:iam::123456789012:role/MyRole"
-  
