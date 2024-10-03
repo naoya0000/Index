@@ -1,0 +1,79 @@
+Type: AWS::CloudTrail::Trail
+Properties:
+  AdvancedEventSelectors:  # 高度なイベントセレクターを指定
+    FieldSelectors:  # フィールドセレクターを設定
+      EndsWith:  # 指定した文字列で終了するイベントを選択
+        - String  # 例: "example.com"
+      Equals:  # 指定した文字列と等しいイベントを選択
+        - String  # 例: "exampleAction"
+      Field: String  # フィールド名を指定
+        # 例: "eventName"
+      NotEndsWith:  # 指定した文字列で終了しないイベントを選択
+        - String  # 例: "example.org"
+      NotEquals:  # 指定した文字列と等しくないイベントを選択
+        - String  # 例: "delete"
+      NotStartsWith:  # 指定した文字列で始まらないイベントを選択
+        - String  # 例: "admin"
+      StartsWith:  # 指定した文字列で始まるイベントを選択
+        - String  # 例: "create"
+    Name: String  # セレクターの名前
+      # 例: "MyEventSelector"
+
+  CloudWatchLogsLogGroupArn: String  # CloudWatch LogsのロググループARN
+    # 例: "arn:aws:logs:us-west-2:123456789012:log-group:MyLogGroup"
+
+  CloudWatchLogsRoleArn: String  # CloudWatch Logsに書き込むためのIAMロールARN
+    # 例: "arn:aws:iam::123456789012:role/MyCloudWatchRole"
+
+  EnableLogFileValidation: Boolean  # ログファイルの検証を有効にするかどうか
+    # 例: true
+
+  EventSelectors:  # イベントセレクターを設定
+    DataResources:  # データリソースを指定
+      Type: String  # リソースの種類を指定
+        # 例: "AWS::S3::Bucket"
+      Values:  # リソースの値を指定
+        - String  # 例: "my-bucket"
+    ExcludeManagementEventSources:  # 管理イベントのソースを除外
+      - String  # 例: "AWS::EC2"
+    IncludeManagementEvents: Boolean  # 管理イベントを含めるかどうか
+      # 例: true
+    ReadWriteType: String  # 読み取りまたは書き込みイベントを指定
+      # 例: "All"
+
+  IncludeGlobalServiceEvents: Boolean  # グローバルサービスイベントを含めるかどうか
+    # 例: true
+
+  InsightSelectors:  # インサイトセレクターを指定
+    InsightType: String  # インサイトの種類を指定
+      # 例: "ApiCallRateInsight"
+
+  IsLogging: Boolean  # ログ記録が有効かどうか
+    # 例: true
+
+  IsMultiRegionTrail: Boolean  # マルチリージョントレイルかどうか
+    # 例: false
+
+  IsOrganizationTrail: Boolean  # 組織トレイルかどうか
+    # 例: false
+
+  KMSKeyId: String  # KMSキーのIDを指定
+    # 例: "arn:aws:kms:us-west-2:123456789012:key/abcd1234-a123-456a-a12b-a123b4cd56ef"
+
+  S3BucketName: String  # S3バケット名を指定
+    # 例: "my-cloudtrail-bucket"
+
+  S3KeyPrefix: String  # S3キーのプレフィックスを指定
+    # 例: "cloudtrail/"
+
+  SnsTopicName: String  # SNSトピックの名前を指定
+    # 例: "MySNSTopic"
+
+  Tags:  # リソースに関連付けるタグ
+    - Tag
+    # 例:
+    #   Key: "Name"
+    #   Value: "MyCloudTrail"
+
+  TrailName: String  # トレイルの名前を指定
+    # 例: "MyTrail"

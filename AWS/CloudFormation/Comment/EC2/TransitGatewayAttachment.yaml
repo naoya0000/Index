@@ -1,25 +1,35 @@
+# AWS::EC2::TransitGatewayAttachment リソースを使用して、直接 Direct Connect Gateway (DXGW) へのアタッチメントを作成することはできない
+
+
 Type: AWS::EC2::TransitGatewayAttachment
 Properties:
-  Options:
-    Options  # Transit Gatewayアタッチメントの設定オプション
-    # 例:
-    #   DnsSupport: "enable"
-    #   Ipv6Support: "disable"
+  Options:  # アタッチメントのオプション設定
+    ApplianceModeSupport: String  # アプライアンスモードのサポート
+      # 例: "enable"
 
-  SubnetIds:
-    - String  # アタッチメントに関連付けるサブネットのIDリスト
-    # 例:
-    # - "subnet-0123456789abcdef"
-    # - "subnet-abcdef0123456789"
+    DnsSupport: String  # DNSサポートの有効化設定
+      # 例: "enable"
 
-  Tags:
-    - Tag  # リソースに適用するタグのリスト
-    # 例:
-    # - Key: "Name"
-    #   Value: "MyTransitGatewayAttachment"
+    Ipv6Support: String  # IPv6サポートの有効化設定
+      # 例: "enable"
 
-  TransitGatewayId: String  # アタッチメントを関連付けるTransit GatewayのID
-    # 例: "tgw-0123456789abcdef"
+    SecurityGroupReferencingSupport: String  # セキュリティグループ参照のサポート設定
+      # 例: "disable"
 
-  VpcId: String  # アタッチメントを作成するVPCのID
-    # 例: "vpc-0123456789abcdef"
+  SubnetIds:  # VPC内でアタッチするサブネットIDのリスト
+    - String  # サブネットID
+      # 例: "subnet-0bb1c79de3EXAMPLE"
+
+  Tags:  # タグのリスト
+    - Tag  # タグのキーと値のペア
+      # 例:
+      #   Key: "Name"
+      #   Value: "MyTransitGatewayAttachment"
+
+  TransitGatewayId: String  # トランジットゲートウェイのID
+    # 例: "tgw-0123456789abcdef0"
+
+  VpcId: String  # アタッチするVPCのID
+    # 例: "vpc-0bb1c79de3EXAMPLE"
+
+

@@ -1,0 +1,88 @@
+# イベントをフィルタリングし、処理するアクションを定義する
+
+Type: AWS::Events::Rule
+Properties:
+  Description: String  # ルールの説明
+    # 例: "Rule to trigger an event for specific conditions"
+
+  EventBusName: String  # ルールが関連付けられるイベントバスの名前
+    # 例: "MyEventBus"
+
+  EventPattern: Json  # イベントパターンをJSON形式で指定
+    # 例: '{"source": ["aws.ec2"], "detail-type": ["EC2 Instance State-change Notification"]}'
+
+  Name: String  # ルールの名前
+    # 例: "MyEventRule"
+
+  RoleArn: String  # ルールが使用するIAMロールのARN
+    # 例: "arn:aws:iam::123456789012:role/MyRole"
+
+  ScheduleExpression: String  # ルールのスケジュールを表す式
+    # 例: "rate(5 minutes)"
+
+  State: String  # ルールの状態（ENABLEDまたはDISABLED）
+    # 例: "ENABLED"
+
+  Targets:  # ルールのターゲットのリスト
+    - AppSyncParameters:  # AppSyncへのパラメータ
+        GraphQLOperation: String  # GraphQL操作の名前
+          # 例: "PutItem"
+
+      Arn: String  # ターゲットリソースのARN
+        # 例: "arn:aws:lambda:us-west-2:123456789012:function:MyFunction"
+
+      BatchParameters:  # バッチ処理のパラメータ
+        BatchParameters  # バッチパラメータの情報を指定
+          # 例: { "size": 10 }
+
+      DeadLetterConfig:  # デッドレター設定
+        DeadLetterConfig  # デッドレター設定の情報を指定
+          # 例: { "Arn": "arn:aws:sqs:us-west-2:123456789012:my-dlq" }
+
+      EcsParameters:  # ECSのパラメータ
+        EcsParameters  # ECSパラメータの情報を指定
+          # 例: { "TaskDefinitionArn": "arn:aws:ecs:us-west-2:123456789012:task-definition/MyTask" }
+
+      HttpParameters:  # HTTPパラメータ
+        HttpParameters  # HTTPパラメータの情報を指定
+          # 例: { "HeaderParameters": { "Content-Type": "application/json" } }
+
+      Id: String  # ターゲットの一意のID
+        # 例: "MyTarget"
+
+      Input: String  # ターゲットへの入力データ
+        # 例: '{"key": "value"}'
+
+      InputPath: String  # イベントの入力パスを指定
+        # 例: "$.detail"
+
+      InputTransformer:  # 入力変換の設定
+        InputTransformer  # 入力変換の情報を指定
+          # 例: { "InputPathsMap": { "instance": "$.detail.instance-id" }, "InputTemplate": "<json_template>" }
+
+      KinesisParameters:  # Kinesisのパラメータ
+        KinesisParameters  # Kinesisパラメータの情報を指定
+          # 例: { "PartitionKey": "myPartitionKey" }
+
+      RedshiftDataParameters:  # Redshiftデータパラメータ
+        RedshiftDataParameters  # Redshiftパラメータの情報を指定
+          # 例: { "Database": "myDatabase", "Sql": "SELECT * FROM myTable" }
+
+      RetryPolicy:  # リトライポリシー
+        RetryPolicy  # リトライポリシーの情報を指定
+          # 例: { "MaximumRetryAttempts": 2 }
+
+      RoleArn: String  # ターゲットが使用するIAMロールのARN
+        # 例: "arn:aws:iam::123456789012:role/MyRole"
+
+      RunCommandParameters:  # Run Commandのパラメータ
+        RunCommandParameters  # Run Commandパラメータの情報を指定
+          # 例: { "DocumentName": "AWS-RunShellScript", "Parameters": { "commands": ["echo Hello"] } }
+
+      SageMakerPipelineParameters:  # SageMakerパイプラインのパラメータ
+        SageMakerPipelineParameters  # SageMakerパラメータの情報を指定
+          # 例: { "PipelineName": "MyPipeline", "PipelineParameters": {} }
+
+      SqsParameters:  # SQSのパラメータ
+        SqsParameters  # SQSパラメータの情報を指定
+          # 例: { "MessageGroupId": "myGroupId" }

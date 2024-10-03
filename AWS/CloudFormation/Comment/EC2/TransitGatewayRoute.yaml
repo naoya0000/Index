@@ -1,0 +1,14 @@
+Type: AWS::EC2::TransitGatewayRoute
+Properties:
+  Blackhole: Boolean  # このルートをブラックホールにするかどうか
+    # 例: true
+
+  DestinationCidrBlock: String  # ルートの宛先CIDRブロック
+    # 例: "192.168.1.0/24"
+
+  TransitGatewayAttachmentId: String  # トランジットゲートウェイアタッチメントのID
+    # 例: "tgw-attach-0123456789abcdef0"
+
+  TransitGatewayRouteTableId: String  # トランジットゲートウェイルートテーブルのID
+    # 例: "tgw-rtb-0123456789abcdef0"
+

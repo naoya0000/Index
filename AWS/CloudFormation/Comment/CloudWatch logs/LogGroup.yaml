@@ -1,0 +1,23 @@
+Type: AWS::Logs::LogGroup
+Properties:
+  DataProtectionPolicy: Json  # データ保護ポリシーを指定
+    # 例: '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Principal": "*", "Action": "logs:PutLogEvents", "Resource": "*"}]}'
+
+  KmsKeyId: String  # ロググループの暗号化に使用するKMSキーのID
+    # 例: "arn:aws:kms:us-west-2:123456789012:key/abcd1234-a123-456a-a12b-a123b4cd56ef"
+
+  LogGroupClass: String  # ロググループのクラスを指定
+    # 例: "Standard"
+
+  LogGroupName: String  # ロググループの名前
+    # 例: "MyLogGroup"
+
+  RetentionInDays: Integer  # ログデータの保持期間（日数）
+    # 例: 14
+
+  Tags:  # リソースに関連付けるタグ
+    - Tag
+    # 例:
+    #   Key: "Name"
+    #   Value: "MyLogGroup"
+

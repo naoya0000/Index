@@ -1,0 +1,140 @@
+Type: AWS::S3::Bucket
+Properties:
+  AccelerateConfiguration:  # バケットの転送加速設定
+    AccelerationStatus: String  # 転送加速の状態
+      # 例: "Enabled"または"Suspended"
+
+  AccessControl: String  # バケットのアクセス制御設定
+    # 例: "Private"
+
+  AnalyticsConfigurations:  # 分析設定
+    - Id: String  # 設定の識別子
+      # 例: "AnalyticsConfig1"
+
+      Prefix: String  # 分析対象オブジェクトのプレフィックス
+        # 例: "logs/"
+
+      StorageClassAnalysis:  # ストレージクラス分析の設定
+        StorageClassAnalysis  # ストレージクラス分析の詳細設定を指定
+
+      TagFilters:  # タグフィルタ
+        - TagFilter  # タグフィルタの詳細を指定
+
+  BucketEncryption:  # バケットの暗号化設定
+    ServerSideEncryptionConfiguration:  # サーバー側の暗号化設定
+      BucketKeyEnabled: Boolean  # バケットキーの使用を有効にするか
+      ServerSideEncryptionByDefault:  # デフォルトの暗号化設定
+        KMSMasterKeyID: String  # KMSマスターキーのARN
+          # 例: "arn:aws:kms:us-west-2:123456789012:key/my-key"
+
+        SSEAlgorithm: String  # 使用する暗号化アルゴリズム
+          # 例: "AES256"または"aws:kms"
+
+  BucketName: String  # バケットの名前
+    # 例: "my-unique-bucket-name"
+
+  CorsConfiguration:  # CORS設定
+    CorsConfiguration  # CORSの詳細設定を指定
+
+  IntelligentTieringConfigurations:  # インテリジェントティアリング設定
+    - IntelligentTieringConfiguration  # インテリジェントティアリングの詳細設定を指定
+
+  InventoryConfigurations:  # インベントリ設定
+    - InventoryConfiguration  # インベントリの詳細設定を指定
+
+  LifecycleConfiguration:  # ライフサイクル設定
+    Rules:  # ライフサイクルルールのリスト
+      - AbortIncompleteMultipartUpload:  # 不完全なマルチパートアップロードの中止設定
+          AbortIncompleteMultipartUpload  # 中止設定の詳細を指定
+
+        ExpirationDate: String  # オブジェクトの有効期限日
+          # 例: "2024-12-31"
+
+        ExpirationInDays: Integer  # 有効期限の日数
+          # 例: 30
+
+        ExpiredObjectDeleteMarker: Boolean  # 有効期限切れのオブジェクト削除マーカーの設定
+        Id: String  # ルールの識別子
+          # 例: "LifecycleRule1"
+
+        NoncurrentVersionExpiration:  # 非現在版の有効期限設定
+          NewerNoncurrentVersions: Integer  # 新しい非現在版の数
+          NoncurrentDays: Integer  # 非現在版の日数
+
+        NoncurrentVersionExpirationInDays: Integer  # 非現在版の有効期限の日数
+          # 例: 30
+
+        NoncurrentVersionTransition:  # 非現在版の遷移設定
+          NoncurrentVersionTransition  # 遷移設定の詳細を指定
+
+        NoncurrentVersionTransitions:  # 非現在版の遷移設定のリスト
+          - NoncurrentVersionTransition  # 遷移設定の詳細を指定
+
+        ObjectSizeGreaterThan: String  # 特定のサイズ以上のオブジェクトを対象
+          # 例: "100MB"
+
+        ObjectSizeLessThan: String  # 特定のサイズ未満のオブジェクトを対象
+          # 例: "1GB"
+
+        Prefix: String  # 対象オブジェクトのプレフィックス
+          # 例: "logs/"
+
+        Status: String  # ルールの状態（EnabledまたはDisabled）
+          # 例: "Enabled"
+
+        TagFilters:  # タグフィルタのリスト
+          - TagFilter  # タグフィルタの詳細を指定
+
+        Transition:  # 遷移設定
+          StorageClass: String  # 遷移先のストレージクラス
+            # 例: "GLACIER"
+
+          TransitionDate: String  # 遷移日
+            # 例: "2024-12-31"
+
+          TransitionInDays: Integer  # 遷移までの日数
+            # 例: 30
+
+        Transitions:  # 遷移設定のリスト
+          - StorageClass: String  # 遷移先のストレージクラス
+            # 例: "GLACIER"
+
+            TransitionDate: String  # 遷移日
+              # 例: "2024-12-31"
+
+            TransitionInDays: Integer  # 遷移までの日数
+              # 例: 30
+
+  LoggingConfiguration:  # ロギング設定
+    LoggingConfiguration  # ロギングの詳細設定を指定
+
+  MetricsConfigurations:  # メトリクス設定
+    - MetricsConfiguration  # メトリクスの詳細設定を指定
+
+  NotificationConfiguration:  # 通知設定
+    NotificationConfiguration  # 通知の詳細設定を指定
+
+  ObjectLockConfiguration:  # オブジェクトロック設定
+    ObjectLockConfiguration  # オブジェクトロックの詳細設定を指定
+
+  ObjectLockEnabled: Boolean  # オブジェクトロックを有効にするか
+    # 例: true
+
+  OwnershipControls:  # 所有権設定
+    OwnershipControls  # 所有権の詳細設定を指定
+
+  PublicAccessBlockConfiguration:  # パブリックアクセスブロック設定
+    PublicAccessBlockConfiguration  # パブリックアクセスの詳細設定を指定
+
+  ReplicationConfiguration:  # 複製設定
+    ReplicationConfiguration  # 複製の詳細設定を指定
+
+  Tags:  # タグのリスト
+    - Tag  # タグの詳細を指定
+
+  VersioningConfiguration:  # バージョニング設定
+    Status: String  # バージョニングの状態（EnabledまたはSuspended）
+      # 例: "Enabled"
+
+  WebsiteConfiguration:  # ウェブサイト設定
+    WebsiteConfiguration  # ウェブサイトの詳細設定を指定

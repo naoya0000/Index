@@ -1,0 +1,105 @@
+Type: AWS::CloudWatch::Alarm
+Properties:
+  ActionsEnabled: Boolean  # アラームアクションの有効/無効を指定
+    # 例: true
+
+  AlarmActions:  # アラームが発動した際に実行されるアクション
+    - String
+    # 例: "arn:aws:sns:us-west-2:123456789012:MySNSTopic"
+
+  AlarmDescription: String  # アラームの説明
+    # 例: "CPU使用率が80%を超えた場合にアラームを発動"
+
+  AlarmName: String  # アラームの名前
+    # 例: "HighCPUUsageAlarm"
+
+  ComparisonOperator: String  # しきい値の比較演算子
+    # 例: "GreaterThanThreshold"
+
+  DatapointsToAlarm: Integer  # アラームをトリガーするために必要なデータポイントの数
+    # 例: 3
+
+  Dimensions:  # メトリクスのディメンション
+    Name: String  # ディメンション名
+      # 例: "InstanceId"
+    Value: String  # ディメンションの値
+      # 例: "i-0123456789abcdef0"
+
+  EvaluateLowSampleCountPercentile: String  # パーセンタイルの評価
+    # 例: "p90"
+
+  EvaluationPeriods: Integer  # アラーム評価期間
+    # 例: 5
+
+  ExtendedStatistic: String  # カスタム統計メトリクス
+    # 例: "p90"
+
+  InsufficientDataActions:  # データが不足している場合に実行されるアクション
+    - String
+    # 例: "arn:aws:sns:us-west-2:123456789012:MySNSTopic"
+
+  MetricName: String  # メトリクス名
+    # 例: "CPUUtilization"
+
+  Metrics:  # 複数のメトリクスを含む場合の設定
+    AccountId: String  # アカウントID
+      # 例: "123456789012"
+    Expression: String  # メトリクスの数式
+      # 例: "SUM(METRICS('m1'))"
+    Id: String  # メトリクスID
+      # 例: "m1"
+    Label: String  # メトリクスのラベル
+      # 例: "CPU Utilization"
+    MetricStat:  # メトリクスの統計
+      Metric:
+        Dimensions:  # メトリクスのディメンション
+          Name: String
+            # 例: "InstanceId"
+          Value: String
+            # 例: "i-0123456789abcdef0"
+        MetricName: String  # メトリクス名
+          # 例: "CPUUtilization"
+        Namespace: String  # メトリクスの名前空間
+          # 例: "AWS/EC2"
+      Period: Integer  # メトリクスの評価間隔
+        # 例: 300
+      Stat: String  # 統計メトリクス
+        # 例: "Average"
+      Unit: String  # メトリクスの単位
+        # 例: "Percent"
+    Period: Integer  # 評価期間
+      # 例: 300
+    ReturnData: Boolean  # データを返すかどうか
+      # 例: true
+
+  Namespace: String  # メトリクスの名前空間
+    # 例: "AWS/EC2"
+
+  OKActions:  # アラームがOKに戻ったときに実行されるアクション
+    - String
+    # 例: "arn:aws:sns:us-west-2:123456789012:MySNSTopic"
+
+  Period: Integer  # メトリクスの評価期間（秒）
+    # 例: 60
+
+  Statistic: String  # メトリクスの統計タイプ
+    # 例: "Average"
+
+  Tags:  # リソースに関連付けるタグ
+    - Tag
+    # 例:
+    #   Key: "Name"
+    #   Value: "MyCloudWatchAlarm"
+
+  Threshold: Number  # アラームのしきい値
+    # 例: 80
+
+  ThresholdMetricId: String  # しきい値を計算するために使用されるメトリクスのID
+    # 例: "m1"
+
+  TreatMissingData: String  # 欠落データの扱い
+    # 例: "breaching"
+
+  Unit: String  # メトリクスの単位
+    # 例: "Percent"
+

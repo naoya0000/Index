@@ -1,0 +1,34 @@
+Type: AWS::SNS::Subscription
+Properties:
+  DeliveryPolicy: Json  # 配信ポリシーをJSON形式で指定
+    # 例: '{"healthyRetryPolicy": {"numRetries": 3, "numMaxDelayRetries": 2}}'
+
+  Endpoint: String  # サブスクリプション先のエンドポイント
+    # 例: "user@example.com"
+
+  FilterPolicy: Json  # フィルターポリシーをJSON形式で指定
+    # 例: '{"store": ["example_store"], "event": ["order_placed", "order_shipped"]}'
+
+  FilterPolicyScope: String  # フィルターポリシーのスコープを指定
+    # 例: "MessageBody"
+
+  Protocol: String  # サブスクリプションのプロトコルを指定
+    # 例: "email" または "http"
+
+  RawMessageDelivery: Boolean  # 生メッセージ配信を有効にするかどうか
+    # 例: true
+
+  RedrivePolicy: Json  # 再送ポリシーをJSON形式で指定
+    # 例: '{"deadLetterTargetArn": "arn:aws:sqs:us-west-2:123456789012:my-queue", "maxReceiveCount": "5"}'
+
+  Region: String  # サブスクリプションのリージョンを指定
+    # 例: "us-west-2"
+
+  ReplayPolicy: Json  # リプレイポリシーをJSON形式で指定
+    # 例: '{"replayWindow": "2 hours"}'
+
+  SubscriptionRoleArn: String  # サブスクリプションに関連付けるIAMロールのARN
+    # 例: "arn:aws:iam::123456789012:role/MySubscriptionRole"
+
+  TopicArn: String  # サブスクリプション対象のSNSトピックのARN
+    # 例: "arn:aws:sns:us-west-2:123456789012:MySNSTopic"

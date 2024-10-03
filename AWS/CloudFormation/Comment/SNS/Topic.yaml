@@ -1,0 +1,53 @@
+Type: AWS::SNS::Topic
+Properties:
+  ArchivePolicy: Json  # アーカイブポリシーをJSON形式で指定
+    # 例: '{"ArchiveAfter": "30 days", "MaxArchivedMessages": 1000}'
+
+  ContentBasedDeduplication: Boolean  # コンテンツベースの重複排除を有効にするかどうか
+    # 例: true
+
+  DataProtectionPolicy: Json  # データ保護ポリシーをJSON形式で指定
+    # 例: '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": "SNS:Publish", "Resource": "*"}]}'
+
+  DeliveryStatusLogging:  # 配信状況のロギング設定
+    FailureFeedbackRoleArn: String  # 配信失敗時のフィードバック用IAMロールARN
+      # 例: "arn:aws:iam::123456789012:role/MyFailureFeedbackRole"
+
+    Protocol: String  # 配信のプロトコルを指定
+      # 例: "email" または "http"
+
+    SuccessFeedbackRoleArn: String  # 配信成功時のフィードバック用IAMロールARN
+      # 例: "arn:aws:iam::123456789012:role/MySuccessFeedbackRole"
+
+    SuccessFeedbackSampleRate: String  # 成功フィードバックのサンプル率
+      # 例: "100" (100% の成功率)
+
+  DisplayName: String  # トピックの表示名を指定
+    # 例: "My SNS Topic"
+
+  FifoTopic: Boolean  # FIFOトピックかどうか
+    # 例: true
+
+  KmsMasterKeyId: String  # KMSマスターキーのIDを指定
+    # 例: "arn:aws:kms:us-west-2:123456789012:key/abcd1234-a123-456a-a12b-a123b4cd56ef"
+
+  SignatureVersion: String  # 署名のバージョンを指定
+    # 例: "1"
+
+  Subscription:  # トピックのサブスクリプション設定
+    Endpoint: String  # サブスクリプション先のエンドポイント
+      # 例: "user@example.com"
+
+    Protocol: String  # サブスクリプションのプロトコルを指定
+      # 例: "email" または "sms"
+
+  Tags:  # リソースに関連付けるタグ
+    - Tag  # 例:
+      #   Key: "Environment"
+      #   Value: "Production"
+
+  TopicName: String  # トピックの名前を指定
+    # 例: "MySNSTopic"
+
+  TracingConfig: String  # トレーシング設定を指定
+    # 例: "Active" または "Inactive"

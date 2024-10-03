@@ -1,0 +1,11 @@
+Type: AWS::EC2::TransitGatewayRouteTable
+Properties:
+  Tags:  # タグのリスト
+    - Tag  # タグのキーと値のペア
+      # 例:
+      #   Key: "Name"
+      #   Value: "MyTransitGatewayRouteTable"
+
+  TransitGatewayId: String  # トランジットゲートウェイのID
+    # 例: "tgw-0123456789abcdef0"
+

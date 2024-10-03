@@ -1,0 +1,38 @@
+# 原則として、VPC と Transit Gateway は同じ AWS アカウント内に存在している必要があり
+
+Type: AWS::EC2::TransitGatewayVpcAttachment
+Properties:
+  AddSubnetIds:  # アタッチメントに追加するサブネットのID
+    - String
+    # 例: "subnet-0123456789abcdef0"
+
+  Options:  # アタッチメントのオプション設定
+    ApplianceModeSupport: String  # アプライアンスモードのサポート
+      # 例: "enable"
+    DnsSupport: String  # DNSサポートの有効化設定
+      # 例: "enable"
+    Ipv6Support: String  # IPv6サポートの有効化設定
+      # 例: "enable"
+    SecurityGroupReferencingSupport: String  # セキュリティグループ参照サポートの設定
+      # 例: "enable"
+
+  RemoveSubnetIds:  # アタッチメントから削除するサブネットのID
+    - String
+    # 例: "subnet-0123456789abcdef0"
+
+  SubnetIds:  # アタッチメントに関連付けるサブネットのID
+    - String
+    # 例: "subnet-0123456789abcdef0"
+
+  Tags:  # リソースに適用するタグ
+    - Tag
+    # 例:
+    #   Key: "Name"
+    #   Value: "MyTransitGatewayVpcAttachment"
+
+  TransitGatewayId: String  # トランジットゲートウェイのID
+    # 例: "tgw-0123456789abcdef0"
+
+  VpcId: String  # VPCのID
+    # 例: "vpc-0123456789abcdef0"
+

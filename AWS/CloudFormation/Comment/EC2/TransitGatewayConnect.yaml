@@ -1,0 +1,15 @@
+Type: AWS::EC2::TransitGatewayConnect
+Properties:
+  Options:  # トランジットゲートウェイコネクトのオプション設定
+    Protocol: String  # 接続プロトコル（例: "gre"）
+      # 例: "gre"
+
+  Tags:  # タグのリスト
+    - Tag  # タグのキーと値のペア
+      # 例:
+      #   Key: "Name"
+      #   Value: "MyTransitGatewayConnect"
+
+  TransportTransitGatewayAttachmentId: String  # トランスポート用トランジットゲートウェイアタッチメントのID
+    # 例: "tgw-attach-0123456789abcdef0"
+
