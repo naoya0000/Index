@@ -1,0 +1,61 @@
+Type: AWS::Budgets::Budget
+Properties:
+  Budget:  # 予算設定の詳細
+    AutoAdjustData:  # 自動調整データ
+      AutoAdjustData  # 自動調整データの詳細を指定
+
+    BudgetLimit:  # 予算の上限
+      Amount: Number  # 上限金額
+        # 例: 1000
+      Unit: String  # 金額の単位
+        # 例: "USD"
+
+    BudgetName: String  # 予算の名前
+      # 例: "MonthlyBudget"
+
+    BudgetType: String  # 予算のタイプ
+      # 例: "COST"
+
+    CostFilters: Json  # コストフィルタの設定
+      # 例: {"Service": ["Amazon EC2", "Amazon S3"]}
+
+    CostTypes:  # コストのタイプ
+      IncludeCredit: Boolean  # クレジットを含めるか
+      IncludeDiscount: Boolean  # 割引を含めるか
+      IncludeOtherSubscription: Boolean  # その他のサブスクリプションを含めるか
+      IncludeRecurring: Boolean  # 定期的なコストを含めるか
+      IncludeRefund: Boolean  # 返金を含めるか
+      IncludeSubscription: Boolean  # サブスクリプションを含めるか
+      IncludeSupport: Boolean  # サポートコストを含めるか
+      IncludeTax: Boolean  # 税金を含めるか
+      IncludeUpfront: Boolean  # 前払いを含めるか
+      UseAmortized: Boolean  # 償却コストを使用するか
+      UseBlended: Boolean  # 混合コストを使用するか
+
+    PlannedBudgetLimits: Json  # 計画された予算の上限
+      # 例: {"2024-01": {"Amount": 500, "Unit": "USD"}}
+
+    TimePeriod:  # 予算の期間
+      End: String  # 終了日
+        # 例: "2024-12-31"
+      Start: String  # 開始日
+        # 例: "2024-01-01"
+
+    TimeUnit: String  # 予算の時間単位
+      # 例: "MONTHLY"
+
+  NotificationsWithSubscribers:  # 通知と購読者の設定
+    Notification:  # 通知の詳細設定
+      Notification  # 通知の詳細を指定
+
+    Subscribers:  # 購読者のリスト
+      Address: String  # 購読者のアドレス
+        # 例: "example@example.com"
+      SubscriptionType: String  # 購読タイプ
+        # 例: "EMAIL"
+
+  ResourceTags:  # リソースタグの設定
+    Key: String  # タグのキー
+      # 例: "Environment"
+    Value: String  # タグの値
+      # 例: "Production"
