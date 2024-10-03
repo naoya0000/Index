@@ -1,0 +1,32 @@
+Type: AWS::Backup::BackupSelection
+Properties:
+  BackupPlanId: String  # このバックアップ選択が関連付けられるバックアッププランのID
+    # 例: "12345678-1234-1234-1234-123456789012"
+
+  BackupSelection:  # バックアップするリソースに関する設定を含む
+    Conditions:  # 特定の条件に基づいたリソースの選択を行うための条件
+      Conditions
+      # 例:
+      #   StringEquals:
+      #     "aws:RequestTag/Backup": "true"
+
+    IamRoleArn: String  # バックアップサービスがリソースにアクセスするために使用するIAMロールのARN
+      # 例: "arn:aws:iam::123456789012:role/AWSBackupServiceRole"
+
+    ListOfTags:  # タグに基づいてリソースを選択する際の条件リスト
+      - ConditionResourceType
+      # 例:
+      #   ConditionKey: "Environment"
+      #   ConditionValue: "Production"
+
+    NotResources:  # バックアップ対象外とするリソースのリスト
+      - String
+      # 例: "arn:aws:ec2:us-west-2:123456789012:volume/vol-1234567890abcdef0"
+
+    Resources:  # バックアップ対象とするリソースのリスト
+      - String
+      # 例: "arn:aws:rds:us-west-2:123456789012:db:mydb"
+
+    SelectionName: String  # バックアップ選択に割り当てられる名前
+      # 例: "MyBackupSelection"
+

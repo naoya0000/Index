@@ -1,0 +1,56 @@
+Type: AWS::Backup::BackupPlan
+Properties:
+  BackupPlan:  # バックアッププランの詳細を定義
+    AdvancedBackupSettings:  # 高度なバックアップ設定
+      BackupOptions: Json  # バックアップ対象リソースに関連するオプションを定義するJSON形式の設定
+        # 例: '{"WindowsVSS": "enabled"}'
+
+      ResourceType: String  # バックアップ対象リソースのタイプ
+        # 例: "EC2"
+
+    BackupPlanName: String  # バックアッププランに割り当てられる名前
+      # 例: "MyBackupPlan"
+
+    BackupPlanRule:  # バックアップのルールを定義
+      CompletionWindowMinutes: Number  # バックアップ完了の許容時間（分）
+        # 例: 60
+
+      CopyActions:  # バックアップコピーを作成するアクション
+        - CopyActionResourceType  # コピーアクションの詳細設定
+          # 例: "arn:aws:backup:us-east-1:123456789012:vault:MyVault"
+
+      EnableContinuousBackup: Boolean  # 継続的バックアップの有効化
+        # 例: true
+
+      Lifecycle:  # バックアップのライフサイクルを管理
+        LifecycleResourceType  # バックアップの保持期間を定義
+          # 例:
+          #   MoveToColdStorageAfterDays: 30
+          #   DeleteAfterDays: 90
+
+      RecoveryPointTags:  # リカバリポイントに付与されるタグ
+        Key: Value  # タグのキーと値のペア
+          # 例:
+          #   Environment: "Production"
+          #   Project: "BackupProject"
+
+      RuleName: String  # バックアップルールの名前
+        # 例: "DailyBackupRule"
+
+      ScheduleExpression: String  # バックアップのスケジュールを定義するcron式
+        # 例: "cron(0 12 * * ? *)"
+
+      ScheduleExpressionTimezone: String  # スケジュールのタイムゾーンを指定
+        # 例: "UTC"
+
+      StartWindowMinutes: Number  # バックアップ開始の許容時間（分）
+        # 例: 30
+
+      TargetBackupVault: String  # バックアップが保存されるターゲットのバックアップボールト
+        # 例: "arn:aws:backup:us-west-2:123456789012:vault:MyBackupVault"
+
+  BackupPlanTags:  # バックアッププランに付与されるタグ
+    Key: Value  # タグのキーと値のペア
+      # 例:
+      #   Environment: "Production"
+      #   Project: "BackupProject"

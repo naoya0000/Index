@@ -1,0 +1,34 @@
+Type: AWS::Backup::BackupVault
+Properties:
+  AccessPolicy: Json  # バックアップボールトに対するアクセスポリシーを定義するJSON形式の設定
+    # 例: '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Principal": "*", "Action": "backup:CopyIntoBackupVault", "Resource": "*"}]}'
+
+  BackupVaultName: String  # バックアップボールトの名前
+    # 例: "MyBackupVault"
+
+  BackupVaultTags:  # バックアップボールトに付与するタグ
+    Key: Value  # タグのキーと値のペア
+      # 例:
+      #   Environment: "Production"
+      #   Project: "BackupProject"
+
+  EncryptionKeyArn: String  # バックアップデータの暗号化に使用するKMSキーのARN
+    # 例: "arn:aws:kms:us-west-2:123456789012:key/abc12345-6789-0123-4567-89abcdef0123"
+
+  LockConfiguration:  # バックアップボールトのロック設定を管理
+    ChangeableForDays: Integer  # バックアップ保持ポリシーの変更が可能な日数
+      # 例: 7
+
+    MaxRetentionDays: Integer  # バックアップの最大保持期間（日数）
+      # 例: 3650
+
+    MinRetentionDays: Integer  # バックアップの最小保持期間（日数）
+      # 例: 30
+
+  Notifications:  # バックアップボールトのイベント通知設定
+    BackupVaultEvents:  # 通知するバックアップボールトイベントのリスト
+      - String  # イベントタイプ
+        # 例: "BACKUP_JOB_STARTED"
+
+    SNSTopicArn: String  # SNSトピックのARN、イベント通知の送信先
+      # 例: "arn:aws:sns:us-west-2:123456789012:MySNSTopic"
