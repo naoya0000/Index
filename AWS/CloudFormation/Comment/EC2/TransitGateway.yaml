@@ -1,0 +1,47 @@
+Type: AWS::EC2::TransitGateway
+Properties:
+  AmazonSideAsn: Integer  # Transit Gatewayに関連付けるAmazonの自律システム番号（ASN）。
+    # 例: 64512
+
+  AssociationDefaultRouteTableId: String  # Transit Gatewayで使用するデフォルトのルートテーブルID。
+    # 例: "tgw-rtb-0123456789abcdef"
+
+  AutoAcceptSharedAttachments: String  # 他のAWSアカウントからのアタッチメント要求を自動承認するかどうか。
+    # 例: "enable"
+
+  DefaultRouteTableAssociation: String  # Transit Gatewayに関連付けられるデフォルトのルートテーブルを使用するかどうか。
+    # 例: "enable"
+
+  DefaultRouteTablePropagation: String  # Transit Gatewayに関連付けられるデフォルトのルートテーブルで伝播を有効にするかどうか。
+    # 例: "enable"
+
+  Description: String  # Transit Gatewayの説明。
+    # 例: "My Transit Gateway"
+
+  DnsSupport: String  # Transit GatewayにおけるDNSサポートを有効にするかどうか。
+    # 例: "enable"
+
+  MulticastSupport: String  # マルチキャストサポートを有効にするかどうか。
+    # 例: "disable"
+
+  PropagationDefaultRouteTableId: String  # Transit Gatewayで使用する伝播用のデフォルトのルートテーブルID。
+    # 例: "tgw-rtb-0123456789abcdef"
+
+  SecurityGroupReferencingSupport: String  # Transit Gatewayでセキュリティグループの参照サポートを有効にするかどうか。
+    # 例: "enable"
+
+  Tags:
+    - Key: Name
+      Value: "MyTransitGateway"
+    # 例:
+    # - Key: "Environment"
+    #   Value: "Production"
+
+  TransitGatewayCidrBlocks:
+    # Transit Gatewayで使用するCIDRブロックのリスト。
+    - "10.0.0.0/16"
+    # 例:
+    # - "192.168.1.0/24"
+
+  VpnEcmpSupport: String  # VPN接続に対するECMP（Equal-Cost Multi-Path）サポートを有効にするかどうか。
+    # 例: "enable"

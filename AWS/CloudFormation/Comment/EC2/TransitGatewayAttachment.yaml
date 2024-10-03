@@ -1,0 +1,25 @@
+Type: AWS::EC2::TransitGatewayAttachment
+Properties:
+  Options:
+    Options  # Transit Gatewayアタッチメントの設定オプション
+    # 例:
+    #   DnsSupport: "enable"
+    #   Ipv6Support: "disable"
+
+  SubnetIds:
+    - String  # アタッチメントに関連付けるサブネットのIDリスト
+    # 例:
+    # - "subnet-0123456789abcdef"
+    # - "subnet-abcdef0123456789"
+
+  Tags:
+    - Tag  # リソースに適用するタグのリスト
+    # 例:
+    # - Key: "Name"
+    #   Value: "MyTransitGatewayAttachment"
+
+  TransitGatewayId: String  # アタッチメントを関連付けるTransit GatewayのID
+    # 例: "tgw-0123456789abcdef"
+
+  VpcId: String  # アタッチメントを作成するVPCのID
+    # 例: "vpc-0123456789abcdef"
