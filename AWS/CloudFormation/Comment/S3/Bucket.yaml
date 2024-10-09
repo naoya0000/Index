@@ -44,8 +44,8 @@ Properties:
 
   LifecycleConfiguration:  # ライフサイクル設定
     Rules:  # ライフサイクルルールのリスト
-      - AbortIncompleteMultipartUpload:  # 不完全なマルチパートアップロードの中止設定
-          AbortIncompleteMultipartUpload  # 中止設定の詳細を指定
+      - AbortIncompleteMultipartUpload:  # 未完了のマルチパートアップロードを自動的に中止する設定
+          DaysAfterInitiation  # マルチパートアップロードが開始されてから、中止されるまでの日数
 
         ExpirationDate: String  # オブジェクトの有効期限日
           # 例: "2024-12-31"

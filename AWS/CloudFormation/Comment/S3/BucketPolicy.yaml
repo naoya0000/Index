@@ -1,0 +1,25 @@
+Type: AWS::S3::BucketPolicy
+Properties:
+  Bucket: String  # ポリシーを適用するS3バケット名
+    # 例: "my-s3-bucket"
+
+  PolicyDocument:  # バケットポリシーの内容
+    Version: '2012-10-17'  # ポリシードキュメントのバージョン
+
+    Statement:  # ポリシーのステートメント
+      - Action:  # 許可するアクション
+          - String  # 例: "s3:GetObject"
+
+        Effect: String  # アクションの効果（AllowまたはDeny）
+          # 例: "Allow"
+
+        Resource: String  # アクションが適用されるリソース（バケットやオブジェクトのARN）
+          # 例: "arn:aws:s3:::my-s3-bucket/*"
+
+        Principal:  # アクセスを許可するエンティティ
+          Service: String  # サービスを指定
+            # 例: "lambda.amazonaws.com"
+
+        Condition:  # 条件
+          ArnLike:  # ARNに基づいた条件
+            String: String  # 例: "arn:aws:iam::123456789012:role/someRole"

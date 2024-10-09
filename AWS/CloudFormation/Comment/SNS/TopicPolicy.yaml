@@ -1,0 +1,25 @@
+Type: AWS::SNS::TopicPolicy
+Properties:
+  PolicyDocument:  # ポリシードキュメント
+    Version: String  # ポリシーのバージョン
+      # 例: "2012-10-17"
+
+    Statement:  # ポリシーのステートメント
+      - Sid: String  # ステートメントの識別子
+          # 例: "AllowSNSActions"
+
+        Effect: String  # ステートメントの効果
+          # 例: "Allow"
+
+        Principal:  # アクセスを許可するエンティティ
+          AWS: String  # AWSユーザーやロールのARN
+            # 例: "arn:aws:iam::123456789012:user/YourUser"
+
+        Action: String  # 許可するアクション
+          # 例: "SNS:Publish"
+
+        Resource: String  # ポリシーが適用されるSNSトピックのARN
+          # 例: "arn:aws:sns:us-east-1:123456789012:YourTopic"
+
+  Topics:  # ポリシーが適用されるSNSトピックのリスト
+    - String  # 例: "arn:aws:sns:us-east-1:123456789012:YourTopic"

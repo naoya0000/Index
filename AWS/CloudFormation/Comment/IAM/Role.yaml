@@ -1,0 +1,32 @@
+Type: AWS::IAM::Role
+Properties:
+  AssumeRolePolicyDocument: Json  # ロールの信頼ポリシー(そのロールを誰に使用させるか)（JSON形式）
+    # 例: {"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Principal": {"Service": "ec2.amazonaws.com"}, "Action": "sts:AssumeRole"}]}
+
+  Description: String  # ロールの説明
+    # 例: "This role grants EC2 access to S3."
+
+  ManagedPolicyArns:  # 管理ポリシーのARNリスト
+    - String  # 例: "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+
+  MaxSessionDuration: Integer  # 最大セッション時間（秒）
+    # 例: 3600
+
+  Path: String  # ロールのパス
+    # 例: "/service-role/"
+
+  PermissionsBoundary: String  # パーミッション境界のARN
+    # 例: "arn:aws:iam::123456789012:policy/PermissionsBoundaryPolicy"
+
+  Policies:  # インラインポリシーのリスト
+    PolicyDocument: Json  # ポリシードキュメント（JSON形式）
+      # 例: {"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": "s3:*", "Resource": "*"}]}
+
+    PolicyName: String  # ポリシーの名前
+      # 例: "S3FullAccessPolicy"
+
+  RoleName: String  # ロールの名前
+    # 例: "EC2S3AccessRole"
+
+  Tags:  # タグのリスト
+    - Tag  # 例: {Key: "Environment", Value: "Production"}

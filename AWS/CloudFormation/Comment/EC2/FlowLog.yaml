@@ -1,0 +1,46 @@
+Type: AWS::EC2::FlowLog
+Properties:
+  DeliverCrossAccountRole: String  # クロスアカウントでログを配信するためのIAMロール
+    # 例: "arn:aws:iam::123456789012:role/CrossAccountRole"
+
+  DeliverLogsPermissionArn: String  # ログを配信するためのIAMロールARN
+    # 例: "arn:aws:iam::123456789012:role/DeliverLogsRole"
+
+  DestinationOptions:  # ログ配信のオプション設定
+    FileFormat: String  # ログファイルの形式
+      # 例: "plain-text" または "parquet"
+
+    HiveCompatiblePartitions: Boolean  # ハイブ互換のパーティション設定
+      # 例: true
+
+    PerHourPartition: Boolean  # ログを1時間ごとのパーティションで作成するか
+      # 例: false
+
+  LogDestination: String  # ログの送信先（S3バケットARNまたはCloudWatchロググループARN）
+    # 例: "arn:aws:s3:::my-log-bucket"
+
+  LogDestinationType: String  # ログの送信先タイプ（s3またはcloud-watch-logs）
+    # 例: "s3"
+
+  LogFormat: String  # ログのフォーマット（カスタム形式を指定）
+    # 例: "${srcaddr} ${dstaddr} ${srcport} ${dstport} ${protocol} ${account-id}"
+
+  LogGroupName: String  # CloudWatch Logsのロググループ名（CloudWatch Logsの場合のみ）
+    # 例: "my-log-group"
+
+  MaxAggregationInterval: Integer  # 最大集約間隔（秒）
+    # 例: 600
+
+  ResourceId: String  # Flow Logを適用するリソースID（VPC、サブネット、またはネットワークインターフェース）
+    # 例: "vpc-123abcde"
+
+  ResourceType: String  # Flow Logの対象リソースタイプ（VPC、Subnet、またはNetworkInterface）
+    # 例: "VPC"
+
+  Tags:  # タグのリスト
+    - Key: String
+      Value: String
+      # 例: { Key: "Environment", Value: "Production" }
+
+  TrafficType: String  # ログを取得するトラフィックタイプ（ACCEPT、REJECT、ALL）
+    # 例: "ALL"

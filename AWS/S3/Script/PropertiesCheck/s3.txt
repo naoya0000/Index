@@ -1,0 +1,72 @@
+
+◆情報取得日時 : 2024-10-10 (Thursday) 01:39
+
+◆get-bucket-versioning
+
+◆get-bucket-taggingg
+{
+    "TagSet": [
+        {
+            "Key": "Environment",
+            "Value": "dev"
+        }
+    ]
+}
+
+◆get-bucket-encryption
+{
+    "ServerSideEncryptionConfiguration": {
+        "Rules": [
+            {
+                "ApplyServerSideEncryptionByDefault": {
+                    "SSEAlgorithm": "AES256"
+                },
+                "BucketKeyEnabled": false
+            }
+        ]
+    }
+}
+
+◆get-bucket-logging-tiering-configuration
+
+◆get-bucket-accelerate-configuration
+
+◆get-bucket-acl
+{
+    "Owner": {
+        "DisplayName": "naowork12",
+        "ID": "594fdafc4a008dad5e66c926b3dc103f05f32a928c393b426a08815d797562ef"
+    },
+    "Grants": [
+        {
+            "Grantee": {
+                "DisplayName": "naowork12",
+                "ID": "594fdafc4a008dad5e66c926b3dc103f05f32a928c393b426a08815d797562ef",
+                "Type": "CanonicalUser"
+            },
+            "Permission": "FULL_CONTROL"
+        }
+    ]
+}
+
+◆get-bucket-request-payment
+{
+    "Payer": "BucketOwner"
+}
+
+◆get-bucket-policy
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1657697011473",
+    "Statement": [
+        {
+            "Sid": "Stmt1657697001224",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::724324525558:user/naoya"
+            },
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::naoya-backet"
+        }
+    ]
+}
