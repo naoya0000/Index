@@ -1,5 +1,10 @@
 
-◆情報取得日時 : 2024-10-10 (Thursday) 01:39
+◆情報取得日時 : 2024-10-10 (Thursday) 01:50
+
+◆get-bucket-location
+{
+    "LocationConstraint": "ap-northeast-1"
+}
 
 ◆get-bucket-versioning
 

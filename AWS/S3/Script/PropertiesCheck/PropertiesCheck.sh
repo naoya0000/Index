@@ -14,6 +14,9 @@ echo -e "\n◆情報取得日時 : $(TZ=Asia/Tokyo date "+%Y-%m-%d (%A) %H:%M")"
 
 # S3情報取得
 
+echo -e "\n◆get-bucket-location" >> s3.txt
+aws s3api get-bucket-location --bucket "$BUCKET" >> s3.txt
+
 echo -e "\n◆get-bucket-versioning" >> s3.txt
 aws s3api get-bucket-versioning --bucket "$BUCKET" >> s3.txt
 
