@@ -1,0 +1,10 @@
+# 指定されたトランジットゲートウェイのルートテーブルに対して、特定のアタッチメントからの経路の伝播を有効化する
+# これにより、トランジットゲートウェイ内の異なるアタッチメント間で経路情報が自動的に共有される
+
+Type: AWS::EC2::TransitGatewayRouteTablePropagation
+Properties:
+  TransitGatewayAttachmentId: String  # 経路の伝播を設定するアタッチメントID
+    # 例: "tgw-attach-0abcdef1234567890"
+
+  TransitGatewayRouteTableId: String  # 経路が伝播されるトランジットゲートウェイのルートテーブルID
+    # 例: "tgw-rtb-0abcdef1234567890"

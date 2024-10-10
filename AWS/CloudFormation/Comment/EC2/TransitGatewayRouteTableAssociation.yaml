@@ -1,0 +1,7 @@
+Type: AWS::EC2::TransitGatewayRouteTableAssociation
+Properties:
+  TransitGatewayAttachmentId: String  # アタッチメントのID（VPC、VPN、Direct Connectなど）
+    # 例: "tgw-attach-0abcdef1234567890"
+
+  TransitGatewayRouteTableId: String  # 関連付けるルートテーブルのID
+    # 例: "tgw-rtb-0abcdef1234567890"
